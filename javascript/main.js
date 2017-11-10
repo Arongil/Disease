@@ -41,4 +41,3 @@ function loop() {
   Input.click = false;
   window.requestAnimationFrame(loop);
 }
-window.onload = init;
