@@ -36,7 +36,7 @@ function init() {
 }
 
 function loop() {
-  image("disease/resources/map.png", 0, 0, WIDTH, HEIGHT);
+  image("https://mdn.mozillademos.org/files/5397/rhino.jpg", 0, 0, WIDTH, HEIGHT);
   
   Input.click = false;
   window.requestAnimationFrame(loop);
