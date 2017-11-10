@@ -35,7 +35,7 @@ function init() {
   loop();
 }
 
-loop() {
+function loop() {
   Input.click = false;
   window.requestAnimationFrame(loop);
 }
