@@ -22,7 +22,7 @@ window.onkeyup = function(e) {
     Input[e.keyCode] = false;
   }
 };
-body.onmouseup = function(e) {
+canvas.onmouseup = function(e) {
   Input["click"] = true;
 };
 document.onmousemove = function(e) {
