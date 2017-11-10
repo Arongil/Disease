@@ -119,7 +119,7 @@ function textWrap(str, x, y, width, fontSize) {
 }
 function image(path, x, y, width, height) {
   var img = new Image();
-  img.onload = () => ctx.drawImage(img, x, y, width, height);
+  img.onload = () => ctx.drawImage(img, x - width/2, y - height/2, width, height);
   img.src = path;
 }
 
