@@ -1,2 +1,2 @@
 # Disease
-Modeling the spread of diease.
+An agent-based simulation of the spread of disease through human transport systems.
