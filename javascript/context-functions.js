@@ -117,6 +117,11 @@ function textWrap(str, x, y, width, fontSize) {
     text(lines[i]["text"], x, lines[i]["currentY"]);
   }
 }
+function image(path, x, y, width, height) {
+  var img = new Image();
+  img.onload = () => ctx.drawImage(img, x, y, width, height);
+  img.src = path;
+}
 
 function millis() {
   return Date.now() - start;
