@@ -45,7 +45,7 @@ function init() {
   
   ctx.translate(HALFWIDTH, HALFHEIGHT);
   
-  initInput();
+  initInput(canvas);
   
   loop();
 }
