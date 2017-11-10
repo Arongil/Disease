@@ -1,1 +1,6 @@
-
+class Agent {
+  
+  constructor() {
+  }
+  
+}
