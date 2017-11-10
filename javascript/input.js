@@ -1,10 +1,9 @@
 var Input = {
-  // 37 is the left arrow. 38 is the up arrow. 39 is the right arrow.
-  "37": false,
-  "38": false,
-  "39": false,
-  "40": false,
-  "32": false,
+  "37": false, // left arrow
+  "38": false, // up arrow
+  "39": false, // right arrow
+  "40": false, // down arrow
+  "32": false, // spacebar
   "click": false,
   "mousepos": {
     "x": 0,
