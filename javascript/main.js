@@ -49,7 +49,7 @@ function init() {
 }
 
 function loop() {
-  image("/resources/map.png", 0, 0, WIDTH, HEIGHT);
+  image("resources/map.png", 0, 0, WIDTH, HEIGHT);
   
   Input.click = false;
   window.requestAnimationFrame(loop);
