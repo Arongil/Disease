@@ -45,6 +45,8 @@ function init() {
   
   ctx.translate(HALFWIDTH, HALFHEIGHT);
   
+  initInput();
+  
   loop();
 }
 
