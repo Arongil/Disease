@@ -1,3 +1,5 @@
+var start = Date.now(), doStroke = true;
+
 // New context fuctions here.
 function fill(red, green, blue, alpha) {
   if (alpha === undefined) {
@@ -114,4 +116,8 @@ function textWrap(str, x, y, width, fontSize) {
   for (var i = 0, len = lines.length; i < len; i++) {
     text(lines[i]["text"], x, lines[i]["currentY"]);
   }
+}
+
+function millis() {
+  return Date.now() - start;
 }
