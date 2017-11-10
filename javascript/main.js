@@ -38,7 +38,6 @@ function init() {
 function loop() {
   Input.click = false;
   window.requestAnimationFrame(loop);
-  fill(186, 218, 85);
-  rect(0,0,WIDTH,HEIGHT);
+  bg = loadImage("disease/resources/map.png");
 }
 window.onload = init;
