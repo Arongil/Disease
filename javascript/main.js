@@ -1,5 +1,18 @@
 var canvas, ctx, WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT;
 
+var Input = {
+  "37": false, // left arrow
+  "38": false, // up arrow
+  "39": false, // right arrow
+  "40": false, // down arrow
+  "32": false, // spacebar
+  "click": false,
+  "mousepos": {
+    "x": 0,
+    "y": 99999
+  }
+};
+
 function resize() {
   ctx.translate(-HALFWIDTH, -HALFHEIGHT);
   
