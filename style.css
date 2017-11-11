@@ -7,6 +7,7 @@
 }
 .center {
 	margin: auto;
+	text-align: center;
 }
 html,body {
 	width:100%;
