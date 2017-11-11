@@ -5,8 +5,8 @@ class GameController {
     // temp *********
     for (var i = 0, x, y, color; i < 1000; i++) {
       do {
-        x = (Math.random()-1/2) * WIDTH;
-        y = (Math.random()-1/2) * HEIGHT;
+        x = Math.floor((Math.random()-1/2) * WIDTH);
+        y = Math.floor((Math.random()-1/2) * HEIGHT);
         color = colorAt(x, y);
       } while (color[0] < 200 || color[1] < 200 || color[2] < 200);
       
