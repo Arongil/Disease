@@ -29,8 +29,8 @@ class Agent {
   }
   
   physics() {
-    this.onLand();
     this.pos.shift(this.vel);
+    this.onLand();
   }
   
   update() {
