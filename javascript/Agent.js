@@ -3,7 +3,7 @@ class Agent {
   constructor(x, y, xVel, yVel) {
     this.pos = new Vector2D(x, y);
     this.vel = new Vector2D(xVel, yVel);
-    this.size = WIDTH / 200;
+    this.size = WIDTH / 400;
     
     this.healthy = true;
     this.immune = false; // true if successfully recovered
