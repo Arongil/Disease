@@ -2,7 +2,9 @@ class GameController {
 
   constructor() {
     this.agents = [];
-    // temp *********
+  }
+  
+  initAgents() {
     for (var i = 0, x, y, color; i < 1000; i++) {
       do {
         x = (Math.random()-1/2) * WIDTH;
@@ -15,7 +17,6 @@ class GameController {
         Vector2D.FromPolar(Math.random() * WIDTH/200, Math.random() * 2*Math.PI)
       ));
     }
-    // temp *********
   }
   
   update() {

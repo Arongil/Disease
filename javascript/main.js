@@ -45,11 +45,10 @@ function init() {
   
   ctx.translate(HALFWIDTH, HALFHEIGHT);
   
-  image("resources/map.png", 0, 0, WIDTH, HEIGHT);
-  
   initInput(canvas);
   
   GC = new GameController();
+  window.setTimeout(GC.initAgents, 100); // initialize agents after 100 ms so the image is loaded.
   
   loop();
 }
