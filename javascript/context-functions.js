@@ -29,7 +29,7 @@ function rect(x, y, width, height) {
 }
 function ellipse(x, y, xRadius, yRadius) {
   ctx.beginPath();
-  ctx.ellipse(x, y, xRadius, yRadius, 0, 0, 2*pi);
+  ctx.ellipse(x, y, xRadius, yRadius, 0, 0, 2*Math.PI);
   ctx.closePath();
   ctx.fill();
   if (doStroke) {
