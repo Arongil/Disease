@@ -21,7 +21,7 @@ class Agent {
   }
   
   onLand() {
-    pixelColor = colorAt(this.pos.x, this.pos.y);
+    var pixelColor = colorAt(this.pos.x, this.pos.y);
     if (pixelColor[0] < 200 || pixelColor[1] < 200 || pixelColor[2] < 200) { // not white => water
       this.pos.shift(this.vel.getScaled(-1));
       this.vel = Vector2D.FromPolar(this.vel.getMagnitude(), Math.random() * 2*Math.PI);
