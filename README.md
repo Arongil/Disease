@@ -1,7 +1,7 @@
-# The Model
+# What
 An agent-based simulation of the spread of disease through human transport systems.
 
-# The Engine
+# How
 ### HTML5
 HTML5 elements in use, and all expected functionality works.
 ### Canvas
@@ -9,5 +9,5 @@ A <canvas> element is used for the display. In addition to the given context fun
 ### JavaScript
 Standard JavaScript (EMCAScript 6) used for programming.
 
-# The Team
+# Who
 Built by Laker, Parth, and Abhi
