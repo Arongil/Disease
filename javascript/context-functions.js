@@ -123,7 +123,7 @@ function image(path, x, y, width, height) {
   img.src = path;
 }
 function colorAt(x, y) {
-  return ctx.getImageData(x + HALFWIDTH, y + HALFHEIGHT, 1, 1);
+  return ctx.getImageData(x + HALFWIDTH, y + HALFHEIGHT, 1, 1).data;
 }
 
 function millis() {
