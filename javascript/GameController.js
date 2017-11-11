@@ -3,7 +3,6 @@ class GameController {
   constructor() {
     this.agents = [];
     // temp *********
-    image("resources/map.png", 0, 0, WIDTH, HEIGHT);
     for (var i = 0, x, y, color; i < 1000; i++) {
       do {
         x = (Math.random()-1/2) * WIDTH;
