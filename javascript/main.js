@@ -45,8 +45,6 @@ function init() {
   
   ctx.translate(HALFWIDTH, HALFHEIGHT);
   
-  image("resources/map.png", 0, 0, WIDTH, HEIGHT);
-  
   initInput(canvas);
   
   GC = new GameController();
