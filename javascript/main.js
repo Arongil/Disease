@@ -53,8 +53,6 @@ function init() {
 }
 
 function loop() {
-  image("resources/map.png", 0, 0, WIDTH, HEIGHT);
-  
   GC.update();
   
   Input.click = false;

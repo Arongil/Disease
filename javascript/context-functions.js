@@ -122,6 +122,9 @@ function image(path, x, y, width, height) {
   img.onload = () => ctx.drawImage(img, x - width/2, y - height/2, width, height);
   img.src = path;
 }
+function colorAt(x, y) {
+  return ctx.getImageData(x + HALFWIDTH, y + HALFHEIGHT, 1, 1);
+}
 
 function millis() {
   return Date.now() - start;
