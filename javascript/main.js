@@ -1,4 +1,4 @@
-var canvas, ctx, WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT;
+var canvas, ctx, WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT, ASPECTRATIO = 1.4; // aspectRatio is desired WIDTH/HEIGHT ratio.
 var GC;
 var Input = {
   "37": false, // left arrow
@@ -17,11 +17,11 @@ function resize() {
   ctx.translate(-HALFWIDTH, -HALFHEIGHT);
   
   canvas.width = 4/5 * window.innerWidth;
-  canvas.height = canvas.width;
+  canvas.height = canvas.width / ASPECTRATIO;
   if (canvas.height > 7/8 * window.innerHeight) {
     // If the height is greater than the height of the screen, set it accordingly.
     canvas.height = 7/8 * window.innerHeight;
-    canvas.width = canvas.height;
+    canvas.width = canvas.height * ASPECTRATIO;
   }
   
   WIDTH = canvas.width;
