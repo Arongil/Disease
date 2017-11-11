@@ -5,7 +5,7 @@ class GameController {
   }
   
   initAgents() {
-    for (var i = 0, x, y, color; i < 1000; i++) {
+    for (var i = 0, x, y, color; i < 200; i++) {
       do {
         x = (Math.random()-1/2) * WIDTH;
         y = (Math.random()-1/2) * HEIGHT;
