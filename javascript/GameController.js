@@ -3,7 +3,7 @@ class GameController {
   constructor() {
     this.agents = [];
     // temp *********
-    for (var i = 0, x, y, color; i < 100; i++) {
+    for (var i = 0, x, y, color; i < 1000; i++) {
       x = 2*(Math.random()-1/2) * WIDTH;
       y = 2*(Math.random()-1/2) * HEIGHT;
       color = colorAt(x, y);
@@ -14,10 +14,8 @@ class GameController {
       }
       
       this.agents.push(new Agent(
-        2*(Math.random()-1/2) * WIDTH,
-        2*(Math.random()-1/2) * HEIGHT,
-        2*(Math.random()-1/2) * WIDTH / 1000,
-        2*(Math.random()-1/2) * WIDTH / 1000,
+        new Vector2D(x, y),
+        new Vector2D(Math.random() * WIDTH/200, Math.random() * 2*Math.PI);
       ));
     }
     // temp *********
