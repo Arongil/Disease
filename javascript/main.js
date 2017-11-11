@@ -1,5 +1,5 @@
 var canvas, ctx, WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT;
-
+var GC;
 var Input = {
   "37": false, // left arrow
   "38": false, // up arrow
@@ -47,11 +47,15 @@ function init() {
   
   initInput(canvas);
   
+  GC = new GameController();
+  
   loop();
 }
 
 function loop() {
   image("resources/map.png", 0, 0, WIDTH, HEIGHT);
+  
+  GC.update();
   
   Input.click = false;
   window.requestAnimationFrame(loop);
