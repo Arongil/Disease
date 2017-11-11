@@ -16,6 +16,7 @@ class Agent {
       fill(0, 200, 0);
     else // healthy and immume => blue
       fill(0, 0, 200);
+    noStroke();
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
   }
   
