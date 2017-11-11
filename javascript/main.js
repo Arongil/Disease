@@ -1,4 +1,4 @@
-var canvas, ctx, WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT, ASPECTRATIO = 1.4; // aspectRatio is desired WIDTH/HEIGHT ratio.
+var canvas, ctx, WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT, ASPECTRATIO = 85/54; // aspectRatio is desired WIDTH/HEIGHT ratio.
 var GC;
 var Input = {
   "37": false, // left arrow
