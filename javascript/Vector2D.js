@@ -1,13 +1,13 @@
 class Vector2D {
   
+  static FromPolar(radius, angle) {
+    return new Vector2D(radius * Math.cos(angle), radius * Math.sin(angle));
+  };
+  
   constructor(x, y) {
     this.x = x;
     this.y = y;
   }
-  
-  FromPolar(radius, angle) {
-    return new Vector2D(radius * Math.cos(angle), radius * Math.sin(angle));
-  };
   
   clone() {
     return new Vector2D(this.x, this.y);
