@@ -24,8 +24,8 @@ class Agent {
   }
   
   update() {
-    physics();
-    display();
+    this.physics();
+    this.display();
   }
   
 }
