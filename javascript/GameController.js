@@ -4,11 +4,11 @@ class GameController {
     this.agents = [];
     // temp *********
     for (var i = 0, x, y, color; i < 1000; i++) {
-//       do {
+      do {
         x = 2*(Math.random()-1/2) * WIDTH;
         y = 2*(Math.random()-1/2) * HEIGHT;
         color = colorAt(x, y);
-//       } while (color[0] < 200 || color[1] < 200 || color[2] < 200);
+      } while (color[0] < 200 || color[1] < 200 || color[2] < 200);
       
       this.agents.push(new Agent(
         new Vector2D(x, y),
