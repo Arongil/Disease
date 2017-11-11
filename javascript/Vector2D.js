@@ -5,7 +5,7 @@ class Vector2D {
     this.y = y;
   }
   
-  FromPolar(angle, radius) {
+  FromPolar(radius, angle) {
     return new Vector2D(radius * Math.cos(angle), radius * Math.sin(angle));
   };
   
