@@ -15,7 +15,7 @@ class GameController {
       
       this.agents.push(new Agent(
         new Vector2D(x, y),
-        new Vector2D(Math.random() * WIDTH/200, Math.random() * 2*Math.PI)
+        Vector2D.FromPolar(Math.random() * WIDTH/200, Math.random() * 2*Math.PI)
       ));
     }
     // temp *********
