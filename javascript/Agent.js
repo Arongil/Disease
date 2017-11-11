@@ -1,8 +1,8 @@
 class Agent {
   
-  constructor(x, y, xVel, yVel) {
-    this.pos = new Vector2D(x, y);
-    this.vel = new Vector2D(xVel, yVel);
+  constructor(pos, vel) {
+    this.pos = pos;
+    this.vel = vel;
     this.size = WIDTH / 400;
     
     this.healthy = true;
@@ -20,7 +20,16 @@ class Agent {
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
   }
   
+  onLand() {
+    pixelColor = colorAt(this.pos.x, this.pos.y);
+    if (pixelColor[0] < 200 || pixelColor[1] < 200 || pixelColor[2] < 200) { // not white => water
+      this.pos.shift(this.vel.getScaled(-1));
+      this.vel = Vector2D.FromPolar(this.vel.getMagnitude(), Math.random() * 2*Math.PI);
+    }
+  }
+  
   physics() {
+    onLand();
     this.pos.shift(this.vel);
   }
   
