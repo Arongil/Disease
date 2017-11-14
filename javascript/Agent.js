@@ -1,8 +1,7 @@
 class Agent {
   
-  constructor(pos, vel) {
+  constructor(pos) {
     this.pos = pos;
-    this.vel = vel;
     this.size = WIDTH / 400;
     
     this.healthy = true;
@@ -29,7 +28,6 @@ class Agent {
   }
   
   physics() {
-    this.pos.shift(this.vel);
     this.onLand();
   }
   
