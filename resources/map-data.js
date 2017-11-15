@@ -86,7 +86,7 @@ Haora,Haora,22.58039044,88.32994665,"2,934,655",India,IN,IND,West Bengal\
 Addis Ababa,Addis Ababa,9.033310363,38.70000443,"2,928,865",Ethiopia,ET,ETH,Addis Ababa\
 Guadalajara,Guadalajara,20.67001609,-103.3300342,"2,919,295",Mexico,MX,MEX,Jalisco\
 Hanoi,Hanoi,21.03332725,105.8500142,"2,904,635",Vietnam,VN,VNM,Thái Nguyên\
-Pyongyang,Pyongyang,39.0194387,125.7546907,"2,899,399",North Korea,KP,PRK,Pyongyang\
+Pyongyang,Pyongyang,39.0194387,125.7546907,"2,899,399",North Korea,KP,PRK,P\'yongyang\
 Santiago,Santiago,-33.45001382,-70.66704085,"2,883,306",Chile,CL,CHL,Región Metropolitana de Santiago\
 Nairobi,Nairobi,-1.283346742,36.81665686,"2,880,274",Kenya,KE,KEN,Nairobi\
 Changchun,Changchun,43.86500856,125.3399873,"2,860,211",China,CN,CHN,Jilin\
@@ -109,7 +109,7 @@ Dalian,Dalian,38.92283839,121.6298308,"2,601,154",China,CN,CHN,Liaoning\
 Lucknow,Lucknow,26.85503908,80.91499874,"2,583,506",India,IN,IND,Uttar Pradesh\
 Recife,Recife,-8.075645326,-34.91560551,"2,564,549",Brazil,BR,BRA,Pernambuco\
 Faisalabad,Faisalabad,31.40998069,73.10999711,"2,561,798",Pakistan,PK,PAK,Punjab\
-Incheon,Incheon,37.47614789,126.6422334,"2,550,000",South Korea,KR,KOR,Inchon-gwangyoksi\
+Incheon,Incheon,37.47614789,126.6422334,"2,550,000",South Korea,KR,KOR,Inch\'on-gwangyoksi\
 Dakar,Dakar,14.71583173,-17.47313013,"2,540,200",Senegal,SN,SEN,Dakar\
 Boston,Boston,42.32996014,-71.07001367,"2,528,071",United States of America,US,USA,Massachusetts\
 Detroit,Detroit,42.32996014,-83.08005579,"2,526,135",United States of America,US,USA,Michigan\
