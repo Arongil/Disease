@@ -1,6 +1,6 @@
 class City {
   
-  constructor(latitude, longitude, population, agentCount) {
+  constructor(name, latitude, longitude, population) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.pos = convert_coords(latitude, longitude);
@@ -8,13 +8,24 @@ class City {
     this.radius = WIDTH/400 + WIDTH/2000 * Math.log(population);
     this.airline;
     this.agents = [];
-    for (var i = 0; i < agentCount; i++)
-      this.agents.push(new Agent(this.pos);
+    this.agentNum = Math.ceil((this.population / 5e8) * GC.agentNum);
+    for (var i = 0; i < this.agentNum; i++) {
+      this.agents.push(new Agent(
+        this.pos,
+        new Vector2D(0, 0),
+        this
+      ));
+    }
   }
   
   display() {
     fill(200, 200, 0);
     ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
+  }
+  
+  update() {
+    this.agents.forEach(agent => agent.update());
+    this.display();
   }
   
 }
