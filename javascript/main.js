@@ -48,7 +48,7 @@ function init() {
   initInput(canvas);
   
   GC = new GameController();
-  window.setTimeout(GC.initAgents.bind(GC), 500); // initialize agents after 500 milliseconds so the image is loaded.
+  window.setTimeout(GC.initCities.bind(GC), 500); // initialize agents after 500 milliseconds so the image is loaded.
   
   loop();
 }

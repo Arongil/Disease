@@ -1,28 +1,27 @@
 class GameController {
 
   constructor() {
-    this.agents = [];
+    this.cities = [];
+    this.agentNum = 200;
   }
   
-  initAgents() {
-    for (var i = 0, x, y, color; i < 200; i++) {
-      do {
-        x = (Math.random()-1/2) * WIDTH;
-        y = (Math.random()-1/2) * HEIGHT;
-        color = colorAt(x, y);
-      } while (color[0] < 200 || color[1] < 200 || color[2] < 200);
-      
-      this.agents.push(new Agent(
-        new Vector2D(x, y),
-        Vector2D.FromPolar(Math.random() * WIDTH/200, Math.random() * 2*Math.PI)
-      ));
+  initCities() {
+    var cityData;
+    Papa.parse("/disease/resources/map-data.csv", {
+      complete: function(results) {
+        cityData = results.data;
+      }
+    });
+    for (var i = 0, city; i < cityData.length; i++) {
+      city = cityData[i];
+      this.cities.push(new City(city[0], city[2], city[3], city[4])); // name, latitude, longitude, population
     }
   }
   
   update() {
     image("resources/map.png", 0, 0, WIDTH, HEIGHT);
     
-    this.agents.forEach(agent => agent.update());
+    this.cities.forEach(city => city.update());
   }
   
 }
