@@ -197,4 +197,4 @@ Lisbon,Lisbon,38.72272288,-9.144866305,"1,664,901",Portugal,PT,PRT,Lisboa\
 Bhopal,Bhopal,23.24998781,77.40999304,"1,663,457",India,IN,IND,Madhya Pradesh\
 Xuzhou,Xuzhou,34.28001223,117.1800203,"1,645,097",China,CN,CHN,Jiangsu\
 Sendai,Sendai,38.28710614,141.0217175,"1,643,781",Japan,JP,JPN,Miyagi\
-Manaus,Manaus,-3.100031719,-60.00001754,"1,636,622",Brazil,BR,BRA,Amazonas'.split('\n').map(row => row.split(','));
+Manaus,Manaus,-3.100031719,-60.00001754,"1,636,622",Brazil,BR,BRA,Amazonas'.split('\\').map(row => row.split(','));
