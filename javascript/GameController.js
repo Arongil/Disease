@@ -8,6 +8,7 @@ class GameController {
   initCities() {
     var cityData;
     Papa.parse("/disease/resources/map-data.csv", {
+      comments: "//",
       complete: function(results) {
         cityData = results.data;
       }
