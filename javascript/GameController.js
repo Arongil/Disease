@@ -8,14 +8,14 @@ class GameController {
   initCities() {
     var cityData;
     Papa.parse("/disease/resources/map-data.csv", {
-      comments: "//",
+      header: true,
       complete: function(results) {
         cityData = results.data;
       }
     });
     for (var i = 0, city; i < cityData.length; i++) {
       city = cityData[i];
-      this.cities.push(new City(city[0], city[2], city[3], city[4])); // name, latitude, longitude, population
+      this.cities.push(new City(city["city"], city["lat"], city["lng"], city["pop"])); // name, latitude, longitude, population
     }
   }
   
