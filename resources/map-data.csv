@@ -1,4 +1,4 @@
-City,city_ascii,lat,lng,pop,country,iso2,iso3,province
+city,city_ascii,lat,lng,pop,country,iso2,iso3,province
 Tokyo,Tokyo,35.68501691,139.7514074,"22,006,300",Japan,JP,JPN,Tokyo
 Mumbai,Mumbai,19.01699038,72.8569893,"15,834,918",India,IN,IND,Maharashtra
 Mexico City,Mexico City,19.44244244,-99.1309882,"14,919,501",Mexico,MX,MEX,Distrito Federal
