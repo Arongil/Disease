@@ -1,4 +1,4 @@
-city,city_ascii,lat,lng,pop,country,iso2,iso3,province
+let map_data = 'city,city_ascii,lat,lng,pop,country,iso2,iso3,province
 Tokyo,Tokyo,35.68501691,139.7514074,"22,006,300",Japan,JP,JPN,Tokyo
 Mumbai,Mumbai,19.01699038,72.8569893,"15,834,918",India,IN,IND,Maharashtra
 Mexico City,Mexico City,19.44244244,-99.1309882,"14,919,501",Mexico,MX,MEX,Distrito Federal
@@ -197,4 +197,4 @@ Lisbon,Lisbon,38.72272288,-9.144866305,"1,664,901",Portugal,PT,PRT,Lisboa
 Bhopal,Bhopal,23.24998781,77.40999304,"1,663,457",India,IN,IND,Madhya Pradesh
 Xuzhou,Xuzhou,34.28001223,117.1800203,"1,645,097",China,CN,CHN,Jiangsu
 Sendai,Sendai,38.28710614,141.0217175,"1,643,781",Japan,JP,JPN,Miyagi
-Manaus,Manaus,-3.100031719,-60.00001754,"1,636,622",Brazil,BR,BRA,Amazonas
+Manaus,Manaus,-3.100031719,-60.00001754,"1,636,622",Brazil,BR,BRA,Amazonas'
