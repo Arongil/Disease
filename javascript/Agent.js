@@ -1,9 +1,11 @@
 class Agent {
   
-  constructor(pos, vel) {
+  constructor(pos, vel, city) {
     this.pos = pos;
     this.vel = vel;
     this.size = WIDTH / 400;
+    
+    this.city = city;
     
     this.healthy = true;
     this.immune = false; // true if successfully recovered
