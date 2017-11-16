@@ -6,7 +6,7 @@ class GameController {
   }
   
   initCities() {
-    for (var i = 0, city; i < map_data.length; i++) {
+    for (var i = 1, city; i < map_data.length; i++) {
       city = map_data[i];
       this.cities.push(new City(city[0], city[2], city[3], city[4])); // name, latitude, longitude, population
     }
