@@ -6,7 +6,7 @@ class City {
     this.longitude = longitude;
     this.pos = convert_coords(latitude, longitude, WIDTH, HEIGHT);
     this.population = population;
-    this.radius = WIDTH/4000 * Math.log(population);
+    this.radius = WIDTH/1200 * (Math.log(population) - 11);
     this.airline;
     this.agents = [];
     this.agentNum = Math.ceil((this.population / 5e8) * GC.agentNum);
