@@ -4,7 +4,7 @@ class City {
     this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
-    this.pos = convert_coords(latitude, longitude);
+    this.pos = convert_coords(latitude, longitude, WIDTH, HEIGHT);
     this.population = population;
     this.radius = WIDTH/400 + WIDTH/2000 * Math.log(population);
     this.airline;
