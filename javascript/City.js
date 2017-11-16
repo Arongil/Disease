@@ -1,6 +1,7 @@
 class City {
   
   constructor(name, latitude, longitude, population) {
+    this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
     this.pos = convert_coords(latitude, longitude);
