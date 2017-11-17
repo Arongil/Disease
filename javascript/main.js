@@ -53,13 +53,13 @@ function init() {
   GC = new GameController();
   GC.initCities();
   
-  loop();
+  window.setInterval(loop, 1000);
 }
 
 function loop() {
   GC.update();
   
   Input.click = false;
-  window.setTimeout(loop, 1000);
+//   window.requestAnimationFrame(loop);
 }
 window.onload = init;
