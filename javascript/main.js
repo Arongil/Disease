@@ -60,6 +60,6 @@ function loop() {
   GC.update();
   
   Input.click = false;
-  window.requestAnimationFrame(loop);
+  window.setTimeout(loop, 1000);
 }
 window.onload = init;
