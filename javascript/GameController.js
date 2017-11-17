@@ -18,6 +18,7 @@ class GameController {
   update() {
     image("resources/map.png", 0, 0, WIDTH, HEIGHT);
     this.cities.forEach(city => city.update());
+    this.cities.forEach(city => city.infoCard());
   }
   
 }
