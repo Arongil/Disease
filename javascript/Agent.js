@@ -22,21 +22,22 @@ class Agent {
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
   }
   
-  onLand() {
-    var pixelColor = colorAt(this.pos.x, this.pos.y);
-    if (pixelColor[0] < 200 || pixelColor[1] < 200 || pixelColor[2] < 200) { // not white => water
-      this.pos.shift(this.vel.getScaled(-1));
-      this.vel = Vector2D.FromPolar(this.vel.getMagnitude(), Math.random() * 2*Math.PI);
+  fly() {
+    if (Math.random() < 0.01) {
+      this.flightData = {"moving": Math.random() < 0.05, "destination": this.city.airline.findFlight()};
+      if (this.fightData.city) { // A flight is available
+        stroke(100, 100, 100);
+        line(this.city.pos.x, this.city.pos.y, this.flightData.destination.pos.x, this.flightData.destination.pos.y);
+        
+        this.city.agents.splice(this.city.agents.indexOf(this), 1);
+        this.city = this.flightData.destination;
+        this.city.agents.push(this);
+      }
     }
   }
   
-  physics() {
-    this.pos.shift(this.vel);
-//     this.onLand();
-  }
-  
   update() {
-    this.physics();
+    this.fly();
     this.display();
   }
   
