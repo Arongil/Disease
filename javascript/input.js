@@ -15,7 +15,7 @@ function initInput(canvas) {
   document.onmousemove = function(e) {
     var x = e.clientX - window.innerWidth/2;
 
-    var y = e.clientY - HALFHEIGHT - 8;
+    var y = e.clientY - HALFHEIGHT - HEIGHT/8;
     Input["mousepos"]["x"] = x;
     Input["mousepos"]["y"] = y;
   };
