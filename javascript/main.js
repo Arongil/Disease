@@ -57,8 +57,7 @@ function init() {
 }
 
 function loop() {
-  if (millis() % 100 < 5)
-    GC.update();
+  GC.update();
   
   Input.click = false;
   window.requestAnimationFrame(loop);
