@@ -27,10 +27,11 @@ class City {
     fill(0, 0, 0, 0.4);
     rect(this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4, HEIGHT/5);
     fill(255, 255, 255);
-    textWrap("--" + this.name + "--population: " + this.population +
-         "--latitude: " + Math.floor(this.latitude * 1000) / 1000 +
-         "--longitude: " + Math.floor(this.longitude * 1000) / 1000 + "--",
-         this.pos.x, this.pos.y + this.radius + HEIGHT/100, WIDTH/4, HEIGHT/20);
+    textSize(HEIGHT/30);
+    text("-" + this.name + "-", this.pos.x, this.pos.y + this.radius + 1.25*HEIGHT/30);
+    text("population: " + this.population, this.pos.x, this.pos.y + this.radius + 2.75*HEIGHT/30);
+    text("latitude: " + Math.floor(this.latitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 4.25*HEIGHT/30);
+    text("longitude: " + Math.floor(this.longitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 5.75*HEIGHT/30);
   }
   
   display() {
