@@ -25,6 +25,7 @@ function resize() {
   }
   document.getElementById("canvas").style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
   document.getElementById("canvas").style.marginRight = (window.innerWidth - canvas.width)/2 + "px";
+  document.getElementById("canvas").style.marginTop = canvas.height/8 + "px";
   
   WIDTH = canvas.width;
   HEIGHT = canvas.height;
