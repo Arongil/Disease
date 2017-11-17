@@ -22,22 +22,41 @@ class Agent {
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
   }
   
-  fly() {
-    if (Math.random() < 0.01) {
-      this.flightData = {"moving": Math.random() < 0.05, "destination": this.city.airline.findFlight()};
-      if (this.fightData.city) { // A flight is available
-        stroke(100, 100, 100);
-        line(this.city.pos.x, this.city.pos.y, this.flightData.destination.pos.x, this.flightData.destination.pos.y);
+  fly(destination) {
+    stroke(100, 100, 100);
+    line(this.city.pos.x, this.city.pos.y, destination.pos.x, destination.pos.y);
+
+    this.city.agents.splice(this.city.agents.indexOf(this), 1);
+    this.city = destination;
+    this.city.agents.push(this);
+  }
+  
+  travel() {
+    if (this.flightData) {
+      this.flightData.daysUntilReturn--;
+      if (this.flightData.daysUntilReturn == 0) {
+        this.fly(this.flightData.origin);
+        this.flightData = undefined;
+      }
+    }
+    else if (Math.random() < 0.01) {
+      this.flightData = {"moving": Math.random() < 0.05, "destination": this.city.airline.findFlight(), "origin": this.city};
+      if (this.fightData.destination) { // A flight is available
+        this.fly(this.flightData.destination);
         
-        this.city.agents.splice(this.city.agents.indexOf(this), 1);
-        this.city = this.flightData.destination;
-        this.city.agents.push(this);
+        if (!this.flightData.moving) {
+          let n = Math.random() * 14 + 3;
+          this.flightData.daysUntilReturn = Math.floor(n * (Math.log(n) - 1));
+        }
+        else {
+          this.flightData = undefined;
+        }
       }
     }
   }
   
   update() {
-    this.fly();
+    this.travel();
     this.display();
   }
   
