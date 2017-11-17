@@ -30,7 +30,7 @@ class City {
     textWrap("--" + this.name + "--population: " + this.population +
          "--latitude: " + Math.floor(this.latitude * 1000) / 1000 +
          "--longitude: " + Math.floor(this.longitude * 1000) / 1000 + "--",
-         this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4, HEIGHT/20);
+         this.pos.x, this.pos.y + this.radius + HEIGHT/100, WIDTH/4, HEIGHT/20);
   }
   
   display() {
