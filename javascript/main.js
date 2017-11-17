@@ -51,7 +51,7 @@ function init() {
   initInput(canvas);
   
   GC = new GameController();
-  window.setTimeout(GC.initCities.bind(GC), 500); // initialize cities after 500 milliseconds so the image is loaded.
+  GC.initCities();
   
   loop();
 }
