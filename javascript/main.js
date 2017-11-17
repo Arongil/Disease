@@ -23,9 +23,9 @@ function resize() {
     canvas.height = 7/8 * window.innerHeight;
     canvas.width = canvas.height * ASPECTRATIO;
   }
-  document.getElementById("canvas").style.marginLeft = 1/10 * window.innerWidth;
-  document.getElementById("canvas").style.marginRight = 1/10 * window.innerWidth;
-  document.getElementById("canvas").style.marginTop = 1/20 * window.innerWidth;
+  document.getElementById("canvas").style.marginLeft = 1/10 * window.innerWidth + "px";
+  document.getElementById("canvas").style.marginRight = 1/10 * window.innerWidth + "px";
+  document.getElementById("canvas").style.marginTop = 1/20 * window.innerWidth + "px";
   
   WIDTH = canvas.width;
   HEIGHT = canvas.height;
