@@ -53,6 +53,17 @@ function init() {
   GC = new GameController();
   GC.initCities();
   
+  window.onmousemove = function(e){
+    GC.cities.forEach(function(c){
+      if(c.pos.x - c.radius/2 <= e.clientX && e.clientX <= c.pos.x + c.radius/2){
+        if(c.pos.y - c.radius/2 <= e.clientY && e.clientY <= c.pos.y + c.radius/2){
+          document.getElementById('message').style.left = (e.clientX / canvas.width) * 100 + '%';
+          document.getElementById('message').style.top = (e.clientY / canvas.height) * 100 + '%';
+        }
+      }
+    });
+  };
+  
   loop();
 }
 
