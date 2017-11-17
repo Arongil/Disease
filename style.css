@@ -9,10 +9,6 @@ html,body {
 	width:100%;
 	height:100%;
 }
-canvas {
-	margin: auto;
-	text-align: center;
-}
 div.bottom{
 	width:100%;
 	height:20%;
