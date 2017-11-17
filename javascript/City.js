@@ -9,7 +9,10 @@ class City {
     this.radius = WIDTH/1200 * (Math.log(population) - 11);
     this.airline = new Airline(this);
     this.agents = [];
-    this.agentNum = Math.ceil((this.population / 5e8) * GC.agentNum);
+  }
+  
+  initAgents() {
+    this.agentNum = Math.ceil((this.population / GC.WORLDPOPULATION) * GC.agentNum);
     for (var i = 0; i < this.agentNum; i++) {
       this.agents.push(new Agent(
         this.pos,
