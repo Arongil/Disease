@@ -12,6 +12,7 @@ class GameController {
     }
     this.WORLDPOPULATION = 0;
     this.cities.forEach(city => this.WORLDPOPULATION += city.population, this);
+    this.cities.forEach(city => city.initAgents());
   }
   
   update() {
