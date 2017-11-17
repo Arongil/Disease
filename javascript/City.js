@@ -7,6 +7,7 @@ class City {
     this.pos = convertCoords(latitude, longitude, WIDTH, HEIGHT);
     this.population = population;
     this.radius = WIDTH/1200 * (Math.log(population) - 11);
+    this.radiusSquared = this.radius*this.radius;
     this.airline = new Airline(this);
     this.agents = [];
   }
@@ -22,9 +23,25 @@ class City {
     }
   }
   
+  infoCard() {
+    fill(0, 0, 0, 0.4);
+    rect(this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4, HEIGHT/5);
+    fill(255, 255, 255);
+    textSize(HEIGHT/20);
+    text(this.name + ":\npopulation: " + this.population +
+         "\nlatitude: " + Math.floor(this.latitude * 1000) / 1000 +
+         "longitude: " + Math.floor(this.longitude * 1000) / 1000,
+         this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4);
+  }
+  
   display() {
     fill(200, 200, 0);
     ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
+    // If the mouse is over a city, display additional information.
+    var distSquared = Math.pow(this.pos.x - Input.mousepos.x, 2) + Math.pow(this.pos.y - Input.mousepos.y, 2);
+    if (distSquared < this.radiusSquared) {
+      this.infoCard();
+    }
   }
   
   update() {
