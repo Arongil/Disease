@@ -24,7 +24,7 @@ class Agent {
   
   fly(destination) {
     stroke(100, 100, 100);
-    line(this.city.pos.x, this.city.pos.y, destination.pos.x, destination.pos.y);
+    geodesic(this, destination, 20);
 
     this.city.agents.splice(this.city.agents.indexOf(this), 1);
     this.city = destination;
