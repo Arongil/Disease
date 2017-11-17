@@ -10,7 +10,7 @@ class Airline {
       return;
     // The algorithm chooses cities with higher populations more frequently.
     var personIndex = Math.random() * GC.WORLDPOPULATION;
-    for (let i = 0; personIndex > 0; i++, personIndex -= GC.cities[i].population);
+    for (var i = 0; personIndex > 0; i++, personIndex -= GC.cities[i].population);
     return GC.cities[i];
   }
   
