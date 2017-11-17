@@ -44,13 +44,15 @@ class Agent {
       if (this.flightData.destination) { // A flight is available
         this.fly(this.flightData.destination);
         
-        if (!this.flightData.moving) {
-          let n = Math.random() * 14 + 3;
-          this.flightData.daysUntilReturn = Math.floor(n * (Math.log(n) - 1));
+        if (!this.flightData.moving) { // If not moving, fly back home after 1 - 27 days.
+          this.flightData.daysUntilReturn = Math.floor( Math.pow(5, 4*Math.random() - 2) + 2);
         }
         else {
           this.flightData = undefined;
         }
+      }
+      else { // No flights available: reset and retry.
+        this.flightData = undefined;
       }
     }
   }
