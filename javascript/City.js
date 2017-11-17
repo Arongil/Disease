@@ -27,9 +27,9 @@ class City {
     fill(0, 0, 0, 0.4);
     rect(this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4, HEIGHT/5);
     fill(255, 255, 255);
-    textWrap(this.name + ": population: " + this.population +
-         "latitude: " + Math.floor(this.latitude * 1000) / 1000 +
-         "longitude: " + Math.floor(this.longitude * 1000) / 1000,
+    textWrap("--" + this.name + "--population: " + this.population +
+         "--latitude: " + Math.floor(this.latitude * 1000) / 1000 +
+         "--longitude: " + Math.floor(this.longitude * 1000) / 1000 + "--",
          this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4, HEIGHT/20);
   }
   
