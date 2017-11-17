@@ -41,7 +41,7 @@ class Agent {
     }
     else if (Math.random() < 0.01) {
       this.flightData = {"moving": Math.random() < 0.05, "destination": this.city.airline.findFlight(), "origin": this.city};
-      if (this.fightData.destination) { // A flight is available
+      if (this.flightData.destination) { // A flight is available
         this.fly(this.flightData.destination);
         
         if (!this.flightData.moving) {
