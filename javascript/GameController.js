@@ -10,7 +10,7 @@ class GameController {
       city = map_data[i];
       this.cities.push(new City(city[0], parseFloat(city[2]), parseFloat(city[3]), parseInt(city[4]))); // name, latitude, longitude, population
     }
-    this.WORLDPOPULATION = this.cities.reduce( (worldPopulation, cityPopulation) => worldPopulation + cityPopulation);
+    this.WORLDPOPULATION = this.cities.reduce( (worldPopulation, city) => worldPopulation + city.population);
   }
   
   update() {
