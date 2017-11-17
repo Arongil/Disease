@@ -27,6 +27,10 @@ class City {
     ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
   }
   
+  updatePosition(){
+    this.pos = convertCoords(this.latitude, this.longitude, WIDTH, HEIGHT);  
+  }
+  
   update() {
     this.agents.forEach(agent => agent.update());
     this.display();
