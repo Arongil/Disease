@@ -43,12 +43,12 @@ function line(x1, y1, x2, y2) {
   ctx.closePath();
   ctx.stroke();
 }
-function geodesic(origin, destination, points) {
+function geodesic(origin, destination, points, WIDTH, HEIGHT) {
   var lat = origin.latitude, lon = origin.longitude,
       deltaLat = (destination.latitude - origin.latitude) / points,
       deltaLon = (destination.longitude - origin.longitude) / points;
-  for (var i = 0, a = convertCoords(lat, lon), b; i < points; i++) {
-    b = convertCoords(lat + deltaLat, lon + deltaLon);
+  for (var i = 0, a = convertCoords(lat, lon, WIDTH, HEIGHT), b; i < points; i++) {
+    b = convertCoords(lat + deltaLat, lon + deltaLon, WIDTH, HEIGHT);
     line(a.x, a.y, b.x, b.y);
     a = b;
     lat += deltaLat;
