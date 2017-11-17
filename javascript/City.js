@@ -24,6 +24,11 @@ class City {
   }
   
   infoCard() {
+    // If the mouse is over a city, display additional information.
+    var distSquared = Math.pow(this.pos.x - Input.mousepos.x, 2) + Math.pow(this.pos.y - Input.mousepos.y, 2);
+    if (distSquared > this.radiusSquared)
+      return;
+    
     fill(0, 0, 0, 0.6);
     rect(this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4, HEIGHT/5);
     fill(255, 255, 255);
@@ -37,11 +42,6 @@ class City {
   display() {
     fill(200, 200, 0);
     ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
-    // If the mouse is over a city, display additional information.
-    var distSquared = Math.pow(this.pos.x - Input.mousepos.x, 2) + Math.pow(this.pos.y - Input.mousepos.y, 2);
-    if (distSquared < this.radiusSquared) {
-      this.infoCard();
-    }
   }
   
   update() {
