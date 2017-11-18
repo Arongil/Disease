@@ -35,9 +35,10 @@ class City {
     fill(255, 255, 255);
     textSize(HEIGHT/30);
     text("-" + this.name + "-", this.pos.x, this.pos.y + this.radius + 1.25*HEIGHT/30);
-    text("population: " + this.population, this.pos.x, this.pos.y + this.radius + 2.75*HEIGHT/30);
-    text("latitude: " + Math.floor(this.latitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 3.75*HEIGHT/30);
-    text("longitude: " + Math.floor(this.longitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 4.75*HEIGHT/30);
+    text("country: " + this.country, this.pos.x, this.pos.y + this.radius + 2.5*HEIGHT/30);
+    text("population: " + this.population, this.pos.x, this.pos.y + this.radius + 3.5*HEIGHT/30);
+    text("latitude: " + Math.floor(this.latitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 4.5*HEIGHT/30);
+    text("longitude: " + Math.floor(this.longitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 5.5*HEIGHT/30);
   }
   
   display() {
