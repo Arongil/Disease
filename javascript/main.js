@@ -32,12 +32,17 @@ function resize() {
   HALFWIDTH = WIDTH / 2;
   HALFHEIGHT = HEIGHT / 2;
   
+  GC.repositionCities();
+  
   ctx.translate(HALFWIDTH, HALFHEIGHT);
 }
 
 function init() {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
+  
+  GC = new GameController();
+  GC.initCities();
   
   var body = document.getElementsByTagName("body")[0];
   body.onresize = resize;
@@ -49,9 +54,6 @@ function init() {
   ctx.translate(HALFWIDTH, HALFHEIGHT);
   
   initInput(canvas);
-  
-  GC = new GameController();
-  GC.initCities();
   
   loop();
 }

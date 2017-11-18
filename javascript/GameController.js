@@ -15,6 +15,10 @@ class GameController {
     this.cities.forEach(city => city.initAgents());
   }
   
+  repositionCities() {
+    this.cities.forEach(city => city.reposition());
+  }
+  
   update() {
     image("resources/map.png", 0, 0, WIDTH, HEIGHT);
     this.cities.forEach(city => city.update());
