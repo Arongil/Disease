@@ -46,7 +46,7 @@ class City {
     ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
   }
   
-  reposition(){
+  reposition() {
     this.pos = convertCoords(this.latitude, this.longitude, WIDTH, HEIGHT);  
   }
   
