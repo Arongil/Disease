@@ -1,11 +1,12 @@
 class City {
   
-  constructor(name, latitude, longitude, population) {
+  constructor(name, latitude, longitude, population, country) {
     this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
     this.pos = convertCoords(latitude, longitude, WIDTH, HEIGHT);
     this.population = population;
+    this.country = country;
     this.radius = WIDTH/1200 * (Math.log(population) - 11);
     this.radiusSquared = this.radius*this.radius;
     this.airline = new Airline(this);
