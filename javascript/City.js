@@ -47,7 +47,9 @@ class City {
   }
   
   reposition() {
-    this.pos = convertCoords(this.latitude, this.longitude, WIDTH, HEIGHT);  
+    this.pos = convertCoords(this.latitude, this.longitude, WIDTH, HEIGHT);
+    this.radius = WIDTH/1200 * (Math.log(this.population) - 11);
+    this.radiusSquared = this.radius*this.radius;
   }
   
   update() {
