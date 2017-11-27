@@ -2,6 +2,7 @@ class Airline {
   
   constructor(city) {
     this.city = city;
+    this.flightThreshold = 5; // 5 agents must want to fly to a city before a flight takes off.
   }
   
   distanceTo(otherCity) {
@@ -20,18 +21,41 @@ class Airline {
     return R * c;
   }
   
-  findFlight() {
-    // Lower population cities don't have flights available as often.
-    if (Math.random() * this.city.population < 1e6)
-      return;
-    // Choose cities with higher populations more frequently. Of 2 cities chosen like this, return the closer one.
-    var choices = [];
-    while (choices.length < 2) {
-      var personIndex = Math.random() * GC.WORLDPOPULATION;
-      for (var i = -1; personIndex > 0; i++, personIndex -= GC.cities[i].population);
-      choices.push({"city": GC.cities[i], "distance": this.distanceTo(GC.cities[i])});
+  organizeFlight() {
+    var citiesWanted = {}; // Get every wanted city and tally to find if the most wanted city breaks the threshold.
+    this.cities.agents.forEach(agent => {
+      agent.citiesToVisit.forEach(city => {
+        if (!citiesWanted[city.name])
+          citiesWanted[city.name] = [1, [agent]];
+        else {
+          citiesWanted[city.name][0]++;
+          citiesWanted[city.name][1].push(agent);
+        }
+      });
+    });
+    // Sort and compare most wanted city to threshold.
+    var sortedCities = citiesWanted.entries().sort( (a, b) => a[1][0] - b[1][0] );
+    if (sortedCities[sortedCities.length - 1][1] >= this.flightThreshold) {
+      var destination = sortedCities[sortedCities.length - 1];
+      for (var i = 0; i < GC.cities.length; i++) {
+        if (GC.cities[i].name == destination[0]) {
+          destination = GC.cities[i];
+          sortedCities[sortedCities.length - 1][1][1].forEach(agent => agent.fly(destination));
+          break;
+        }
+      }
     }
-    return choices[0].distance < choices[1].distance ? choices[0].city : choices[1].city;
+//     // Lower population cities don't have flights available as often.
+//     if (Math.random() * this.city.population < 1e6)
+//       return;
+//     // Choose cities with higher populations more frequently. Of 2 cities chosen like this, return the closer one.
+//     var choices = [];
+//     while (choices.length < 2) {
+//       var personIndex = Math.random() * GC.WORLDPOPULATION;
+//       for (var i = -1; personIndex > 0; i++, personIndex -= GC.cities[i].population);
+//       choices.push({"city": GC.cities[i], "distance": this.distanceTo(GC.cities[i])});
+//     }
+//     return choices[0].distance < choices[1].distance ? choices[0].city : choices[1].city;
   }
   
 }
