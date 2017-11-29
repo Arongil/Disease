@@ -11,6 +11,7 @@ class Agent {
     this.immune = false; // true if successfully recovered
     this.timeSick = 0;
     this.infectiousness = 0.001; // fraction of agents infected from sick agent
+    this.deadlyness = 0.0025; // per day chance of death for infected agents
   }
   
   display() {
@@ -42,6 +43,9 @@ class Agent {
     if (Math.random() < 1 / (5 + Math.exp(5-this.timeSick))) { // Recovery.
         this.healthy = true;
         this.immune = true; // Assume a recovered agent has the antibodies to not become infected again.
+    }
+    if (Math.random() < this.deadlyness) { // Death: remove from city agents list.
+      this.city.agents.splice(this.city.agents.indexOf(this), 1);
     }
     this.timeSick++;
   }
