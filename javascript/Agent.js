@@ -21,7 +21,7 @@ class Agent {
     else // healthy and immume => blue
       fill(0, 0, 200);
     noStroke();
-    ellipse(this.pos.x, this.pos.y, this.size, this.size);
+    ellipse(this.pos.x + (Math.random() - 0.5) * this.city.radius/2, this.pos.y + (Math.random() - 0.5) * this.city.radius/2, this.size, this.size);
   }
   
   infect() {
