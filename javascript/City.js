@@ -62,7 +62,7 @@ class City {
   
   update() {
     this.agents.forEach(agent => agent.update());
-    this.display();
+//     this.display();
   }
   
 }
