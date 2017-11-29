@@ -1,6 +1,6 @@
 class Agent {
   
-  constructor(pos, vel, city) {
+  constructor(pos, city) {
     this.pos = pos;
     this.size = WIDTH / 400;
     
