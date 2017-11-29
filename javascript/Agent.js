@@ -9,6 +9,7 @@ class Agent {
     
     this.healthy = true;
     this.immune = false; // true if successfully recovered
+    this.infectiousness = 0.001; // fraction of agents infected from sick agent.
   }
   
   display() {
@@ -20,6 +21,17 @@ class Agent {
       fill(0, 0, 200);
     noStroke();
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
+  }
+  
+  infect() {
+    if (this.healthy)
+      return;
+    // Not healthy: every agent in the city has a chance of getting infected.
+    this.city.agents.forEach(agent => {
+      if (Math.random() < this.infectiousness) {
+        agent.healthy = false;
+      }
+    }, this);
   }
   
   fly(destination) {
@@ -59,6 +71,7 @@ class Agent {
   
   update() {
     this.travel();
+    this.infect();
     this.display();
   }
   
