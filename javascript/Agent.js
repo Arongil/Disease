@@ -9,7 +9,8 @@ class Agent {
     
     this.healthy = true;
     this.immune = false; // true if successfully recovered
-    this.infectiousness = 0.001; // fraction of agents infected from sick agent.
+    this.timeSick = 0;
+    this.infectiousness = 0.001; // fraction of agents infected from sick agent
   }
   
   display() {
@@ -28,10 +29,21 @@ class Agent {
       return;
     // Not healthy: every agent in the city has a chance of getting infected.
     this.city.agents.forEach(agent => {
-      if (Math.random() < this.infectiousness) {
+      if (Math.random() < this.infectiousness && !agent.immune) {
         agent.healthy = false;
       }
     }, this);
+  }
+  
+  recover() {
+    if (this.healthy)
+      return;
+    // Agents' chance of recovery per frame follows the curve 1 / (5 + e^(5-t)), where t = this.timeSick.
+    if (Math.random() < 1 / (5 + Math.exp(5-this.timeSick)) { // Recovery.
+        this.healthy = true;
+        this.immune = true; // Assume a recovered agent has the antibodies to not become infected again.
+    }
+    this.timeSick++;
   }
   
   fly(destination) {
@@ -72,6 +84,7 @@ class Agent {
   update() {
     this.travel();
     this.infect();
+    this.recover();
     this.display();
   }
   
