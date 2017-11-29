@@ -18,18 +18,26 @@ class City {
     for (var i = 0; i < this.agentNum; i++) {
       this.agents.push(new Agent(
         this.pos,
-        new Vector2D(0, 0),
         this
       ));
     }
   }
   
-  infoCard() {
+  mouseInteraction() {
     // If the mouse is over a city, display additional information.
     var distSquared = Math.pow(this.pos.x - Input.mousepos.x, 2) + Math.pow(this.pos.y - Input.mousepos.y, 2);
     if (distSquared > this.radiusSquared)
       return;
     
+    this.infoCard();
+    
+    if (Input.click) { // If a city is clicked, an infected agent is pushed in.
+      this.agents.push(new Agent(this.pos, this));
+      this.agents[this.agents.length - 1].healthy = false;
+    }
+  }
+  
+  infoCard() {
     fill(0, 0, 0, 0.6);
     rect(this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4, HEIGHT/5);
     fill(255, 255, 255);
