@@ -13,16 +13,29 @@ class GameController {
     this.WORLDPOPULATION = 0;
     this.cities.forEach(city => this.WORLDPOPULATION += city.population, this);
     this.cities.forEach(city => city.initAgents());
+    this.AGENTPOPULATION = 0;
+    this.cities.forEach(city => this.AGENTPOPULATION += city.agents.length, this);
   }
   
   repositionCities() {
     this.cities.forEach(city => city.reposition());
   }
   
+  infoPanel() {
+    var alive = 0,
+        infected = 0,
+        recovered = 0,
+        dead = 0;
+    
+    var statsCard = document.getElementById("global-stats");
+    statsCard.innerHTML = "Global Statistics<br>Population: " + population + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
+  }
+  
   update() {
     image("resources/map.png", 0, 0, WIDTH, HEIGHT);
     this.cities.forEach(city => city.update());
     this.cities.forEach(city => city.mouseInteraction());
+    this.infoPanel();
   }
   
 }
