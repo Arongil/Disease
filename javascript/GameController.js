@@ -6,7 +6,7 @@ class GameController {
   }
   
   initCities() {
-    for (var i = 1, city; i < map_data.length; i++) {
+    for (var i = 1, city; i < map_data.length; i++) { // The first row holds headers not data.
       city = map_data[i];
       this.cities.push(new City(city[0], parseFloat(city[2]), parseFloat(city[3]), parseInt(city[4]), city[5])); // name, latitude, longitude, population
     }
