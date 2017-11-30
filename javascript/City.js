@@ -16,10 +16,7 @@ class City {
   initAgents() {
     this.agentNum = Math.ceil((this.population / GC.WORLDPOPULATION) * GC.agentNum);
     for (var i = 0; i < this.agentNum; i++) {
-      this.agents.push(new Agent(
-        this.pos,
-        this
-      ));
+      this.agents.push(new Agent(this.pos, this));
     }
   }
   
