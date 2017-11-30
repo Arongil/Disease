@@ -28,7 +28,7 @@ class GameController {
         dead = 0;
     
     var statsCard = document.getElementById("global-stats");
-    statsCard.innerHTML = "Global Statistics<br>Population: " + population + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
+    statsCard.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
   }
   
   update() {
