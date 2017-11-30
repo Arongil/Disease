@@ -22,10 +22,17 @@ class GameController {
   }
   
   infoPanel() {
-    var alive = this.cities.reduce((agents, city) => agents + city.agents.length),
-        dead = this.AGENTPOPULATION - alive,
-        infected = this.cities.reduce((infected, city) => infected + city.agents.reduce((infected, agent) => infected + (!agent.healthy ? 1 : 0))),
-        recovered = this.cities.reduce((recovered, city) => recovered + city.agents.reduce((recovered, agent) => recovered + (agent.immune ? 1 : 0)));
+    var alive = 0, dead = 0, infected = 0, recovered = 0;
+    this.cities.forEach(city => {
+      alive += city.agents.length;
+      city.agents.forEach(agent => {
+        if (!agent.healthy)
+          infected++;
+        if (agent.immune)
+          recovered++;
+      });
+    });
+    dead = this.AGENTPOPULATION - alive;
     
     var statsCard = document.getElementById("global-stats");
     statsCard.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
