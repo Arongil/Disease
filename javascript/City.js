@@ -15,8 +15,9 @@ class City {
   
   initAgents() {
     this.agentNum = Math.ceil((this.population / GC.WORLDPOPULATION) * GC.agentNum);
+    var pos = convertCoords(this.latitude, this.longitude, WIDTH, HEIGHT);
     for (var i = 0; i < this.agentNum; i++) {
-      this.agents.push(new Agent(this.pos, this));
+      this.agents.push(new Agent(pos, this));
     }
   }
   
