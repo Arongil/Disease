@@ -55,6 +55,7 @@ class Agent {
 
     this.city.agents.splice(this.city.agents.indexOf(this), 1);
     this.city = destination;
+    this.pos = this.city.pos;
     this.city.agents.push(this);
   }
   
