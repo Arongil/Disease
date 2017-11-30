@@ -9,8 +9,8 @@ class Agent {
     this.healthy = true;
     this.immune = false; // true if successfully recovered
     this.timeSick = 0;
-    this.infectiousness = 0.001; // fraction of agents infected from sick agent
-    this.deadlyness = 0.0025; // per day chance of death for infected agents
+    this.infectiousness = 0.1; // fraction of agents infected from sick agent
+    this.deadlyness = 0.025; // per day chance of death for infected agents
   }
   
   display() {
@@ -39,7 +39,7 @@ class Agent {
     if (this.healthy)
       return;
     // Agents' chance of recovery per frame follows the curve 1 / (5 + e^(5-t)), where t = this.timeSick.
-    if (Math.random() < 1 / (5 + Math.exp(5-this.timeSick))) { // Recovery.
+    if (Math.random() < 1 / (5 + Math.exp(10-this.timeSick))) { // Recovery.
         this.healthy = true;
         this.immune = true; // Assume a recovered agent has the antibodies to not become infected again.
     }
