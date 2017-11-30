@@ -42,7 +42,6 @@ function init() {
   ctx = canvas.getContext("2d");
   
   GC = new GameController();
-  GC.initCities();
   
   var body = document.getElementsByTagName("body")[0];
   body.onresize = resize;
@@ -54,6 +53,8 @@ function init() {
   ctx.translate(HALFWIDTH, HALFHEIGHT);
   
   initInput(canvas);
+  
+  GC.initCities();
   
   loop();
 }
