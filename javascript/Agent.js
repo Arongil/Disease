@@ -31,6 +31,8 @@ class Agent {
     this.city.agents.forEach(agent => {
       if (Math.random() < this.infectiousness && !agent.immune) {
         agent.healthy = false;
+        fill(200, 0, 0);
+        ellipse(agent.pos.x, agent.pos.y, agent.size * 3, agent.size * 3);
       }
     }, this);
   }
