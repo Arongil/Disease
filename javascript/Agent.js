@@ -16,7 +16,7 @@ class Agent {
   display() {
     if (!this.healthy) // unhealthy => red
       fill(200, 0, 0);
-    else if (!this.immune) // healthy but not immune => green
+    else if (!this.recovered) // healthy but not immune => green
       fill(0, 200, 0);
     else // healthy and immume => blue
       fill(0, 0, 200);
