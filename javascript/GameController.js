@@ -28,7 +28,7 @@ class GameController {
       city.agents.forEach(agent => {
         if (!agent.healthy)
           infected++;
-        if (agent.immune)
+        if (agent.recovered)
           recovered++;
       });
     });
