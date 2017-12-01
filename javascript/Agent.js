@@ -50,8 +50,8 @@ class Agent {
   }
   
   fly(destination) {
-    stroke(100, 100, 100);
-    geodesic(this.city, destination, 20, WIDTH, HEIGHT);
+//     stroke(100, 100, 100);
+//     geodesic(this.city, destination, 20, WIDTH, HEIGHT);
 
     this.city.agents.splice(this.city.agents.indexOf(this), 1);
     this.city = destination;
