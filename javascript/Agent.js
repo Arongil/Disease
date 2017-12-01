@@ -32,7 +32,7 @@ class Agent {
       if (Math.random() < this.infectiousness && !agent.immune) {
         agent.healthy = false;
         fill(200, 0, 0);
-        ellipse(agent.pos.x, agent.pos.y, agent.size * 3, agent.size * 3);
+        ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
       }
     }, this);
   }
