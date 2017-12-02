@@ -35,7 +35,7 @@ class GameController {
     dead = this.AGENTPOPULATION - alive;
     
     var statsCard = document.getElementById("global-stats");
-    statsCard.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
+    statsCard.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead + "<br>Fraction of Population Recovered: " + Math.floor(recovered/alive * 1e3)/1e3;
   }
   
   update() {
