@@ -36,6 +36,7 @@ class City {
   }
   
   infoCard() {
+    ctx.save();
     if (this.pos.y + this.radius > 0)
       ctx.translate(0, -HEIGHT*0.31 - 2*this.radius);
     fill(0, 0, 0, 0.6);
@@ -51,6 +52,7 @@ class City {
     text("agents: " + this.agents.length, this.pos.x, this.pos.y + this.radius + 6.8*HEIGHT/30);
     text("infected: " + this.agents.reduce((infected, agent) => infected + (!agent.healthy ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 7.8*HEIGHT/30);
     text("recovered: " + this.agents.reduce((recovered, agent) => recovered + (agent.recovered ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 8.8*HEIGHT/30);
+    ctx.restore();
   }
   
   display() {
