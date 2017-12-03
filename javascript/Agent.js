@@ -29,7 +29,7 @@ class Agent {
       return;
     // Not healthy: every agent in the city has a chance of getting infected.
     this.city.agents.forEach(agent => {
-      if (Math.random() < this.infectiousness * (this.recovered ? 0.2 : 1)) {
+      if (Math.random() < this.infectiousness * (this.recovered ? 0.2 : 1) && !agent.infected) {
         agent.healthy = false;
         fill(200, 0, 0);
         ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
