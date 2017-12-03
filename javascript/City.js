@@ -38,20 +38,20 @@ class City {
   infoCard() {
     ctx.save();
     if (this.pos.y + this.radius > 0)
-      ctx.translate(0, -HEIGHT*0.31 - this.radius);
+      ctx.translate(0, -HEIGHT*0.31 - 4*this.radius);
     fill(0, 0, 0, 0.6);
-    rect(this.pos.x, this.pos.y + this.radius + HEIGHT*0.1505, WIDTH/4, HEIGHT*0.31);
+    rect(this.pos.x, this.pos.y + 2*this.radius + HEIGHT*0.1505, WIDTH/4, HEIGHT*0.31);
     fill(255, 255, 255);
     textSize(HEIGHT/28);
-    text("-" + this.name + "-", this.pos.x, this.pos.y + this.radius + 1.2*HEIGHT/30);
+    text("-" + this.name + "-", this.pos.x, this.pos.y + 2*this.radius + 1.2*HEIGHT/30);
     textSize(HEIGHT/30);
-    text("country: " + this.country, this.pos.x, this.pos.y + this.radius + 2.5*HEIGHT/30);
-    text("population: " + this.population, this.pos.x, this.pos.y + this.radius + 3.5*HEIGHT/30);
-    text("latitude: " + Math.floor(this.latitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 4.5*HEIGHT/30);
-    text("longitude: " + Math.floor(this.longitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 5.5*HEIGHT/30);
-    text("agents: " + this.agents.length, this.pos.x, this.pos.y + this.radius + 6.8*HEIGHT/30);
-    text("infected: " + this.agents.reduce((infected, agent) => infected + (!agent.healthy ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 7.8*HEIGHT/30);
-    text("recovered: " + this.agents.reduce((recovered, agent) => recovered + (agent.recovered ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 8.8*HEIGHT/30);
+    text("country: " + this.country, this.pos.x, this.pos.y + 2*this.radius + 2.5*HEIGHT/30);
+    text("population: " + this.population, this.pos.x, this.pos.y + 2*this.radius + 3.5*HEIGHT/30);
+    text("latitude: " + Math.floor(this.latitude * 1000) / 1000, this.pos.x, this.pos.y + 2*this.radius + 4.5*HEIGHT/30);
+    text("longitude: " + Math.floor(this.longitude * 1000) / 1000, this.pos.x, this.pos.y + 2*this.radius + 5.5*HEIGHT/30);
+    text("agents: " + this.agents.length, this.pos.x, this.pos.y + 2*this.radius + 6.8*HEIGHT/30);
+    text("infected: " + this.agents.reduce((infected, agent) => infected + (!agent.healthy ? 1 : 0), 0), this.pos.x, this.pos.y + 2*this.radius + 7.8*HEIGHT/30);
+    text("recovered: " + this.agents.reduce((recovered, agent) => recovered + (agent.recovered ? 1 : 0), 0), this.pos.x, this.pos.y + 2*this.radius + 8.8*HEIGHT/30);
     ctx.restore();
   }
   
