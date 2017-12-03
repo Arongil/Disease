@@ -37,14 +37,18 @@ class City {
   
   infoCard() {
     fill(0, 0, 0, 0.6);
-    rect(this.pos.x, this.pos.y + this.radius + HEIGHT/10, WIDTH/4, HEIGHT/5);
+    rect(this.pos.x, this.pos.y + this.radius + HEIGHT/6, WIDTH/4, HEIGHT/3);
     fill(255, 255, 255);
+    textSize(HEIGHT/28);
+    text("-" + this.name + "-", this.pos.x, this.pos.y + this.radius + 1.2*HEIGHT/30);
     textSize(HEIGHT/30);
-    text("-" + this.name + "-", this.pos.x, this.pos.y + this.radius + 1.25*HEIGHT/30);
     text("country: " + this.country, this.pos.x, this.pos.y + this.radius + 2.5*HEIGHT/30);
     text("population: " + this.population, this.pos.x, this.pos.y + this.radius + 3.5*HEIGHT/30);
     text("latitude: " + Math.floor(this.latitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 4.5*HEIGHT/30);
     text("longitude: " + Math.floor(this.longitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 5.5*HEIGHT/30);
+    text("agents: " + this.agents.length, this.pos.x, this.pos.y + this.radius + 6.8*HEIGHT/30);
+    text("infected: " + this.agents.reduce((infected, agent) => infected + (agent.infected ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 7.8*HEIGHT/30);
+    text("recovered: " + this.agents.reduce((recovered, agent) => recovered + (agent.recovered ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 8.8*HEIGHT/30);
   }
   
   display() {
