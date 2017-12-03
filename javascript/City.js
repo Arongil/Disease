@@ -38,7 +38,7 @@ class City {
   infoCard() {
     ctx.save();
     if (this.pos.y + this.radius > 0)
-      ctx.translate(0, -HEIGHT*0.31 - 2*this.radius);
+      ctx.translate(0, -HEIGHT*0.31 - this.radius);
     fill(0, 0, 0, 0.6);
     rect(this.pos.x, this.pos.y + this.radius + HEIGHT*0.1505, WIDTH/4, HEIGHT*0.31);
     fill(255, 255, 255);
