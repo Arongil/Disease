@@ -49,7 +49,7 @@ class City {
     text("latitude: " + Math.floor(this.latitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 4.5*HEIGHT/30);
     text("longitude: " + Math.floor(this.longitude * 1000) / 1000, this.pos.x, this.pos.y + this.radius + 5.5*HEIGHT/30);
     text("agents: " + this.agents.length, this.pos.x, this.pos.y + this.radius + 6.8*HEIGHT/30);
-    text("infected: " + this.agents.reduce((infected, agent) => infected + (agent.infected ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 7.8*HEIGHT/30);
+    text("infected: " + this.agents.reduce((infected, agent) => infected + (!agent.healthy ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 7.8*HEIGHT/30);
     text("recovered: " + this.agents.reduce((recovered, agent) => recovered + (agent.recovered ? 1 : 0), 0), this.pos.x, this.pos.y + this.radius + 8.8*HEIGHT/30);
   }
   
