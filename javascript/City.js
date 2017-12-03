@@ -37,7 +37,7 @@ class City {
   
   infoCard() {
     fill(0, 0, 0, 0.6);
-    rect(this.pos.x, this.pos.y + this.radius + HEIGHT*0.15, WIDTH/4, HEIGHT*0.3);
+    rect(this.pos.x, this.pos.y + this.radius + HEIGHT*0.1505, WIDTH/4, HEIGHT*0.31);
     fill(255, 255, 255);
     textSize(HEIGHT/28);
     text("-" + this.name + "-", this.pos.x, this.pos.y + this.radius + 1.2*HEIGHT/30);
