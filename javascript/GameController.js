@@ -38,6 +38,17 @@ class GameController {
     statsCard.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead + "<br>Fraction of Population Recovered: " + Math.floor(recovered/alive * 1e3)/1e3;
   }
   
+  conrolPanel() {
+    this.agentNum = parseInt(document.getElementById("agent-count").value);
+    this.cities.forEach(city => city.agents.forEach(agent => {
+      agent.infectiousness = parseFloat(document.getElementById("infectiousness").value);
+      agent.deadlyness = parseFloat(document.getElementById("deadlyness").value);
+      agent.recoveryProtection = parseFloat(document.getElementById("recovered-protection").value);
+      agent.daysToMaximumRecoveryChance = parseFloat(document.getElementById("days-to-max-recovery").value);
+      agent.maximumRecoveryChance = parseFloat(document.getElementById("max-recovery-chance").value);
+    }));
+  }
+  
   update() {
     image("resources/map.png", 0, 0, WIDTH, HEIGHT);
     this.cities.forEach(city => city.update());
