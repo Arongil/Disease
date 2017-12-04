@@ -20,11 +20,18 @@
 	</head>
 	<body>
 		<canvas id='canvas'></canvas>
-		<div id='control-panel'>
-			
-		</div>
 		<div id='info-panel'>
-			<p id='global-stats'></p>
+			<h3>Information Panel</h3>
+			<p id='global-stats'></p><br><br>
+			<p id="control-panel-description">Input Variables into the Control Panel to affect the simulation.</p>
+		</div>
+		<div id='control-panel'>
+			<h3>Control Panel</h3>
+			<button id="reset" onclick="GC.cities = []; GC.initCities();">Reset</button>
+			<input id="agent-count">Agents to Simulate</button>
+			<input id="infectiousness" placeholder="Infectiousness (0-1)"></input>
+			<input id="recovery-number" placeholder="Average days to recovery"></input>
+			<input id="recovered-protection" placeholder="Relative chance recovered agents are infected (0-1)"></input>
 		</div>
 	</body>
 </html>
