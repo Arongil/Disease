@@ -10,21 +10,19 @@ html,body {
 	height:100%;
 }
 #info-panel {
-	position:absolute;
-	left:0;
-	top:0;
-	width:20%;
-	height:50%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 20%;
+	height: 50%;
 }
-#control-panel{
-	position:absolute;
-	left:0;
-	top:50%;
-	width:20%;
-	height:50%;
+#control-panel {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 20%;
+	height: 50%;
 }
-canvas{
-	position:absolute;
-	top:0;
-	left:20%;
+canvas {
+	
 }
