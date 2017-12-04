@@ -23,6 +23,6 @@ html,body {
 	width: 20%;
 	height: 50%;
 }
-canvas {
-	
+#canvas {
+	margin: auto;
 }
