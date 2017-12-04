@@ -30,8 +30,9 @@
 			<button id="reset" onclick="GC.cities = []; GC.initCities();">Reset</button>
 			<input id="agent-count">Agents to Simulate</button>
 			<input id="infectiousness" placeholder="Infectiousness (0-1)"></input>
-			<input id="recovery-number" placeholder="Average days to recovery"></input>
 			<input id="recovered-protection" placeholder="Relative chance recovered agents are infected (0-1)"></input>
+			<input id="days-to-max-recovery" placeholder="Days after infection to maximum recovery chance"></input>
+			<input id="max-recovery-chance" placeholder="Maximum recovery chance per day (0-1)"></input>
 			<button id="apply" onclick="GC.controlPanel();">Apply Changes</button>
 		</div>
 	</body>
