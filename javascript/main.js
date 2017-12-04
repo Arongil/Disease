@@ -16,15 +16,13 @@ var Input = {
 function resize() {
   ctx.translate(-HALFWIDTH, -HALFHEIGHT);
   
-  /*canvas.width = 4/5 * window.innerWidth;
+  canvas.width = 4/5 * window.innerWidth;
   canvas.height = canvas.width / ASPECTRATIO;
   if (canvas.height > 7/8 * window.innerHeight) {
     // If the height is greater than the height of the screen, set it accordingly.
     canvas.height = 7/8 * window.innerHeight;
     canvas.width = canvas.height * ASPECTRATIO;
-  }*/
-  canvas.width = window.innerWidth * .8;
-  canvas.height = window.innerHeight;
+  }
   
   WIDTH = canvas.width;
   HEIGHT = canvas.height;
