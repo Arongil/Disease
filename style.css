@@ -8,14 +8,24 @@ html,body {
 	width:100%;
 	height:100%;
 }
-div.bottom {
-	width:100%;
-	height:20%;
-}
 #info-panel {
 	position:absolute;
 	left:0;
 	top:0;
-	width:10%;
-	height:10%;
+	width:20%;
+	height:50%;
+}
+#control-panel{
+	position:absolute;
+	left:0;
+	top:50%;
+	width:20%;
+	height:50%;
+}
+canvas{
+	position:absolute;
+	top:0;
+	left:20%;
+	width:80%;
+	height:100%;
 }
