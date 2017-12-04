@@ -11,6 +11,9 @@ class Agent {
     this.timeSick = 0;
     this.infectiousness = 0.1; // fraction of agents infected from sick agent
     this.deadlyness = 0.025; // per day chance of death for infected agents
+    this.recoveryProtection = 0.2; // Relative chance of becoming infected for recovered agents. 0.2 means, for example, that when 10 regular agents would get infected, only 2 recovered agents would.
+    this.daysToMaximumRecoveryChance = 5; // Days after infection until recovery is most likely.
+    this.maximumRecoveryChance = 1/20; // Likelyhood per frame of recovery at the maximum.
   }
   
   display() {
@@ -29,7 +32,7 @@ class Agent {
       return;
     // Not healthy: every agent in the city has a chance of getting infected.
     this.city.agents.forEach(agent => {
-      if (Math.random() < this.infectiousness * (this.recovered ? 0.2 : 1) && !agent.infected) {
+      if (Math.random() < this.infectiousness * (this.recovered ? this.recoveryProtection : 1) && !agent.infected) {
         agent.healthy = false;
         fill(200, 0, 0);
         ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
@@ -41,7 +44,7 @@ class Agent {
     if (this.healthy)
       return;
     // Agents' chance of recovery per frame follows the curve 1 / (5 + e^(5-t)), where t = this.timeSick.
-    if (Math.random() < 1 / (5 + Math.exp(20-this.timeSick))) { // Recovery.
+    if (Math.random() < 1 / (1/this.maximumRecoveryChance + Math.exp(this.daysToMaximumRecoveryChance-this.timeSick))) { // Recovery.
         this.healthy = true;
         this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
     }
