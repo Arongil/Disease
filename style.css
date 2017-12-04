@@ -14,6 +14,10 @@ div.bottom {
 	height:20%;
 }
 #info-panel {
-	width:40%;
+	position:absolute;
+	left:0;
+	top:0;
+	width:10%;
+	height:10%;
 	margin: auto;
 }
