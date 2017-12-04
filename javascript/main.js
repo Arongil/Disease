@@ -23,6 +23,9 @@ function resize() {
     canvas.height = 7/8 * window.innerHeight;
     canvas.width = canvas.height * ASPECTRATIO;
   }
+  document.getElementById("canvas").style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
+  document.getElementById("canvas").style.marginRight = (window.innerWidth - canvas.width)/2 + "px";
+  document.getElementById("canvas").style.marginTop = canvas.height/20 + "px";
   
   WIDTH = canvas.width;
   HEIGHT = canvas.height;
