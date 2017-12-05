@@ -12,19 +12,6 @@ function initInput(canvas) {
   canvas.onmouseup = function(e) {
     Input["click"] = true;
   };
-  let panelID;
-  function panelMouseDown(t)
-  {
-    panelID = t;
-  }
-  function panelMouseUp()
-  {
-    panelID = undefined;
-  }
-  document.getElementById('control-panel').onmousedown = () => panelMouseDown('control-panel');
-  document.getElementById('info-panel').onmousedown = () => panelMouseDown('info-panel');
-  document.getElementById('control-panel').onmousedown = panelMouseUp;
-  document.getElementById('info-panel').onmousedown = panelMouseUp;
   document.onmousemove = function(e) {
     var x = e.clientX - window.innerWidth/2;
 
@@ -38,4 +25,14 @@ function initInput(canvas) {
       document.getElementById(panelID).style.top = (e.clientY / window.innerHeight) * 100 + '%';
     }
   };
+  function panelMouseDown(t) {
+    Input.panelID = t;
+  }
+  function panelMouseUp() {
+    Input.panelID = undefined;
+  }
+  document.getElementById('control-panel').onmousedown = () => panelMouseDown('control-panel');
+  document.getElementById('info-panel').onmousedown = () => panelMouseDown('info-panel');
+  document.getElementById('control-panel').onmousedown = panelMouseUp;
+  document.getElementById('info-panel').onmousedown = panelMouseUp;
 }
