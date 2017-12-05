@@ -21,6 +21,10 @@ function initInput(canvas) {
   {
     panelID = undefined;
   }
+  document.getElementById('control-panel').onmousedown = () => panelMouseDown('control-panel');
+  document.getElementById('info-panel').onmousedown = () => panelMouseDown('info-panel');
+  document.getElementById('control-panel').onmousedown = panelMouseUp;
+  document.getElementById('info-panel').onmousedown = panelMouseUp;
   document.onmousemove = function(e) {
     var x = e.clientX - window.innerWidth/2;
 
