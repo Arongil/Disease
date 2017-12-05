@@ -26,7 +26,8 @@
 		</div>
 		<div id='control-panel'>
 			<h3>Control Panel</h3>
-			<button id="reset" onclick="GC.cities = []; GC.initCities();">Reset</button><br>
+			<button id="reset" onclick="GC.cities = []; GC.initCities();">Reset</button>
+			<button id="apply" onclick="GC.controlPanel();">Apply Changes</button><br>
 			Agent Count: <input id="agent-count" value="1000" placeholder="Agent Count"></input><br>
 			Infectiousness (0-1): <input id="infectiousness" value="0.1" placeholder="Infectiousness (0-1)"></input><br>
 			Deadlyness (0-1): <input id="deadlyness" value="0.01" placeholder="Deadlyness (0-1)"></input><br>
@@ -34,7 +35,6 @@
 			Recovered Protection (0-1): <input id="recovered-protection" value="0.2" placeholder="Recovered Protection (0-1)"></input><br>
 			Days to Max Recovery (0-n): <input id="days-to-max-recovery" value="5" placeholder="Days to Max Recovery (0-n): "></input><br>
 			Max Recovery (0-1): <input id="max-recovery-chance" value="0.05" placeholder="Max Recovery (0-1)"></input><br>
-			<button id="apply" onclick="GC.controlPanel();">Apply Changes</button>
 		</div>
 	</body>
 </html>
