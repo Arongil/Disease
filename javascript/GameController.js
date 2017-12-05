@@ -41,6 +41,7 @@ class GameController {
   reset() {
     this.cities = [];
     this.initCities();
+    this.controlPanel();
   }
   
   controlPanel() {
