@@ -26,10 +26,10 @@ function initInput(canvas) {
     }
   };
   function panelMouseDown(t) {
-    Input.panelID = t;
+    Input["panelID"] = t;
   }
   function panelMouseUp() {
-    Input.panelID = undefined;
+    Input["panelID"] = undefined;
   }
   document.getElementById('control-panel').onmousedown = () => panelMouseDown('control-panel');
   document.getElementById('info-panel').onmousedown = () => panelMouseDown('info-panel');
