@@ -14,12 +14,14 @@ div.bottom {
 	height:20%;
 }
 #info-panel {
+	border:solid 2px #1a1a1c;
 	position: absolute;
 	background: rgb(200, 200, 200);
 	top: 0%;
 	left: 0%;
 }
 #control-panel {
+	border:solid 2px #1a1a1c;
 	position: absolute;
 	background: rgb(200, 200, 200);
 	top: 50%;
