@@ -19,6 +19,7 @@ div.bottom {
 	background: rgb(200, 200, 200);
 	top: 0%;
 	left: 0%;
+	user-select:none;
 }
 #control-panel {
 	border:solid 2px #1a1a1c;
@@ -26,4 +27,5 @@ div.bottom {
 	background: rgb(200, 200, 200);
 	top: 50%;
 	left: 0%;
+	user-select:none;
 }
