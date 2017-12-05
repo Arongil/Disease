@@ -38,15 +38,28 @@ class GameController {
     statsCard.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead + "<br>Fraction of Population Recovered: " + Math.floor(recovered/alive * 1e3)/1e3;
   }
   
-  conrolPanel() {
-    this.agentNum = parseInt(document.getElementById("agent-count").value);
+  reset() {
+    this.cities = [];
+    this.initCities();
+  }
+  
+  controlPanel() {
+    var agentNum = document.getElementById("agent-count"),
+        infectiousness = document.getElementById("infectiousness"),
+        deadlyness = document.getElementById("deadlyness"),
+        recoveryProtection = document.getElementById("recovered-protection"),
+        daysToMaxRecovery = document.getElementById("days-to-max-recovery"),
+        maxRecoveryChance = document.getElementById("max-recovery-chance"),
+        infectedRejected = document.getElementById("infected-rejected");
+    this.agentNum = agentNum.value !== undefined ? parseInt(agentNum.value) : parseInt(agentNum.defaultValue);
     this.cities.forEach(city => city.agents.forEach(agent => {
-      agent.infectiousness = parseFloat(document.getElementById("infectiousness").value);
-      agent.deadlyness = parseFloat(document.getElementById("deadlyness").value);
-      agent.recoveryProtection = parseFloat(document.getElementById("recovered-protection").value);
-      agent.daysToMaximumRecoveryChance = parseFloat(document.getElementById("days-to-max-recovery").value);
-      agent.maximumRecoveryChance = parseFloat(document.getElementById("max-recovery-chance").value);
+      agent.infectiousness = infectiousness.value !== undefined ? parseFloat(infectiousness.value) : parseFloat(infectiousness.defaultValue);
+      agent.deadlyness = deadlyness.value !== undefined ? parseFloat(deadlyness.value) : parseFloat(deadlyness.defaultValue);
+      agent.recoveryProtection = recoveryProtection.value !== undefined ? parseFloat(recoveryProtection.value) : parseFloat(recoveryProtection.defaultValue);
+      agent.daysToMaximumRecoveryChance = daysToMaxRecovery.value !== undefined ? parseFloat(daysToMaxRecovery.value) : parseFloat(daysToMaxRecovery.defaultValue);
+      agent.maximumRecoveryChance = maxRecoveryChance.value !== undefined ? parseFloat(maxRecoveryChance.value) : parseFloat(maxRecoveryChance.defaultValue);
     }));
+    this.cities.forEach(city => city.airline.infectedRejectionRate = infectedRejected.value !== undefined ? parseFloat(infectedRejected.value) : parseFloat(infectedRejected.defaultValue));
   }
   
   update() {
