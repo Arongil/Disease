@@ -14,5 +14,18 @@ div.bottom {
 	height:20%;
 }
 #info-panel {
-	margin: auto;
+	position: absolute;
+	background: rgb(200, 200, 200);
+	width: 10%;
+	height: 50%;
+	top: 0%;
+	left: 0%;
+}
+#control-panel {
+	position: absolute;
+	background: rgb(200, 200, 200);
+	width: 10%;
+	height: 50%;
+	top: 50%;
+	left: 0%;
 }
