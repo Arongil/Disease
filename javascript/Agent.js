@@ -43,7 +43,7 @@ class Agent {
   recover() {
     if (this.healthy)
       return;
-    // Agents' chance of recovery per frame follows the curve 1 / (5 + e^(5-t)), where t = this.timeSick.
+    // Agents' chance of recovery per frame follows the curve 1 / (a + e^(b-t)), where t = this.timeSick.
     if (Math.random() < 1 / (1/this.maximumRecoveryChance + Math.exp(this.daysToMaximumRecoveryChance-this.timeSick))) { // Recovery.
         this.healthy = true;
         this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
