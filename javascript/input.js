@@ -19,10 +19,9 @@ function initInput(canvas) {
     Input["mousepos"]["x"] = x;
     Input["mousepos"]["y"] = y;
     
-    if(panelID)
-    {
-      document.getElementById(panelID).style.left = (e.clientX / window.innerWidth) * 100 + '%';
-      document.getElementById(panelID).style.top = (e.clientY / window.innerHeight) * 100 + '%';
+    if(Input["panelID"] !== undefined) {
+      document.getElementById(Input["panelID"]).style.left = (e.clientX / window.innerWidth) * 100 + '%';
+      document.getElementById(Input["panelID"]).style.top = (e.clientY / window.innerHeight) * 100 + '%';
     }
   };
   function panelMouseDown(t) {
@@ -31,8 +30,8 @@ function initInput(canvas) {
   function panelMouseUp() {
     Input["panelID"] = undefined;
   }
-  document.getElementById('control-panel').onmousedown = () => panelMouseDown('control-panel');
-  document.getElementById('info-panel').onmousedown = () => panelMouseDown('info-panel');
+  document.getElementById('control-panel').onmousedown = _ => panelMouseDown('control-panel');
+  document.getElementById('info-panel').onmousedown = _ => panelMouseDown('info-panel');
   document.getElementById('control-panel').onmousedown = panelMouseUp;
   document.getElementById('info-panel').onmousedown = panelMouseUp;
 }
