@@ -2,7 +2,7 @@ class GameController {
 
   constructor() {
     this.cities = [];
-    this.agentNum = 2000;
+    this.agentNum = 4000;
   }
   
   initCities() {
