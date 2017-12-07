@@ -9,7 +9,7 @@ class Agent {
     this.healthy = true;
     this.recovered = false; // true if successfully recovered
     this.timeSick = 0;
-    this.infectiousness = 0.01; // fraction of agents infected from sick agent
+    this.infectiousness = 0.004; // fraction of agents infected from sick agent
     this.deadlyness = 0.002; // per day chance of death for infected agents
     this.recoveryProtection = 0.2; // Relative chance of becoming infected for recovered agents. 0.2 means, for example, that when 10 regular agents would get infected, only 2 recovered agents would.
     this.daysToMaximumRecoveryChance = 5; // Days after infection until recovery is most likely.
