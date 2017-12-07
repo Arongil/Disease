@@ -59,12 +59,12 @@ class GameController {
         recoveredRecovery = document.getElementById("recovered-recovery"),
         recoveredDeath = document.getElementById("recovered-death"),
         daysRecovered = document.getElementById("recovered-days");
-    set(this.agentNum, agentNum, false);
+    this.agentNum = getWithBackup(agentNum, false);
     this.cities.forEach(city => city.agents.forEach(agent => {
       agent.infectiousness = getWithBackup(infectiousness, true);
       agent.deadlyness = getWithBackup(deadlyness, true);
       agent.recoveryProtection = getWithBackup(recoveryProtection, true);
-      agent.daysToMaximumRecoveryChance = daysToMaxRecovery, false);
+      agent.daysToMaximumRecoveryChance = getWithBackup(daysToMaxRecovery, false);
       agent.maximumRecoveryChance = getWithBackup(maxRecoveryChance, true);
       agent.recoveredRecoveryFactor = getWithBackup(recoveredRecovery, true);
       agent.recoveredDeathFactor = getWithBackup(recoveredDeath, true);
