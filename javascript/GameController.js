@@ -45,6 +45,10 @@ class GameController {
   }
   
   controlPanel() {
+    var set = function(variable, input, float) {
+      variable = input.value !== undefined ? (float ? parseFloat(input.value) : parseInt(input.value)) : (float ? parseFloat(input.defaultValue) : parseInt(input.defaultValue));
+    }
+    
     var agentNum = document.getElementById("agent-count"),
         infectiousness = document.getElementById("infectiousness"),
         deadlyness = document.getElementById("deadlyness"),
@@ -53,18 +57,20 @@ class GameController {
         maxRecoveryChance = document.getElementById("max-recovery-chance"),
         infectedRejected = document.getElementById("infected-rejected"),
         recoveredRecovery = document.getElementById("recovered-recovery"),
-        recoveredDeath = document.getElementById("recovered-death");
-    this.agentNum = agentNum.value !== undefined ? parseInt(agentNum.value) : parseInt(agentNum.defaultValue);
+        recoveredDeath = document.getElementById("recovered-death"),
+        daysRecovered = document.getElementById("recovered-days");
+    set(this.agentNum, agentNum, false);
     this.cities.forEach(city => city.agents.forEach(agent => {
-      agent.infectiousness = infectiousness.value !== undefined ? parseFloat(infectiousness.value) : parseFloat(infectiousness.defaultValue);
-      agent.deadlyness = deadlyness.value !== undefined ? parseFloat(deadlyness.value) : parseFloat(deadlyness.defaultValue);
-      agent.recoveryProtection = recoveryProtection.value !== undefined ? parseFloat(recoveryProtection.value) : parseFloat(recoveryProtection.defaultValue);
-      agent.daysToMaximumRecoveryChance = daysToMaxRecovery.value !== undefined ? parseFloat(daysToMaxRecovery.value) : parseFloat(daysToMaxRecovery.defaultValue);
-      agent.maximumRecoveryChance = maxRecoveryChance.value !== undefined ? parseFloat(maxRecoveryChance.value) : parseFloat(maxRecoveryChance.defaultValue);
-      agent.recoveredRecoveryFactor = recoveredRecovery.value !== undefined ? parseFloat(recoveredRecovery.value) : parseFloat(recoveredRecovery.defaultValue);
-      agent.recoveredDeathFactor = recoveredDeath.value !== undefined ? parseFloat(recoveredDeath.value) : parseFloat(recoveredDeath.defaultValue);
+      set(agent.infectiousness, infectiousness, true);
+      set(agent.deadlyness, deadlyness, true);
+      set(agent.recoveryProtection, recoveryProtection, true);
+      set(agent.daysToMaximumRecoveryChance, daysToMaxRecovery, false);
+      set(agent.maximumRecoveryChance, maxRecoveryChance, true);
+      set(agent.recoveredRecoveryFactor, recoveredRecovery, true);
+      set(agent.recoveredDeathFactor, recoveredDeath, true);
+      set(agent.recoveredDays, daysRecovered, false);
     }));
-    this.cities.forEach(city => city.airline.infectedRejectionRate = infectedRejected.value !== undefined ? parseFloat(infectedRejected.value) : parseFloat(infectedRejected.defaultValue));
+    this.cities.forEach(city => set(city.airline.infectedRejectionRate, infectedRejected);
   }
   
   update() {
