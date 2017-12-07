@@ -46,7 +46,7 @@ class GameController {
   
   controlPanel() {
     var getWithBackup = function(input, float) { // returns default value if undefined
-      variable = input.value !== undefined ? (float ? parseFloat(input.value) : parseInt(input.value)) : (float ? parseFloat(input.defaultValue) : parseInt(input.defaultValue));
+      return input.value !== undefined ? (float ? parseFloat(input.value) : parseInt(input.value)) : (float ? parseFloat(input.defaultValue) : parseInt(input.defaultValue));
     }
     
     var agentNum = document.getElementById("agent-count"),
