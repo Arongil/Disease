@@ -17,7 +17,7 @@ class Agent {
     this.maximumRecoveryChance = 1/20; // Likelyhood per frame of recovery at the maximum.
     this.recoveredRecoveryFactor = 1.4; // Scalar from 0 to n that signifies how much better recovered agents re-recover (0 means they don't; 2 means they re-recover at 2x efficiency).
     this.recoveredDeathFactor = 0.8; // Scalar from 0 to 1 that signifies how much less likely recovered agents are to die from infection.
-    this.recoveredDays = 80;
+    this.recoveredDays = 80; // (1-n) How many days before recovered state is over and agents no longer maintain the benefits against the disease.
   }
   
   display() {
