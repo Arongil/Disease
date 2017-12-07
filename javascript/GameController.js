@@ -45,32 +45,23 @@ class GameController {
   }
   
   controlPanel() {
-    var getWithBackup = function(input, float) { // returns default value if undefined
+    var getWithBackup = function(elementName, float) { // returns default value if undefined
+      var input = document.getElementById(elementName);
       return input.value !== undefined ? (float ? parseFloat(input.value) : parseInt(input.value)) : (float ? parseFloat(input.defaultValue) : parseInt(input.defaultValue));
     }
     
-    var agentNum = document.getElementById("agent-count"),
-        infectiousness = document.getElementById("infectiousness"),
-        deadlyness = document.getElementById("deadlyness"),
-        recoveryProtection = document.getElementById("recovered-protection"),
-        daysToMaxRecovery = document.getElementById("days-to-max-recovery"),
-        maxRecoveryChance = document.getElementById("max-recovery-chance"),
-        infectedRejected = document.getElementById("infected-rejected"),
-        recoveredRecovery = document.getElementById("recovered-recovery"),
-        recoveredDeath = document.getElementById("recovered-death"),
-        daysRecovered = document.getElementById("recovered-days");
-    this.agentNum = getWithBackup(agentNum, false);
+    this.agentNum = getWithBackup("agent-count", false);
     this.cities.forEach(city => city.agents.forEach(agent => {
-      agent.infectiousness = getWithBackup(infectiousness, true);
-      agent.deadlyness = getWithBackup(deadlyness, true);
-      agent.recoveryProtection = getWithBackup(recoveryProtection, true);
-      agent.daysToMaximumRecoveryChance = getWithBackup(daysToMaxRecovery, false);
-      agent.maximumRecoveryChance = getWithBackup(maxRecoveryChance, true);
-      agent.recoveredRecoveryFactor = getWithBackup(recoveredRecovery, true);
-      agent.recoveredDeathFactor = getWithBackup(recoveredDeath, true);
-      agent.recoveredDays = getWithBackup(daysRecovered, false);
+      agent.infectiousness = getWithBackup("infectiousness", true);
+      agent.deadlyness = getWithBackup("deadlyness", true);
+      agent.recoveryProtection = getWithBackup("recovered-protection", true);
+      agent.daysToMaximumRecoveryChance = getWithBackup("days-to-max-recovery", false);
+      agent.maximumRecoveryChance = getWithBackup("max-recovery-chance", true);
+      agent.recoveredRecoveryFactor = getWithBackup("recovered-recovery", true);
+      agent.recoveredDeathFactor = getWithBackup("recovered-death", true);
+      agent.recoveredDays = getWithBackup("recovered-days", false);
     }));
-    this.cities.forEach(city => city.airline.infectedRejectionRate = getWithBackup(infectedRejected, true));
+    this.cities.forEach(city => city.airline.infectedRejectionRate = getWithBackup("infected-rejected", true));
   }
   
   update() {
