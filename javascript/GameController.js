@@ -45,7 +45,7 @@ class GameController {
   }
   
   controlPanel() {
-    var set = function(variable, input, float) {
+    var getWithBackup = function(input, float) { // returns default value if undefined
       variable = input.value !== undefined ? (float ? parseFloat(input.value) : parseInt(input.value)) : (float ? parseFloat(input.defaultValue) : parseInt(input.defaultValue));
     }
     
@@ -61,16 +61,16 @@ class GameController {
         daysRecovered = document.getElementById("recovered-days");
     set(this.agentNum, agentNum, false);
     this.cities.forEach(city => city.agents.forEach(agent => {
-      set(agent.infectiousness, infectiousness, true);
-      set(agent.deadlyness, deadlyness, true);
-      set(agent.recoveryProtection, recoveryProtection, true);
-      set(agent.daysToMaximumRecoveryChance, daysToMaxRecovery, false);
-      set(agent.maximumRecoveryChance, maxRecoveryChance, true);
-      set(agent.recoveredRecoveryFactor, recoveredRecovery, true);
-      set(agent.recoveredDeathFactor, recoveredDeath, true);
-      set(agent.recoveredDays, daysRecovered, false);
+      agent.infectiousness = getWithBackup(infectiousness, true);
+      agent.deadlyness = getWithBackup(deadlyness, true);
+      agent.recoveryProtection = getWithBackup(recoveryProtection, true);
+      agent.daysToMaximumRecoveryChance = daysToMaxRecovery, false);
+      agent.maximumRecoveryChance = getWithBackup(maxRecoveryChance, true);
+      agent.recoveredRecoveryFactor = getWithBackup(recoveredRecovery, true);
+      agent.recoveredDeathFactor = getWithBackup(recoveredDeath, true);
+      agent.recoveredDays = getWithBackup(daysRecovered, false);
     }));
-    this.cities.forEach(city => set(city.airline.infectedRejectionRate, infectedRejected));
+    this.cities.forEach(city => city.airline.infectedRejectionRate = getWithBackup(infectedRejected, true));
   }
   
   update() {
