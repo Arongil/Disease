@@ -70,7 +70,7 @@ class GameController {
       set(agent.recoveredDeathFactor, recoveredDeath, true);
       set(agent.recoveredDays, daysRecovered, false);
     }));
-    this.cities.forEach(city => set(city.airline.infectedRejectionRate, infectedRejected);
+    this.cities.forEach(city => set(city.airline.infectedRejectionRate, infectedRejected));
   }
   
   update() {
