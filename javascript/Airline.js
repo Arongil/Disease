@@ -2,7 +2,7 @@ class Airline {
   
   constructor(city) {
     this.city = city;
-    this.infectedRejectionRate = 0; // Fraction of infected passengers rejected and forced to miss their flight.
+    this.infectedRejectionRate = 0.1; // Fraction of infected passengers rejected and forced to miss their flight.
   }
   
   distanceTo(otherCity) {
