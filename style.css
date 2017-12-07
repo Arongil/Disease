@@ -17,15 +17,17 @@ div.bottom {
 	border:solid 2px #1a1a1c;
 	position: absolute;
 	background: rgb(200, 200, 200);
+	width: auto;
 	top: 0%;
 	left: 0%;
-	user-select:none;
+	user-select: none;
 }
 #control-panel {
 	border:solid 2px #1a1a1c;
 	position: absolute;
 	background: rgb(200, 200, 200);
+	width: auto;
 	top: 50%;
 	left: 0%;
-	user-select:none;
+	user-select: none;
 }
