@@ -22,10 +22,6 @@ class Airline {
   }
   
   findFlight() {
-    // Lower population cities don't have flights available as often.
-    if (Math.random() * this.city.population < 1e6)
-      return;
-    
     // Choose closer cities with higher populations more frequently.
     var total = GC.cities.forEach(city => {
       if (city !== this.city)
