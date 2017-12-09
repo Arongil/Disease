@@ -23,11 +23,12 @@ class Airline {
   
   findFlight() {
     // Choose closer cities with higher populations more frequently.
-    var total = GC.cities.forEach(city => {
+    var total = 0;
+    GC.cities.forEach(city => {
       if (city !== this.city)
         total += city.population / this.distanceTo(city);
-    }), cityIndex = Math.random() * total;
-    for (var i = -1; cityIndex > 0; i++)
+    });
+    for (var i = -1, cityIndex = Math.random() * total; cityIndex > 0; i++)
       if (GC.cities[i] !== this.city)
         cityIndex -= GC.cities[i].population / this.distanceTo(GC.cities[i]);
     return GC.cities[i];
