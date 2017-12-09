@@ -25,14 +25,14 @@ class Airline {
     // Lower population cities don't have flights available as often.
     if (Math.random() * this.city.population < 1e6)
       return;
-    // Choose cities with higher populations more frequently. Of 2 cities chosen like this, return the closer one.
-    var choices = [];
-    while (choices.length < 2) {
-      var personIndex = Math.random() * GC.WORLDPOPULATION;
-      for (var i = -1; personIndex > 0; i++, personIndex -= GC.cities[i].population);
-      choices.push({"city": GC.cities[i], "distance": this.distanceTo(GC.cities[i])});
-    }
-    return choices[0].distance < choices[1].distance ? choices[0].city : choices[1].city;
+    
+    // Choose closer cities with higher populations more frequently.
+    var total = GC.cities.forEach(city => {
+      if (city !== this.city)
+        total += city.population / this.distanceTo(city);
+    }), cityIndex = Math.random() * total;
+    for (var i = -1; cityIndex > 0; i++, cityIndex -= GC.cities[i].population / this.distanceTo(GC.cities[i]));
+    return GC.cities[i];
   }
   
 }
