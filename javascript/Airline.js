@@ -31,7 +31,9 @@ class Airline {
       if (city !== this.city)
         total += city.population / this.distanceTo(city);
     }), cityIndex = Math.random() * total;
-    for (var i = -1; cityIndex > 0; i++, cityIndex -= GC.cities[i].population / this.distanceTo(GC.cities[i]));
+    for (var i = -1; cityIndex > 0; i++)
+      if (GC.cities[i] !== this.city)
+        cityIndex -= GC.cities[i].population / this.distanceTo(GC.cities[i]);
     return GC.cities[i];
   }
   
