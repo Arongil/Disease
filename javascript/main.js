@@ -18,9 +18,9 @@ function resize() {
   
   canvas.width = 4/5 * window.innerWidth;
   canvas.height = canvas.width / ASPECTRATIO;
-  if (canvas.height > 7/8 * window.innerHeight) {
+  if (canvas.height > 15/16 * window.innerHeight) {
     // If the height is greater than the height of the screen, set it accordingly.
-    canvas.height = 7/8 * window.innerHeight;
+    canvas.height = 15/16 * window.innerHeight;
     canvas.width = canvas.height * ASPECTRATIO;
   }
   document.getElementById("canvas").style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
