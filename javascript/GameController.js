@@ -4,7 +4,7 @@ class GameController {
     this.cities = [];
     this.agentNum = 4000;
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "graphBegins": 0};
-    this.graphTimeScale = 4/30; // greater => fewer days recorded but more detail
+    this.graphTimeScale = 1; // greater => fewer days recorded but more detail
   }
   
   initCities() {
