@@ -71,7 +71,7 @@ class GameController {
       graphCtx.fillStyle = "rgba(80, 80, 80, 1)";
       graphCtx.font = WIDTH/80 + "px Arial";
       GC.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
-      graphCtx.fillText(Math.floor(GC.AGENTPOPULATION * (1 - i)) + " agents", 0, graphCanvas.height * i + WIDTH/80);
+      graphCtx.fillText(i.toFixed(2) + "% of agents", 0, graphCanvas.height * i + WIDTH/80);
       GC.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
       graphCtx.fillText(Math.floor(graphCanvas.width / GC.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
     }
