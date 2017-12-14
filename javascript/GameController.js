@@ -3,6 +3,7 @@ class GameController {
   constructor() {
     this.cities = [];
     this.agentNum = 4000;
+    this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "graphBegins": 0};
   }
   
   initCities() {
@@ -21,6 +22,32 @@ class GameController {
     this.cities.forEach(city => city.reposition());
   }
   
+  graphLine(x1, y1, x2, y2) {
+    graphCtx.beginPath();
+    graphCtx.moveTo(x1, y1);
+    graphCtx.lineTo(x2, y2);
+    graphCtx.closePath();
+    graphCtx.stroke();
+  }
+  updateGraph(alive, dead, infected, recovered) {
+    if (this.statistics["alive"].length == 0) // Nothing to record. Wait for data.
+      return;
+    if (this.statistics["graphBegins"] == 0) // Don't draw offset as if data was recorded from the beginning.
+      this.statistics["graphBegins"] = millis(); // Draw from the first infection.
+    
+    // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
+    var x = (millis() - this.statistics["graphBegins"]) / 1000;
+    graphCtx.lineWidth = WIDTH/200;
+    graphCtx.fillStyle = "rgba(200, 200,   0, 1)"; // alive
+    this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + 1, alive);
+    graphCtx.fillStyle = "rgba(200,   0,   0, 1)"; // infected
+    this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + 1, infected);
+    graphCtx.fillStyle = "rgba(  0,   0, 200, 1)"; // recovered
+    this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + 1, recovered);
+    graphCtx.fillStyle = "rgba(  0,   0,   0, 1)"; // dead
+    this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + 1, dead);
+  }
+  
   infoPanel() {
     var alive = 0, dead = 0, infected = 0, recovered = 0;
     this.cities.forEach(city => {
@@ -34,8 +61,18 @@ class GameController {
     });
     dead = this.AGENTPOPULATION - alive;
     
-    var statsCard = document.getElementById("global-stats");
-    statsCard.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead + "<br>Fraction of Population Recovered: " + Math.floor(recovered/alive * 1e3)/1e3;
+    var globalStats = document.getElementById("global-stats");
+    globalStats.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Healthy: " + (alive - infected) + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
+    
+    // Record data for the graph if the infection is (or recovered agents are) alive. Records are useless during other periods.
+    if (infected > 0 || recovered > 0) {
+      this.updateGraph(alive, dead, infected, recovered);
+      
+      this.statistics.alive.push(alive);
+      this.statistics.dead.push(dead);
+      this.statistics.infected.push(infected);
+      this.statistics.recovered.push(recovered);
+    }
   }
   
   reset() {
