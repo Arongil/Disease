@@ -54,16 +54,16 @@ class GameController {
     this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + this.graphTimeScale, dead);
   }
   
-  initGraph(graphLine) {
+  initGraph(GC) {
     // Draw the graph's tick marks.
     for (var i = 0; i < 1; i += 1/5) {
       graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
       graphCtx.fillStyle = "rgba(80, 80, 80, 1)";
       graphCtx.font = WIDTH/80 + "px Arial";
-      graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
-      graphCtx.fillText(Math.floor(this.AGENTPOPULATION * (1 - i)) + " agents", 0, graphCanvas.height * i + WIDTH/80);
-      graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
-      graphCtx.fillText(Math.floor(graphCanvas.width/this.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
+      GC.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
+      graphCtx.fillText(Math.floor(GC.AGENTPOPULATION * (1 - i)) + " agents", 0, graphCanvas.height * i + WIDTH/80);
+      GC.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
+      graphCtx.fillText(Math.floor(graphCanvas.width/GC.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
     }
   }
   
