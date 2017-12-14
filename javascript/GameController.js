@@ -39,7 +39,7 @@ class GameController {
     graphCtx.save();
     // Transform (scale and translate) correctly.
     graphCtx.translate(0, graphCanvas.height);
-    graphCtx.scale(1, -graphCanvas.height / alive);
+    graphCtx.scale(1, -graphCanvas.height / this.statistics["alive"][0]);
     
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
     var x = (millis() - this.statistics["graphBegins"]) / 1000 * 30 * this.graphTimeScale;
