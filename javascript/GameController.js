@@ -32,8 +32,12 @@ class GameController {
   updateGraph(alive, dead, infected, recovered) {
     if (this.statistics["alive"].length == 0) // Nothing to record. Wait for data.
       return;
-    if (this.statistics["graphBegins"] == 0) // Don't draw offset as if data was recorded from the beginning.
+    if (this.statistics["graphBegins"] == 0) { // Don't draw offset as if data was recorded from the beginning.
       this.statistics["graphBegins"] = millis(); // Draw from the first infection.
+      // Transform (scale and translate) correctly.
+      graphCtx.translate(0, graphCanvas.height);
+      graphCtx.scale(1, -1);
+    }
     
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
     var x = (millis() - this.statistics["graphBegins"]) / 1000;
