@@ -16,12 +16,14 @@ html,body {
 	padding: 0.1%;
 }
 #info-panel {
+	position: absolute;
 	border: solid 2px #1a1a1c;
 	background: rgb(200, 200, 200);
 	display: inline-block;
 	user-select: none;
 }
 #control-panel {
+	position: absolute;
 	border: solid 2px #1a1a1c;
 	background: rgb(200, 200, 200);
 	display: inline-block;
