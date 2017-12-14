@@ -63,7 +63,7 @@ class GameController {
       GC.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
       graphCtx.fillText(Math.floor(GC.AGENTPOPULATION * (1 - i)) + " agents", 0, graphCanvas.height * i + WIDTH/80);
       GC.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
-      graphCtx.fillText(Math.floor(graphCanvas.width * 30/GC.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
+      graphCtx.fillText(Math.floor(graphCanvas.width / (30*GC.graphTimeScale) * i) + " days", graphCanvas.width * i, graphCanvas.height);
     }
   }
   
