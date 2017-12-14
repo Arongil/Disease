@@ -19,7 +19,7 @@ html,body {
 #info-panel {
 	position: absolute;
 	border: solid 2px #1a1a1c;
-	padding: 0.4%;
+	padding: 0.2vw;
 	background: rgb(200, 200, 200);
 	display: inline-block;
 	user-select: none;
@@ -27,7 +27,7 @@ html,body {
 #control-panel {
 	position: absolute;
 	border: solid 2px #1a1a1c;
-	padding: 0.4%;
+	padding: 0.2vw;
 	background: rgb(200, 200, 200);
 	display: inline-block;
 	user-select: none;
