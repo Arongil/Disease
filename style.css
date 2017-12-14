@@ -10,6 +10,7 @@ html,body {
 }
 #panel {
 	margin-left: 50%;
+	margin-top: 1%;
 }
 #panel-select {
 	margin: 0.2%;
