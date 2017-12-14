@@ -44,13 +44,13 @@ class GameController {
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
     var x = (millis() - this.statistics["graphBegins"]) / 1000 * 30 * this.graphTimeScale;
     graphCtx.lineWidth = 4;
-    graphCtx.strokeStyle = "rgba(  0,   0,   0, 1)"; // dead
+    graphCtx.strokeStyle = "rgba( 80,  60,   0, 1)"; // brown => dead
     this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + this.graphTimeScale, dead);
-    graphCtx.strokeStyle = "rgba(  0,   0, 200, 1)"; // recovered
+    graphCtx.strokeStyle = "rgba(  0,   0, 200, 1)"; // blue => recovered
     this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + this.graphTimeScale, recovered);
-    graphCtx.strokeStyle = "rgba(200, 200,   0, 1)"; // alive
+    graphCtx.strokeStyle = "rgba(200, 200,   0, 1)"; // yellow => alive
     this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + this.graphTimeScale, alive);
-    graphCtx.strokeStyle = "rgba(200,   0,   0, 1)"; // infected
+    graphCtx.strokeStyle = "rgba(200,   0,   0, 1)"; // red => infected
     this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + this.graphTimeScale, infected);
 
     graphCtx.restore();
