@@ -36,7 +36,7 @@ function resize() {
   controlPanel.style.width = canvas.width/2 + "px";
   infoPanel.style.right = (window.innerWidth - canvas.width)/2 + "px";
   infoPanel.style.width = canvas.width/2 + "px";
-  if (infoPanel.getClientBoundingRect().height > controlPanel.getClientBoundingRect().height)
+  if (infoPanel.getBoundingClientRect().height > controlPanel.getBoundingClientRect().height)
     controlPanel.style.height = infoPanel.style.height;
   else
     infoPanel.style.height = controlPanel.style.height;
