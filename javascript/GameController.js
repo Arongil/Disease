@@ -3,7 +3,7 @@ class GameController {
   constructor() {
     this.cities = [];
     this.agentNum = 4000;
-    this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "graphBegins": 0};
+    this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
     this.graphTimeScale = 8/30; // greater => fewer days recorded but more detail
   }
   
@@ -33,8 +33,8 @@ class GameController {
   updateGraph(alive, dead, infected, recovered) {
     if (this.statistics["alive"].length == 0) // Nothing to record. Wait for data.
       return;
-    if (this.statistics["graphBegins"] == 0) // Don't draw offset as if data was recorded from the beginning.
-      this.statistics["graphBegins"] = millis(); // Draw from the first infection.
+    if (this.statistics["days"] == 0) // Don't draw offset as if data was recorded from the beginning
+      this.statistics["days"]++;
     
     graphCtx.save();
     // Transform (scale and translate) correctly.
@@ -42,7 +42,7 @@ class GameController {
     graphCtx.scale(1, -graphCanvas.height / this.statistics["alive"][0]);
     
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
-    var x = (millis() - this.statistics["graphBegins"]) / 1000 * 30 * this.graphTimeScale;
+    var x = this.statistics["days"] * this.graphTimeScale;
     graphCtx.lineWidth = 4;
     graphCtx.strokeStyle = "rgba( 80,  60,   0, 1)"; // brown => dead
     this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + this.graphTimeScale, dead);
@@ -54,6 +54,8 @@ class GameController {
     this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + this.graphTimeScale, infected);
 
     graphCtx.restore();
+    
+    this.statistics["days"]++;
   }
   
   initGraph(GC) {
@@ -108,7 +110,7 @@ class GameController {
     window.setTimeout(this.controlPanel, 500); // Let cities initialize before updating their properties.
     
     this.initGraph(this);
-    this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "graphBegins": 0};
+    this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
   }
   
   controlPanel() {
