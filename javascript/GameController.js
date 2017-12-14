@@ -101,7 +101,7 @@ class GameController {
     
     this.graphCtx.fillStyle = "rgba(255, 255, 255, 1)";
     this.graphCtx.fillRect(0, 0, graphCanvas.width, graphCanvas.height);
-    this.initGraph();
+    this.initGraph(this);
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "graphBegins": 0};
   }
   
