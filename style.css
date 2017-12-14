@@ -23,13 +23,11 @@ div.bottom {
 	border: solid 2px #1a1a1c;
 	background: rgb(200, 200, 200);
 	display: inline-block;
-	position: absolute;
 	user-select: none;display: inline-block;
 }
 #control-panel {
 	border: solid 2px #1a1a1c;
 	background: rgb(200, 200, 200);
 	display: inline-block;
-	position: absolute;
 	user-select: none;
 }
