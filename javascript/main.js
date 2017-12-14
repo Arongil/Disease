@@ -24,7 +24,6 @@ function resize() {
     canvas.width = canvas.height * ASPECTRATIO;
   }
   // canvas css
-  var canvas = document.getElementById("canvas");
   canvas.style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
   canvas.style.marginRight = (window.innerWidth - canvas.width)/2 + "px";
   canvas.style.marginTop = canvas.height/40 + "px";
