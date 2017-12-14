@@ -38,7 +38,7 @@ class GameController {
       // Draw graph tick marks.
       for (var i = 0; i < 1; i += 1/5) {
         graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
-        graphCtx.fillStyle = "rgba(80, 00, 80, 1)";
+        graphCtx.fillStyle = "rgba(80, 80, 80, 1)";
         graphCtx.font = WIDTH/120 + "px Arial";
         this.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
         graphCtx.fillText(alive * i + " agents", 0, graphCanvas.height * i);
