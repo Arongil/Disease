@@ -1,5 +1,5 @@
 var canvas, ctx, WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT, ASPECTRATIO = 85/54; // aspectRatio is desired WIDTH/HEIGHT ratio.
-var GC;
+var GC, graphCanvas, graphCtx;
 var Input = {
   "37": false, // left arrow
   "38": false, // up arrow
@@ -13,16 +13,7 @@ var Input = {
   }
 };
 
-function resize() {
-  ctx.translate(-HALFWIDTH, -HALFHEIGHT);
-  
-  canvas.width = 4/5 * window.innerWidth;
-  canvas.height = canvas.width / ASPECTRATIO;
-  if (canvas.height > 15/16 * window.innerHeight) {
-    // If the height is greater than the height of the screen, set it accordingly.
-    canvas.height = 15/16 * window.innerHeight;
-    canvas.width = canvas.height * ASPECTRATIO;
-  }
+function resizeCSS() {
   // canvas css
   canvas.style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
   canvas.style.marginRight = (window.innerWidth - canvas.width)/2 + "px";
@@ -40,6 +31,26 @@ function resize() {
     controlPanel.style.height = infoPanel.getBoundingClientRect().height + "px";
   else
     infoPanel.style.height = controlPanel.getBoundingClientRect().height + "px";
+  // graph css
+  graphCanvas.width = canvas.width;
+  graphCanvas.height = HEIGHT / 3;
+  graphCanvas.style.marginLeft = (window.innerWidth - graphCanvas.width)/2 + "px";
+  graphCanvas.style.marginRight = (window.innerWidth - graphCanvas.width)/2 + "px";
+  graphCanvas.style.marginTop = graphCanvas.height/40 + "px";
+}
+
+function resize() {
+  ctx.translate(-HALFWIDTH, -HALFHEIGHT);
+  
+  canvas.width = 4/5 * window.innerWidth;
+  canvas.height = canvas.width / ASPECTRATIO;
+  if (canvas.height > 15/16 * window.innerHeight) {
+    // If the height is greater than the height of the screen, set it accordingly.
+    canvas.height = 15/16 * window.innerHeight;
+    canvas.width = canvas.height * ASPECTRATIO;
+  }
+  
+  resizeCSS();
   
   WIDTH = canvas.width;
   HEIGHT = canvas.height;
@@ -54,6 +65,8 @@ function resize() {
 function init() {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
+  graphCanvas = document.getElementById("graph-canvas");
+  graphCtx = graphCanvas.getContext("2d");
   
   GC = new GameController();
   
