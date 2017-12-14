@@ -22,11 +22,13 @@ div.bottom {
 }
 #info-panel {
 	border:solid 2px #1a1a1c;
+	display: inline-block;
 	background: rgb(200, 200, 200);
-	user-select: none;
+	user-select: none;display: inline-block;
 }
 #control-panel {
 	border: solid 2px #1a1a1c;
+	display: inline-block;
 	background: rgb(200, 200, 200);
 	user-select: none;
 }
