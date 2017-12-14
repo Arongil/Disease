@@ -89,6 +89,7 @@ function init() {
   initInput(canvas);
   
   GC.initCities();
+  GC.initGraph();
   
   loop();
 }
