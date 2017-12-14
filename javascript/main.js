@@ -23,16 +23,24 @@ function resize() {
     canvas.height = 15/16 * window.innerHeight;
     canvas.width = canvas.height * ASPECTRATIO;
   }
-  // canvas positioning
-  document.getElementById("canvas").style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
-  document.getElementById("canvas").style.marginRight = (window.innerWidth - canvas.width)/2 + "px";
-  document.getElementById("canvas").style.marginTop = canvas.height/40 + "px";
-  
-  document.getElementById("panel").style.width = canvas.width + "px";
-  document.getElementById("control-panel").style.left = (window.innerWidth - canvas.width)/2 + "px";
-  document.getElementById("control-panel").style.width = canvas.width/2 + "px";
-  document.getElementById("info-panel").style.right = (window.innerWidth - canvas.width)/2 + "px";
-  document.getElementById("info-panel").style.width = canvas.width/2 + "px";
+  // canvas css
+  var canvas = document.getElementById("canvas");
+  canvas.style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
+  canvas.style.marginRight = (window.innerWidth - canvas.width)/2 + "px";
+  canvas.style.marginTop = canvas.height/40 + "px";
+  // panel css
+  var panel = document.getElementById("panel"),
+      controlPanel = document.getElementById("control-panel"),
+      infoPanel = document.getElementById("info-panel");
+  panel.style.width = canvas.width + "px";
+  controlPanel.style.left = (window.innerWidth - canvas.width)/2 + "px";
+  controlPanel.style.width = canvas.width/2 + "px";
+  infoPanel.style.right = (window.innerWidth - canvas.width)/2 + "px";
+  infoPanel.style.width = canvas.width/2 + "px";
+  if (infoPanel.getClientBoundingRect().height > controlPanel.getClientBoundingRect().height)
+    controlPanel.style.height = infoPanel.style.height;
+  else
+    infoPanel.style.height = controlPanel.style.height;
   
   WIDTH = canvas.width;
   HEIGHT = canvas.height;
