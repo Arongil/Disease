@@ -72,7 +72,7 @@ function init() {
   
   var body = document.getElementsByTagName("body")[0];
   body.onresize = resize;
-  resize();
+  window.setTimeout(resize, 500);
   
   canvas.width = WIDTH;
   canvas.height = HEIGHT;
