@@ -23,12 +23,22 @@ class GameController {
     this.cities.forEach(city => city.reposition());
   }
   
+  graphFill(r, g, b) {
+    graphCtx.strokeStyle = "rgba(" + r + ", " + g + ", " + b + ", 1)";
+    graphCtx.fillStyle = "rgba(" + r + ", " + g + ", " + b + ", 1)";
+  }
   graphLine(x1, y1, x2, y2) {
     graphCtx.beginPath();
     graphCtx.moveTo(x1, y1);
     graphCtx.lineTo(x2, y2);
     graphCtx.closePath();
     graphCtx.stroke();
+  }
+  graphEllipse(x, y, width, height) {
+    ctx.beginPath();
+    ctx.ellipse(x, y, width, height, 0, 0, 2*Math.PI);
+    ctx.closePath();
+    ctx.fill();
   }
   updateGraph(alive, dead, infected, recovered) {
     if (this.statistics["alive"].length == 0) // Nothing to record. Wait for data.
@@ -44,14 +54,21 @@ class GameController {
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
     var x = this.statistics["days"] * this.graphTimeScale;
     graphCtx.lineWidth = 4;
-    graphCtx.strokeStyle = "rgba( 80,  60,   0, 1)"; // brown => dead
+    this.graphFill(80, 60, 0); // brown => dead
     this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + this.graphTimeScale, dead);
-    graphCtx.strokeStyle = "rgba(  0,   0, 200, 1)"; // blue => recovered
+    this.graphEllipse(x, this.statistics["dead"][this.statistics["dead"].length - 1], 2, 2);
+    
+    this.graphFill(0, 0, 200); // blue => recovered
     this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + this.graphTimeScale, recovered);
-    graphCtx.strokeStyle = "rgba(  0, 200,   0, 1)"; // green => alive
+    this.graphEllipse(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], 2, 2);
+    
+    this.graphFill(0, 200, 0); // green => alive
     this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + this.graphTimeScale, alive);
-    graphCtx.strokeStyle = "rgba(200,   0,   0, 1)"; // red => infected
+    this.graphEllipse(x, this.statistics["alive"][this.statistics["alive"].length - 1], 2, 2);
+    
+    this.graphFill(200, 0, 0); // red => infected
     this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + this.graphTimeScale, infected);
+    this.graphEllipse(x, this.statistics["infected"][this.statistics["infected"].length - 1], 2, 2);
 
     graphCtx.restore();
     
