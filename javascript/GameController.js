@@ -54,6 +54,7 @@ class GameController {
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
     var x = this.statistics["days"] * this.graphTimeScale;
     graphCtx.lineWidth = 4;
+    
     this.graphFill(80, 60, 0); // brown => dead
     this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + this.graphTimeScale, dead);
     this.graphEllipse(x, this.statistics["dead"][this.statistics["dead"].length - 1], 2, 2);
