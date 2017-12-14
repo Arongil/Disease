@@ -27,16 +27,22 @@ function resizeCSS() {
   controlPanel.style.width = canvas.width/2 + "px";
   infoPanel.style.right = (window.innerWidth - canvas.width)/2 + "px";
   infoPanel.style.width = canvas.width/2 + "px";
-  if (infoPanel.getBoundingClientRect().height > controlPanel.getBoundingClientRect().height)
-    controlPanel.style.height = infoPanel.getBoundingClientRect().height + "px";
-  else
-    infoPanel.style.height = controlPanel.getBoundingClientRect().height + "px";
+  // Remember to account for padding (0.2vw) and borders (2px) in bounding box.
+  if (infoPanel.getBoundingClientRect().height > controlPanel.getBoundingClientRect().height) {
+    controlPanel.style.height = (infoPanel.getBoundingClientRect().height - 4 - 2*0.002*window.innerWidth) + "px";
+    infoPanel.style.height = (infoPanel.getBoundingClientRect().height - 4 - 2*0.002*window.innerWidth) + "px";
+  }
+  else {
+    infoPanel.style.height = (controlPanel.getBoundingClientRect().height - 4 - 2*0.002*window.innerWidth) + "px";
+    controlPanel.style.height = (controlPanel.getBoundingClientRect().height - 4 - 2*0.002*window.innerWidth) + "px";
+  }
   // graph css
+  var graph = document.getElementById("graph");
   graphCanvas.width = canvas.width;
   graphCanvas.height = HEIGHT / 3;
-  graphCanvas.style.marginLeft = (window.innerWidth - graphCanvas.width)/2 + "px";
-  graphCanvas.style.marginRight = (window.innerWidth - graphCanvas.width)/2 + "px";
-  graphCanvas.style.marginTop = graphCanvas.height/40 + "px";
+  graph.style.marginLeft = (window.innerWidth - graphCanvas.width)/2 + "px";
+  graph.style.marginRight = (window.innerWidth - graphCanvas.width)/2 + "px";
+  graph.style.marginTop = (graphCanvas.height/40 + infoPanel.style.height) + "px";
 }
 
 function resize() {
