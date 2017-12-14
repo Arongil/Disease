@@ -48,7 +48,7 @@ class GameController {
     this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + this.graphTimeScale, dead);
     graphCtx.strokeStyle = "rgba(  0,   0, 200, 1)"; // blue => recovered
     this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + this.graphTimeScale, recovered);
-    graphCtx.strokeStyle = "rgba(200, 200,   0, 1)"; // yellow => alive
+    graphCtx.strokeStyle = "rgba(  0, 200,   0, 1)"; // green => alive
     this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + this.graphTimeScale, alive);
     graphCtx.strokeStyle = "rgba(200,   0,   0, 1)"; // red => infected
     this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + this.graphTimeScale, infected);
