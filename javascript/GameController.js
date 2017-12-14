@@ -41,7 +41,7 @@ class GameController {
   reset() {
     this.cities = [];
     this.initCities();
-    this.controlPanel();
+    window.setTimeout(this.controlPanel, 500); // Let cities initialize before updating their properties.
   }
   
   controlPanel() {
