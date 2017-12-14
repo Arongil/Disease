@@ -42,8 +42,8 @@ class GameController {
         graphCtx.font = WIDTH/80 + "px Arial";
         this.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
         graphCtx.fillText(Math.floor(alive * (1 - i)) + " agents", 0, graphCanvas.height * i - WIDTH/80);
-        this.graphLine(graphCanvas.width/2 * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
-        graphCtx.fillText(Math.floor(graphCanvas.width * i) + " days", graphCanvas.width * i, graphCanvas.height);
+        this.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
+        graphCtx.fillText(Math.floor(graphCanvas.width/2 * i) + " days", graphCanvas.width * i, graphCanvas.height);
       }
       
       // Transform (scale and translate) correctly.
