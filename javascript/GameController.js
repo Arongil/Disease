@@ -78,11 +78,8 @@ class GameController {
   
   initGraph(GC) {
     // Make the graph blank.
-    graphCtx.fillStyle = "rgba(255, 255, 255, 1)";
-    graphCtx.beginPath();
-    graphCtx.rect(0, 0, graphCanvas.width, graphCanvas.height);
-    graphCtx.closePath();
-    graphCtx.fill();
+    this.graphFill(255, 255, 255);
+    this.graphEllipse(0, 0, graphCanvas.width*100, graphCanvas.height*100);
     // Draw the graph's tick marks.
     for (var i = 0; i < 1; i += 1/5) {
       graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
