@@ -42,7 +42,7 @@ function resizeCSS() {
   graphCanvas.height = HEIGHT / 3;
   graph.style.marginLeft = (window.innerWidth - graphCanvas.width)/2 + "px";
   graph.style.marginRight = (window.innerWidth - graphCanvas.width)/2 + "px";
-  graph.style.marginTop = (graphCanvas.height/40 + infoPanel.style.height) + "px";
+  graph.style.marginTop = (graphCanvas.height/10 + infoPanel.getBoundingClientRect().height) + "px";
 }
 
 function resize() {
