@@ -35,10 +35,10 @@ class GameController {
     graphCtx.stroke();
   }
   graphEllipse(x, y, width, height) {
-    ctx.beginPath();
-    ctx.ellipse(x, y, width, height, 0, 0, 2*Math.PI);
-    ctx.closePath();
-    ctx.fill();
+    graphCtx.beginPath();
+    graphCtx.ellipse(x, y, width, height, 0, 0, 2*Math.PI);
+    graphCtx.closePath();
+    graphCtx.fill();
   }
   updateGraph(alive, dead, infected, recovered) {
     if (this.statistics["alive"].length == 0) // Nothing to record. Wait for data.
