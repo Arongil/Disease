@@ -4,7 +4,7 @@ class GameController {
     this.cities = [];
     this.agentNum = 4000;
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "graphBegins": 0};
-    this.graphTimeScale = 2; // greater => fewer days recorded but more detail
+    this.graphTimeScale = 4/30; // greater => fewer days recorded but more detail
   }
   
   initCities() {
@@ -42,7 +42,7 @@ class GameController {
     }
     
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
-    var x = (millis() - this.statistics["graphBegins"]) / 1000 * this.graphTimeScale;
+    var x = (millis() - this.statistics["graphBegins"]) / 1000 * 30 * this.graphTimeScale;
     graphCtx.lineWidth = WIDTH/200;
     graphCtx.strokeStyle = "rgba(200, 200,   0, 1)"; // alive
     this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + this.graphTimeScale, alive);
