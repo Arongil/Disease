@@ -34,21 +34,33 @@ class GameController {
       return;
     if (this.statistics["graphBegins"] == 0) { // Don't draw offset as if data was recorded from the beginning.
       this.statistics["graphBegins"] = millis(); // Draw from the first infection.
+      
+      // Draw graph tick marks.
+      for (var i = 0; i < 1; i += 1/5) {
+        graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
+        graphCtx.fillStyle = "rgba(80, 00, 80, 1)";
+        graphCtx.font = WIDTH/120 + "px Arial";
+        this.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
+        ctx.fillText(alive * i + " agents", 0, graphCanvas.height * i);
+        this.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
+        ctx.fillText(Math.floor(graphCanvas.width * i) + " days", graphCanvas.width * i, graphCanvas.height);
+      }
+      
       // Transform (scale and translate) correctly.
       graphCtx.translate(0, graphCanvas.height);
-      graphCtx.scale(1, -1);
+      graphCtx.scale(1, -graphCanvas.height / alive);
     }
     
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
     var x = (millis() - this.statistics["graphBegins"]) / 1000;
     graphCtx.lineWidth = WIDTH/200;
-    graphCtx.fillStyle = "rgba(200, 200,   0, 1)"; // alive
+    graphCtx.strokeStyle = "rgba(200, 200,   0, 1)"; // alive
     this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + 1, alive);
-    graphCtx.fillStyle = "rgba(200,   0,   0, 1)"; // infected
+    graphCtx.strokeStyle = "rgba(200,   0,   0, 1)"; // infected
     this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + 1, infected);
-    graphCtx.fillStyle = "rgba(  0,   0, 200, 1)"; // recovered
+    graphCtx.strokeStyle = "rgba(  0,   0, 200, 1)"; // recovered
     this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + 1, recovered);
-    graphCtx.fillStyle = "rgba(  0,   0,   0, 1)"; // dead
+    graphCtx.strokeStyle = "rgba(  0,   0,   0, 1)"; // dead
     this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + 1, dead);
   }
   
