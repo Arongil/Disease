@@ -14,6 +14,7 @@ div.bottom {
 }
 #panel {
 	margin-left: 50%;
+	display: inline-block;
 }
 #panel-select {
 	margin: 0.2%;
