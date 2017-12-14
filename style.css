@@ -23,12 +23,10 @@ div.bottom {
 #info-panel {
 	border:solid 2px #1a1a1c;
 	background: rgb(200, 200, 200);
-	width: auto;
 	user-select: none;
 }
 #control-panel {
 	border: solid 2px #1a1a1c;
 	background: rgb(200, 200, 200);
-	width: auto;
 	user-select: none;
 }
