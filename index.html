@@ -25,10 +25,6 @@
 				<option value="Info Panel">Info Panel</option>
 				<option value="Graph">Graph</option>
 			</select>
-			<div id='info-panel'>
-				<h3>Information Panel</h3>
-				<p id="global-stats"></p>
-			</div>
 			<div id='control-panel'>
 				<h3>Control Panel</h3>
 				<button id="reset" onclick="GC.cities = []; GC.initCities();">Reset</button>
@@ -43,6 +39,10 @@
 				Recovered Recovery (0-n): <input id="recovered-recovery" value="1.4" placeholder="Recovered Recovery (0-n)"></input><br>
 				Recovered Death Rate (0-1): <input id="recovered-death" value="0.8" placeholder="Recovered Death Rate (0-1)"></input><br>
 				Recovered Days (1-n): <input id="recovered-days" value="80" placeholder="Days Recovered For (1-n)"></input><br>
+			</div>
+			<div id='info-panel'>
+				<h3>Information Panel</h3>
+				<p id="global-stats"></p>
 			</div>
 		</div>
 	</body>
