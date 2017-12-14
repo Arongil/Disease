@@ -4,6 +4,7 @@ class GameController {
     this.cities = [];
     this.agentNum = 4000;
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "graphBegins": 0};
+    this.graphTimeScale = 2; // greater => fewer days recorded but more detail
   }
   
   initCities() {
@@ -35,33 +36,22 @@ class GameController {
     if (this.statistics["graphBegins"] == 0) { // Don't draw offset as if data was recorded from the beginning.
       this.statistics["graphBegins"] = millis(); // Draw from the first infection.
       
-      // Draw graph tick marks.
-      for (var i = 0; i < 1; i += 1/5) {
-        graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
-        graphCtx.fillStyle = "rgba(80, 80, 80, 1)";
-        graphCtx.font = WIDTH/80 + "px Arial";
-        this.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
-        graphCtx.fillText(Math.floor(alive * (1 - i)) + " agents", 0, graphCanvas.height * i - WIDTH/80);
-        this.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
-        graphCtx.fillText(Math.floor(graphCanvas.width/2 * i) + " days", graphCanvas.width * i, graphCanvas.height);
-      }
-      
       // Transform (scale and translate) correctly.
       graphCtx.translate(0, graphCanvas.height);
       graphCtx.scale(1, -graphCanvas.height / alive);
     }
     
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
-    var x = (millis() - this.statistics["graphBegins"]) / 500;
+    var x = (millis() - this.statistics["graphBegins"]) / 1000 * this.graphTimeScale;
     graphCtx.lineWidth = WIDTH/200;
     graphCtx.strokeStyle = "rgba(200, 200,   0, 1)"; // alive
-    this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + 1, alive);
+    this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + this.graphTimeScale, alive);
     graphCtx.strokeStyle = "rgba(200,   0,   0, 1)"; // infected
-    this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + 1, infected);
+    this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + this.graphTimeScale, infected);
     graphCtx.strokeStyle = "rgba(  0,   0, 200, 1)"; // recovered
-    this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + 1, recovered);
+    this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + this.graphTimeScale, recovered);
     graphCtx.strokeStyle = "rgba(  0,   0,   0, 1)"; // dead
-    this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + 1, dead);
+    this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + this.graphTimeScale, dead);
   }
   
   infoPanel() {
