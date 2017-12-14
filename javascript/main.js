@@ -29,9 +29,9 @@ function resize() {
   document.getElementById("canvas").style.marginTop = canvas.height/40 + "px";
   
   document.getElementById("panel").style.width = canvas.width + "px";
-  document.getElementById("control-panel").style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
+  document.getElementById("control-panel").style.left = (window.innerWidth - canvas.width)/2 + "px";
   document.getElementById("control-panel").style.width = canvas.width/2 + "px";
-  document.getElementById("info-panel").style.marginRight = (window.innerWidth - canvas.width)/2 + "px";
+  document.getElementById("info-panel").style.right = (window.innerWidth - canvas.width)/2 + "px";
   document.getElementById("info-panel").style.width = canvas.width/2 + "px";
   
   WIDTH = canvas.width;
