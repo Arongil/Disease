@@ -32,3 +32,8 @@ html,body {
 	display: inline-block;
 	user-select: none;
 }
+#graph {
+	position: absolute;
+	border: solid 2px #1a1a1c;
+	user-select: none;
+}
