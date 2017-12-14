@@ -44,10 +44,10 @@ class GameController {
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
     var x = (millis() - this.statistics["graphBegins"]) / 1000 * 30 * this.graphTimeScale;
     graphCtx.lineWidth = WIDTH/200;
-    graphCtx.strokeStyle = "rgba(200, 200,   0, 1)"; // alive
-    this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + this.graphTimeScale, alive);
     graphCtx.strokeStyle = "rgba(200,   0,   0, 1)"; // infected
     this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + this.graphTimeScale, infected);
+    graphCtx.strokeStyle = "rgba(200, 200,   0, 1)"; // alive
+    this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + this.graphTimeScale, alive);
     graphCtx.strokeStyle = "rgba(  0,   0, 200, 1)"; // recovered
     this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + this.graphTimeScale, recovered);
     graphCtx.strokeStyle = "rgba(  0,   0,   0, 1)"; // dead
