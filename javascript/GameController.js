@@ -57,6 +57,12 @@ class GameController {
   }
   
   initGraph(GC) {
+    // Make the graph blank.
+    this.graphCtx.fillStyle = "rgba(255, 255, 255, 1)";
+    graphCtx.beginPath();
+    graphCtx.rect(0, 0, graphCanvas.width, graphCanvas.height);
+    graphCtx.closePath();
+    graphCtx.fill();
     // Draw the graph's tick marks.
     for (var i = 0; i < 1; i += 1/5) {
       graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
@@ -101,8 +107,6 @@ class GameController {
     this.initCities();
     window.setTimeout(this.controlPanel, 500); // Let cities initialize before updating their properties.
     
-    this.graphCtx.fillStyle = "rgba(255, 255, 255, 1)";
-    this.graphCtx.fillRect(0, 0, graphCanvas.width, graphCanvas.height);
     this.initGraph(this);
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "graphBegins": 0};
   }
