@@ -58,7 +58,7 @@ class GameController {
   
   initGraph(GC) {
     // Make the graph blank.
-    this.graphCtx.fillStyle = "rgba(255, 255, 255, 1)";
+    graphCtx.fillStyle = "rgba(255, 255, 255, 1)";
     graphCtx.beginPath();
     graphCtx.rect(0, 0, graphCanvas.width, graphCanvas.height);
     graphCtx.closePath();
