@@ -138,3 +138,23 @@ function image(path, x, y, width, height) {
 function millis() {
   return Date.now() - start;
 }
+
+// <GRAPH>
+function graphFill(r, g, b) {
+  graphCtx.strokeStyle = "rgba(" + r + ", " + g + ", " + b + ", 1)";
+  graphCtx.fillStyle = "rgba(" + r + ", " + g + ", " + b + ", 1)";
+}
+function graphLine(x1, y1, x2, y2) {
+  graphCtx.beginPath();
+  graphCtx.moveTo(x1, y1);
+  graphCtx.lineTo(x2, y2);
+  graphCtx.closePath();
+  graphCtx.stroke();
+}
+function graphEllipse(x, y, width, height) {
+  graphCtx.beginPath();
+  graphCtx.ellipse(x, y, width, height, 0, 0, 2*Math.PI);
+  graphCtx.closePath();
+  graphCtx.fill();
+}
+// </GRAPH>
