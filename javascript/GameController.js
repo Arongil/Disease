@@ -4,7 +4,7 @@ class GameController {
     this.cities = [];
     this.agentNum = 4000;
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
-    this.graphTimeScale = 8/30; // greater => fewer days recorded but more detail
+    this.graphTimeScale = 1; // greater => fewer days recorded but more detail
   }
   
   initCities() {
@@ -52,7 +52,7 @@ class GameController {
     graphCtx.scale(1, -graphCanvas.height / this.statistics["alive"][0]);
     
     // Messiness could have been averted with the creation of a Canvas class to hold context functions and information.
-    var x = this.statistics["days"] * this.graphTimeScale;
+    var x = graphCanvas.width * this.statistics["days"] / (3000/0.8) * this.graphTimeScale;
     graphCtx.lineWidth = 4;
     
     this.graphFill(80, 60, 0); // brown => dead
@@ -88,7 +88,7 @@ class GameController {
       GC.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
       graphCtx.fillText(Math.round(100*(1 - i)) + "% of agents", 0, graphCanvas.height * i + WIDTH/80);
       GC.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
-      graphCtx.fillText(Math.floor(graphCanvas.width / GC.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
+      graphCtx.fillText(Math.floor(3000/0.8 / GC.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
     }
   }
   
