@@ -146,6 +146,8 @@ class GameController {
       agent.recoveredDays = getWithBackup("recovered-days", false);
     }));
     this.cities.forEach(city => city.airline.infectedRejectionRate = getWithBackup("infected-rejected", true));
+    
+    this.graphTimeScale = 3000 / getWithBackup("days-graphed", false);
   }
   
   update() {
