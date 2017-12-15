@@ -43,15 +43,15 @@ class GameController {
     graphEllipse(x, this.statistics["dead"][this.statistics["dead"].length - 1], 2, 2);
     
     graphFill(0, 0, 200); // blue => recovered
-    graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), recovered);
+    graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, recovered);
     graphEllipse(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], 2, 2);
     
     graphFill(0, 200, 0); // green => alive
-    graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), alive);
+    graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, alive);
     graphEllipse(x, this.statistics["alive"][this.statistics["alive"].length - 1], 2, 2);
     
     graphFill(200, 0, 0); // red => infected
-    graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), infected);
+    graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, infected);
     graphEllipse(x, this.statistics["infected"][this.statistics["infected"].length - 1], 2, 2);
 
     graphCtx.restore();
