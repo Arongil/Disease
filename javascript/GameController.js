@@ -23,23 +23,6 @@ class GameController {
     this.cities.forEach(city => city.reposition());
   }
   
-  graphFill(r, g, b) {
-    graphCtx.strokeStyle = "rgba(" + r + ", " + g + ", " + b + ", 1)";
-    graphCtx.fillStyle = "rgba(" + r + ", " + g + ", " + b + ", 1)";
-  }
-  graphLine(x1, y1, x2, y2) {
-    graphCtx.beginPath();
-    graphCtx.moveTo(x1, y1);
-    graphCtx.lineTo(x2, y2);
-    graphCtx.closePath();
-    graphCtx.stroke();
-  }
-  graphEllipse(x, y, width, height) {
-    graphCtx.beginPath();
-    graphCtx.ellipse(x, y, width, height, 0, 0, 2*Math.PI);
-    graphCtx.closePath();
-    graphCtx.fill();
-  }
   updateGraph(alive, dead, infected, recovered) {
     if (this.statistics["alive"].length == 0) // Nothing to record. Wait for data.
       return;
@@ -55,40 +38,40 @@ class GameController {
     var x = graphCanvas.width * this.statistics["days"] / (3000/0.8) * this.graphTimeScale;
     graphCtx.lineWidth = 4;
     
-    this.graphFill(80, 60, 0); // brown => dead
-    this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead);
-    this.graphEllipse(x, this.statistics["dead"][this.statistics["dead"].length - 1], 2, 2);
+    graphFill(80, 60, 0); // brown => dead
+    graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead);
+    graphEllipse(x, this.statistics["dead"][this.statistics["dead"].length - 1], 2, 2);
     
-    this.graphFill(0, 0, 200); // blue => recovered
-    this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), recovered);
-    this.graphEllipse(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], 2, 2);
+    graphFill(0, 0, 200); // blue => recovered
+    graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), recovered);
+    graphEllipse(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], 2, 2);
     
-    this.graphFill(0, 200, 0); // green => alive
-    this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), alive);
-    this.graphEllipse(x, this.statistics["alive"][this.statistics["alive"].length - 1], 2, 2);
+    graphFill(0, 200, 0); // green => alive
+    graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), alive);
+    graphEllipse(x, this.statistics["alive"][this.statistics["alive"].length - 1], 2, 2);
     
-    this.graphFill(200, 0, 0); // red => infected
-    this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), infected);
-    this.graphEllipse(x, this.statistics["infected"][this.statistics["infected"].length - 1], 2, 2);
+    graphFill(200, 0, 0); // red => infected
+    graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), infected);
+    graphEllipse(x, this.statistics["infected"][this.statistics["infected"].length - 1], 2, 2);
 
     graphCtx.restore();
     
     this.statistics["days"]++;
   }
   
-  initGraph(GC) {
+  initGraph() {
     // Make the graph blank.
-    GC.graphFill(255, 255, 255);
-    GC.graphEllipse(0, 0, graphCanvas.width*100, graphCanvas.height*100);
+    graphFill(255, 255, 255);
+    graphEllipse(0, 0, graphCanvas.width*100, graphCanvas.height*100);
     // Draw the graph's tick marks.
     graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
     graphCtx.fillStyle = "rgba(80, 80, 80, 1)";
     graphCtx.font = WIDTH/80 + "px Arial";
     for (var i = 0; i < 1; i += 1/5) {
-      GC.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
+      graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
       graphCtx.fillText(Math.round(100*(1 - i)) + "% of agents", 0, graphCanvas.height * i + WIDTH/80);
-      GC.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
-      graphCtx.fillText(Math.floor(3000/0.8 / GC.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
+      graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
+      graphCtx.fillText(Math.floor(3000/0.8 / this.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
     }
   }
   
@@ -125,7 +108,7 @@ class GameController {
     this.initCities();
     window.setTimeout(this.controlPanel, 500); // Let cities initialize before updating their properties.
     
-    this.initGraph(this);
+    this.initGraph();
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
   }
   
