@@ -59,7 +59,7 @@ class GameController {
     this.statistics["days"]++;
   }
   
-  initGraph() {
+  initGraph(graphTimeScale) {
     // Make the graph blank.
     graphFill(255, 255, 255);
     graphEllipse(0, 0, graphCanvas.width*100, graphCanvas.height*100);
@@ -71,7 +71,7 @@ class GameController {
       graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
       graphCtx.fillText(Math.round(100*(1 - i)) + "% of agents", 0, graphCanvas.height * i + WIDTH/80);
       graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
-      graphCtx.fillText(Math.floor(3000/0.8 / this.graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
+      graphCtx.fillText(Math.floor(3000/0.8 / graphTimeScale * i) + " days", graphCanvas.width * i, graphCanvas.height);
     }
   }
   
@@ -108,7 +108,7 @@ class GameController {
     this.initCities();
     window.setTimeout(this.controlPanel, 500); // Let cities initialize before updating their properties.
     
-    this.initGraph();
+    this.initGraph(this.graphTimeScale);
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
   }
   
