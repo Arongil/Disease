@@ -56,19 +56,19 @@ class GameController {
     graphCtx.lineWidth = 4;
     
     this.graphFill(80, 60, 0); // brown => dead
-    this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + this.graphTimeScale, dead);
+    this.graphLine(x, this.statistics["dead"][this.statistics["dead"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead);
     this.graphEllipse(x, this.statistics["dead"][this.statistics["dead"].length - 1], 2, 2);
     
     this.graphFill(0, 0, 200); // blue => recovered
-    this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + this.graphTimeScale, recovered);
+    this.graphLine(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), recovered);
     this.graphEllipse(x, this.statistics["recovered"][this.statistics["recovered"].length - 1], 2, 2);
     
     this.graphFill(0, 200, 0); // green => alive
-    this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + this.graphTimeScale, alive);
+    this.graphLine(x, this.statistics["alive"][this.statistics["alive"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), alive);
     this.graphEllipse(x, this.statistics["alive"][this.statistics["alive"].length - 1], 2, 2);
     
     this.graphFill(200, 0, 0); // red => infected
-    this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + this.graphTimeScale, infected);
+    this.graphLine(x, this.statistics["infected"][this.statistics["infected"].length - 1], x + graphCanvas.width/(3000/0.8) * this.graphTimeScale, dead), infected);
     this.graphEllipse(x, this.statistics["infected"][this.statistics["infected"].length - 1], 2, 2);
 
     graphCtx.restore();
@@ -81,10 +81,10 @@ class GameController {
     GC.graphFill(255, 255, 255);
     GC.graphEllipse(0, 0, graphCanvas.width*100, graphCanvas.height*100);
     // Draw the graph's tick marks.
+    graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
+    graphCtx.fillStyle = "rgba(80, 80, 80, 1)";
+    graphCtx.font = WIDTH/80 + "px Arial";
     for (var i = 0; i < 1; i += 1/5) {
-      graphCtx.strokeStyle = "rgba(100, 100, 100, 1)";
-      graphCtx.fillStyle = "rgba(80, 80, 80, 1)";
-      graphCtx.font = WIDTH/80 + "px Arial";
       GC.graphLine(0, graphCanvas.height * i, WIDTH/50, graphCanvas.height * i); // vertical: agents
       graphCtx.fillText(Math.round(100*(1 - i)) + "% of agents", 0, graphCanvas.height * i + WIDTH/80);
       GC.graphLine(graphCanvas.width * i, graphCanvas.height, graphCanvas.width * i, graphCanvas.height - WIDTH/50); // horizontal: time
@@ -120,6 +120,7 @@ class GameController {
   }
   
   reset() {
+    this.controlPanel();
     this.cities = [];
     this.initCities();
     window.setTimeout(this.controlPanel, 500); // Let cities initialize before updating their properties.
