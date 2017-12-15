@@ -89,7 +89,7 @@ class GameController {
     dead = this.AGENTPOPULATION - alive;
     
     var globalStats = document.getElementById("global-stats");
-    globalStats.innerHTML = "Global Statistics<br>Alive: " + alive + "<br>Healthy: " + (alive - infected) + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
+    globalStats.innerHTML = "Alive: " + alive + "<br>Healthy: " + (alive - infected) + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
     
     // Record data for the graph if the infection is (or recovered agents are) alive. Records are useless during other periods.
     if (infected > 0 || recovered > 0) {
