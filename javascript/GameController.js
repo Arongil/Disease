@@ -106,7 +106,7 @@ class GameController {
     this.controlPanel();
     this.cities = [];
     this.initCities();
-    window.setTimeout(this.controlPanel, 500); // Let cities initialize before updating their properties.
+    this.controlPanel();
     
     this.initGraph(this.graphTimeScale);
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
