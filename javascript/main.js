@@ -89,7 +89,7 @@ function init() {
   initInput(canvas);
   
   GC.initCities();
-  GC.initGraph(GC.graphTimeScale);
+  window.setTimeout(GC.initGraph, 200, GC.graphTimeScale);
   
   loop();
 }
