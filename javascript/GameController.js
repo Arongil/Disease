@@ -5,6 +5,7 @@ class GameController {
     this.agentNum = 4000;
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
     this.graphTimeScale = 1; // greater => fewer days recorded but more detail
+    this.timeMultiplier = 1; // 0 => paused, 2 => 2x speed, n => nx speed.
   }
   
   initCities() {
@@ -136,7 +137,9 @@ class GameController {
   
   update() {
     image("resources/map.png", 0, 0, WIDTH, HEIGHT);
-    this.cities.forEach(city => city.update());
+    for (var i = 0; i < this.timeMultiplier; i++)
+      this.cities.forEach(city => city.update());
+    this.cities.forEach(city => city.display());
     this.cities.forEach(city => city.mouseInteraction());
     this.infoPanel();
   }
