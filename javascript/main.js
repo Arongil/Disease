@@ -18,15 +18,15 @@ function resizeCSS() {
   canvas.style.marginLeft = (window.innerWidth - canvas.width)/2 + "px";
   canvas.style.marginRight = (window.innerWidth - canvas.width)/2 + "px";
   canvas.style.marginTop = canvas.height/40 + "px";
-  // Panel css. Remember to account for padding (0.2vw) and borders (2px) in positioning.
+  // Panel css. Remember to account for padding (0.2vw) and borders (2px) in positioning. Borders should, however, overlap.
   var panel = document.getElementById("panel"),
       controlPanel = document.getElementById("control-panel"),
       infoPanel = document.getElementById("info-panel");
   panel.style.width = canvas.width + "px";
   controlPanel.style.left = (window.innerWidth - canvas.width)/2 + "px";
-  controlPanel.style.width = (canvas.width/2 - 4 - 2*0.002*window.innerWidth) + "px";
+  controlPanel.style.width = (canvas.width/2 - 4/2 - 2*0.002*window.innerWidth) + "px"; // Subtract the border's width, not its double, so one border length overlaps.
   infoPanel.style.right = (window.innerWidth - canvas.width)/2 + "px";
-  infoPanel.style.width = (canvas.width/2 - 4 - 2*0.002*window.innerWidth) + "px";
+  infoPanel.style.width = (canvas.width/2 - 4/2 - 2*0.002*window.innerWidth) + "px"; // Subtract the border's width, not its double, so one border length overlaps.
   // Remember to account for padding (0.2vw) and borders (2px) in bounding box.
   if (infoPanel.getBoundingClientRect().height > controlPanel.getBoundingClientRect().height) {
     controlPanel.style.height = (infoPanel.getBoundingClientRect().height - 4 - 2*0.002*window.innerWidth) + "px";
