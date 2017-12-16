@@ -119,6 +119,7 @@ class GameController {
       return input.value !== undefined ? (float ? parseFloat(input.value) : parseInt(input.value)) : (float ? parseFloat(input.defaultValue) : parseInt(input.defaultValue));
     }
     
+    this.timeMultiplier = getWithBackup("fast-forward", false);
     this.agentNum = getWithBackup("agent-count", false);
     this.cities.forEach(city => city.agents.forEach(agent => {
       agent.infectiousness = getWithBackup("infectiousness", true);
