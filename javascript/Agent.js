@@ -109,7 +109,6 @@ class Agent {
     this.travel();
     this.infect();
     this.recover();
-    this.display();
   }
   
 }
