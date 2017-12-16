@@ -28,7 +28,7 @@ class Airline {
     GC.cities.forEach(city => {
       if (city !== this.city) {
         distance = this.distanceTo(city);
-        if (distance < 1739500) { // longest commercial aircraft range
+        if (distance < 17395000) { // longest commercial aircraft range
           total += city.population / distance * (city.country == this.city.country ? 0.875 : 0.125); // Domestic flights comprise about 7/8 of all air travel.
           this.flightProbabilities.push([city, total]);
         }
