@@ -57,8 +57,7 @@ class City {
   }
   
   display() {
-    fill(200, 200, 0);
-    ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
+    this.agents.forEach(agent => agent.display());
   }
   
   reposition() {
@@ -69,7 +68,6 @@ class City {
   
   update() {
     this.agents.forEach(agent => agent.update());
-//     this.display();
   }
   
 }
