@@ -42,7 +42,7 @@ class Airline {
       this.calculateFlightProbabilities();
     
     for (var i = 0, cityIndex = Math.random(); ; i++)
-      if (this.flightProbabilities[i][1] > cityIndex)
+      if (this.flightProbabilities[i][1] >= cityIndex)
         return GC.cities[i];
   }
   
