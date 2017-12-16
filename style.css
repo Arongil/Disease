@@ -12,10 +12,6 @@ html,body {
 	margin-left: 50%;
 	margin-top: 1%;
 }
-#panel-select {
-	margin: 0.2%;
-	padding: 0.1%;
-}
 #info-panel {
 	position: absolute;
 	border: solid 2px #1a1a1c;
