@@ -2,6 +2,7 @@ class Airline {
   
   constructor(city) {
     this.city = city;
+    this.flightProbabilities = [];
     this.infectedRejectionRate = 0.1; // Fraction of infected passengers rejected and forced to miss their flight.
   }
   
@@ -21,17 +22,28 @@ class Airline {
     return R * c;
   }
   
-  findFlight() {
+  calculateFlightProbabilities() {
     // Choose closer cities with higher populations more frequently.
-    var total = 0;
+    var total = 0, distance, i;
     GC.cities.forEach(city => {
-      if (city !== this.city)
-        total += city.population / this.distanceTo(city);
+      if (city !== this.city) {
+        distance = this.distanceTo(city);
+        if (distance < 1739500) { // longest commercial aircraft range
+          total += city.population / distance * (city.country == this.city.country ? 0.875 : 0.125); // Domestic flights comprise about 7/8 of all air travel.
+          this.flightProbabilities.push([GC.cities[i], total]);
+        }
+      }
     });
-    for (var i = -1, cityIndex = Math.random() * total; cityIndex > 0; i++)
-      if (GC.cities[i] !== this.city)
-        cityIndex -= GC.cities[i + 1].population / this.distanceTo(GC.cities[i + 1]);
-    return GC.cities[i];
+    this.flightProbabilities.forEach(cityChancePair => cityChancePair[1] /= total);
+  }
+  
+  findFlight() {
+    if (this.flightProbabilities.length == 0) // One-time calculation
+      this.calculateFlightProbabilities();
+    
+    for (var i = 0, cityIndex = Math.random(); ; i++)
+      if (this.flightProbabilities[i][1] > cityIndex)
+        return GC.cities[i];
   }
   
 }
