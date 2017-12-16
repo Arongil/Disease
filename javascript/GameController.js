@@ -138,11 +138,12 @@ class GameController {
   
   update() {
     image("resources/map.png", 0, 0, WIDTH, HEIGHT);
-    for (var i = 0; i < this.timeMultiplier; i++)
+    for (var i = 0; i < this.timeMultiplier; i++) {
       this.cities.forEach(city => city.update());
+      this.infoPanel();
+    }
     this.cities.forEach(city => city.display());
     this.cities.forEach(city => city.mouseInteraction());
-    this.infoPanel();
   }
   
 }
