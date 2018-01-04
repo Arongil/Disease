@@ -10,14 +10,6 @@ class Agent {
     this.recovered = false; // true if successfully recovered
     this.timeSick = 0;
     this.timeRecovered = 0;
-    this.infectiousness = 0.004; // fraction of agents infected from sick agent
-    this.deadlyness = 0.002; // per day chance of death for infected agents
-    this.recoveryProtection = 0.8; // Relative chance of becoming infected for recovered agents. 0.2 means, for example, that when 10 regular agents would get infected, only 2 recovered agents would.
-    this.daysToMaximumRecoveryChance = 5; // Days after infection until recovery is most likely.
-    this.maximumRecoveryChance = 1/20; // Likelyhood per frame of recovery at the maximum.
-    this.recoveredRecoveryFactor = 1.4; // Scalar from 0 to n that signifies how much better recovered agents re-recover (0 means they don't; 2 means they re-recover at 2x efficiency).
-    this.recoveredDeathFactor = 0.8; // Scalar from 0 to 1 that signifies how much less likely recovered agents are to die from infection.
-    this.recoveredDays = 80; // (1-n) How many days before recovered state is over and agents no longer maintain the benefits against the disease.
   }
   
   display() {
@@ -36,7 +28,7 @@ class Agent {
       return;
     // Not healthy: every agent in the city has a chance of getting infected.
     this.city.agents.forEach(agent => {
-      if (Math.random() < this.infectiousness * (this.recovered ? this.recoveryProtection : 1) && !agent.infected) {
+      if (Math.random() < GC.infectiousness * (this.recovered ? GC.recoveryProtection : 1) && !agent.infected) {
         agent.healthy = false;
         fill(200, 0, 0);
         ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
@@ -48,19 +40,19 @@ class Agent {
     if (this.healthy) {
       if (this.recovered) {
         this.timeRecovered++;
-        if (this.timeRecovered > this.recoveredDays)
+        if (this.timeRecovered > GC.recoveredDays)
           this.recovered = false;
       }
       return;
     }
     // Agents' chance of recovery per frame follows the curve 1 / (a + e^(b-t)), where t = this.timeSick.
-    if (Math.random() < 1 / (1/this.maximumRecoveryChance + Math.exp(this.daysToMaximumRecoveryChance-this.timeSick)) * (this.recovered ? this.recoveredRecoveryFactor : 1)) { // Recovery.
+    if (Math.random() < 1 / (1/GC.maximumRecoveryChance + Math.exp(GC.daysToMaximumRecoveryChance-this.timeSick)) * (this.recovered ? GC.recoveredRecoveryFactor : 1)) { // Recovery.
         this.healthy = true;
         this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
         this.timeRecovered = 0;
         this.timeSick = 0;
     }
-    if (Math.random() < this.deadlyness * (this.recovered ? this.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
+    if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
       this.city.agents.splice(this.city.agents.indexOf(this), 1);
     }
     this.timeSick++;
