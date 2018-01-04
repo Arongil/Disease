@@ -6,6 +6,15 @@ class GameController {
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
     this.graphTimeScale = 1; // greater => fewer days recorded but more detail
     this.timeMultiplier = 1; // 0 => paused, 2 => 2x speed, n => nx speed.
+    
+    this.infectiousness = 0.004; // fraction of agents infected from sick agent
+    this.deadlyness = 0.002; // per day chance of death for infected agents
+    this.recoveryProtection = 0.8; // Relative chance of becoming infected for recovered agents. 0.2 means, for example, that when 10 regular agents would get infected, only 2 recovered agents would.
+    this.daysToMaximumRecoveryChance = 5; // Days after infection until recovery is most likely.
+    this.maximumRecoveryChance = 1/20; // Likelyhood per frame of recovery at the maximum.
+    this.recoveredRecoveryFactor = 1.4; // Scalar from 0 to n that signifies how much better recovered agents re-recover (0 means they don't; 2 means they re-recover at 2x efficiency).
+    this.recoveredDeathFactor = 0.8; // Scalar from 0 to 1 that signifies how much less likely recovered agents are to die from infection.
+    this.recoveredDays = 80; // (1-n) How many days before recovered state is over and agents no longer maintain the benefits against the disease.
   }
   
   initCities() {
@@ -121,16 +130,16 @@ class GameController {
     
     this.timeMultiplier = getWithBackup("fast-forward", false);
     this.agentNum = getWithBackup("agent-count", false);
-    this.cities.forEach(city => city.agents.forEach(agent => {
-      agent.infectiousness = getWithBackup("infectiousness", true);
-      agent.deadlyness = getWithBackup("deadlyness", true);
-      agent.recoveryProtection = getWithBackup("recovered-protection", true);
-      agent.daysToMaximumRecoveryChance = getWithBackup("days-to-max-recovery", false);
-      agent.maximumRecoveryChance = getWithBackup("max-recovery-chance", true);
-      agent.recoveredRecoveryFactor = getWithBackup("recovered-recovery", true);
-      agent.recoveredDeathFactor = getWithBackup("recovered-death", true);
-      agent.recoveredDays = getWithBackup("recovered-days", false);
-    }));
+    
+    this.infectiousness = getWithBackup("infectiousness", true);
+    this.deadlyness = getWithBackup("deadlyness", true);
+    this.recoveryProtection = getWithBackup("recovered-protection", true);
+    this.daysToMaximumRecoveryChance = getWithBackup("days-to-max-recovery", false);
+    this.maximumRecoveryChance = getWithBackup("max-recovery-chance", true);
+    this.recoveredRecoveryFactor = getWithBackup("recovered-recovery", true);
+    this.recoveredDeathFactor = getWithBackup("recovered-death", true);
+    this.recoveredDays = getWithBackup("recovered-days", false);
+    
     this.cities.forEach(city => city.airline.infectedRejectionRate = getWithBackup("infected-rejected", true));
     
     this.graphTimeScale = 3000 / getWithBackup("days-graphed", false);
