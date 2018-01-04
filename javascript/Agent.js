@@ -10,14 +10,6 @@ class Agent {
     this.recovered = false; // true if successfully recovered
     this.timeSick = 0;
     this.timeRecovered = 0;
-    this.infectiousness = 0.004; // fraction of agents infected from sick agent
-    this.deadlyness = 0.002; // per day chance of death for infected agents
-    this.recoveryProtection = 0.8; // Relative chance of becoming infected for recovered agents. 0.2 means, for example, that when 10 regular agents would get infected, only 2 recovered agents would.
-    this.daysToMaximumRecoveryChance = 5; // Days after infection until recovery is most likely.
-    this.maximumRecoveryChance = 1/20; // Likelyhood per frame of recovery at the maximum.
-    this.recoveredRecoveryFactor = 1.4; // Scalar from 0 to n that signifies how much better recovered agents re-recover (0 means they don't; 2 means they re-recover at 2x efficiency).
-    this.recoveredDeathFactor = 0.8; // Scalar from 0 to 1 that signifies how much less likely recovered agents are to die from infection.
-    this.recoveredDays = 80; // (1-n) How many days before recovered state is over and agents no longer maintain the benefits against the disease.
   }
   
   display() {
