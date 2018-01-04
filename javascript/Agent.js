@@ -28,7 +28,7 @@ class Agent {
       return;
     // Not healthy: every agent in the city has a chance of getting infected.
     this.city.agents.forEach(agent => {
-      if (Math.random() < this.infectiousness * (this.recovered ? this.recoveryProtection : 1) && !agent.infected) {
+      if (Math.random() < GC.infectiousness * (this.recovered ? GC.recoveryProtection : 1) && !agent.infected) {
         agent.healthy = false;
         fill(200, 0, 0);
         ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
@@ -40,19 +40,19 @@ class Agent {
     if (this.healthy) {
       if (this.recovered) {
         this.timeRecovered++;
-        if (this.timeRecovered > this.recoveredDays)
+        if (this.timeRecovered > GC.recoveredDays)
           this.recovered = false;
       }
       return;
     }
     // Agents' chance of recovery per frame follows the curve 1 / (a + e^(b-t)), where t = this.timeSick.
-    if (Math.random() < 1 / (1/this.maximumRecoveryChance + Math.exp(this.daysToMaximumRecoveryChance-this.timeSick)) * (this.recovered ? this.recoveredRecoveryFactor : 1)) { // Recovery.
+    if (Math.random() < 1 / (1/GC.maximumRecoveryChance + Math.exp(GC.daysToMaximumRecoveryChance-this.timeSick)) * (this.recovered ? GC.recoveredRecoveryFactor : 1)) { // Recovery.
         this.healthy = true;
         this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
         this.timeRecovered = 0;
         this.timeSick = 0;
     }
-    if (Math.random() < this.deadlyness * (this.recovered ? this.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
+    if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
       this.city.agents.splice(this.city.agents.indexOf(this), 1);
     }
     this.timeSick++;
