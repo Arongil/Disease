@@ -145,6 +145,16 @@ class GameController {
     this.graphTimeScale = 3000 / getWithBackup("days-graphed", false);
   }
   
+  displayDisabledMessage() {
+    fill(180, 180, 180);
+    rect(0, 0, WIDTH, HEIGHT);
+    fill(0, 0, 0);
+    textSize(HEIGHT/10);
+    text("Display Disabled", 0, -HEIGHT/10);
+    textSize(HEIGHT/20);
+    text("to save computational resources", 0, 0);
+  }
+  
   update() {
     for (var i = 0; i < this.timeMultiplier; i++) {
       this.cities.forEach(city => city.update());
@@ -156,13 +166,7 @@ class GameController {
       this.cities.forEach(city => city.mouseInteraction());
     }
     else {
-      fill(180, 180, 180);
-      rect(0, 0, WIDTH/2, HEIGHT/2);
-      fill(0, 0, 0);
-      textSize(HEIGHT/10);
-      text("Display Disabled", 0, -HEIGHT/10);
-      textSize(HEIGHT/14);
-      text("to save computational resources", 0, HEIGHT/20);
+      this.displayDisabledMessage();
     }
   }
   
