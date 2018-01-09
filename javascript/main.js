@@ -1,5 +1,5 @@
 var canvas, ctx, WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT, ASPECTRATIO = 85/54; // aspectRatio is desired WIDTH/HEIGHT ratio.
-var GC, graphCanvas, graphCtx;
+var GC, graphCanvas, graphCtx, display = true;
 var Input = {
   "37": false, // left arrow
   "38": false, // up arrow
