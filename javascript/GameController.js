@@ -153,6 +153,8 @@ class GameController {
     text("Display Disabled", 0, -HEIGHT/10);
     textSize(HEIGHT/20);
     text("to save computational resources", 0, 0);
+    textSize(HEIGHT/30);
+    text("The display may be enabled by pressing the 'toggle display' button.", 0, 0.9*HEIGHT/2);
   }
   
   update() {
