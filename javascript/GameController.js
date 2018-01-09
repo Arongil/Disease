@@ -146,13 +146,24 @@ class GameController {
   }
   
   update() {
-    image("resources/map.png", 0, 0, WIDTH, HEIGHT);
     for (var i = 0; i < this.timeMultiplier; i++) {
       this.cities.forEach(city => city.update());
       this.infoPanel();
     }
-    this.cities.forEach(city => city.display());
-    this.cities.forEach(city => city.mouseInteraction());
+    if (display) {
+      image("resources/map.png", 0, 0, WIDTH, HEIGHT);
+      this.cities.forEach(city => city.display());
+      this.cities.forEach(city => city.mouseInteraction());
+    }
+    else {
+      fill(180, 180, 180);
+      rect(0, 0, WIDTH/2, HEIGHT/2);
+      fill(0, 0, 0);
+      textSize(HEIGHT/10);
+      text("Display Disabled", 0, -HEIGHT/10);
+      textSize(HEIGHT/14);
+      text("to save computational resources", 0, HEIGHT/20);
+    }
   }
   
 }
