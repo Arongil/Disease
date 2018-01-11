@@ -24,6 +24,8 @@ class Agent {
   }
   
   makeInfected() {
+    if (!this.healthy)
+      return; // This agent is already sick!
     this.healthy = false;
     this.timeSick = 0;
     this.city.healthyAgents.splice(this.city.healthyAgents.indexOf(this), 1);
@@ -46,6 +48,8 @@ class Agent {
   }
   
   makeRecovered() {
+    if (this.healthy)
+      return; // This agent is already healthy!
     this.healthy = true;
     this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
     this.timeRecovered = 0;
@@ -73,6 +77,8 @@ class Agent {
       this.city.remove(this);
       GC.dead++;
       GC.infected--;
+      if (this.recovered)
+        GC.recovered--;
     }
     this.timeSick++;
   }
