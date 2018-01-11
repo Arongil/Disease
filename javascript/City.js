@@ -24,7 +24,7 @@ class City {
   }
   remove(agent) {
     this.agents.splice(this.agents.indexOf(agent), 1);
-    if (agents.healthy)
+    if (agent.healthy)
       this.healthyAgents.splice(this.healthyAgents.indexOf(agent), 1);
   }
   push(agent) {
