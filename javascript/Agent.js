@@ -26,13 +26,9 @@ class Agent {
   makeInfected() {
     this.healthy = false;
     this.city.infectedAgents.push(this);
-    if (this.city.name == "Tokyo")
-      console.log("+1");
   }
   findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
-    if (this.city.name === "Tokyo")
-      console.log(this.city.agents.length + ", " + this.city.infectedAgents.length); // DEBUG LINE **********
     if (this.city.agents.length <= this.city.infectedAgents.length)
       return undefined; // There are no susceptible targets.
     
@@ -70,8 +66,6 @@ class Agent {
     this.timeRecovered = 0;
     this.timeSick = 0;
     this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
-    if (this.city.name == "Tokyo")
-      console.log("-1");
   }
   recover() {
     if (this.healthy) {
@@ -88,8 +82,6 @@ class Agent {
     }
     if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
       this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
-      if (this.city.name == "Tokyo")
-        console.log("-1");
       this.city.agents.splice(this.city.agents.indexOf(this), 1);
     }
     this.timeSick++;
@@ -106,8 +98,6 @@ class Agent {
     this.city.agents.splice(this.city.agents.indexOf(this), 1);
     if (this.infected)
       this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
-    if (this.infected && this.city.name == "Tokyo")
-      console.log("-1");
     this.city = destination;
     this.pos = this.city.pos;
     this.city.agents.push(this);
