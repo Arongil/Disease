@@ -37,8 +37,8 @@ class Agent {
       return;
     
     // Not healthy: every agent in the city has a chance of getting infected.
-    this.city.agents.forEach(agent => {
-      if (Math.random() < GC.infectiousness * (agent.recovered ? GC.recoveryProtection : 1) && agent.healthy) {
+    this.city.healthyAgents.forEach(agent => {
+      if (Math.random() < GC.infectiousness * (agent.recovered ? GC.recoveryProtection : 1)) {
         agent.makeInfected();
       }
     });
