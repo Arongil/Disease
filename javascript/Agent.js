@@ -47,7 +47,6 @@ class Agent {
       if (agentsToInfect >= 1 || Math.random() < agentsToInfect) {
         console.log("Searching for infection candidate in " + this.city.name + ".");
         console.log("There are " + this.city.agents + " total agents and " + this.city.infectedAgents + " total infected agents.");
-        console.log("To contrast, there are actually " + this.city.agents.reduce( (sum, agent) => sum + (agent.healthy ? 0 : 1) ) + " infected agents.");
         agent = this.findSusceptible();
         console.log("Found infection candidate.");
         console.log("");
