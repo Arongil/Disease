@@ -34,8 +34,8 @@ class Agent {
     
     var agent;
     do {
-      agent = this.city.infectedAgents[Math.floor(this.city.infectedAgents.length * Math.random())];
-    } while (agent === this); // Don't return self!
+      agent = this.city.agents[Math.floor(this.city.agents.length * Math.random())];
+    } while (!agent.healthy); // Don't return self!
     return agent;
   }
   infect() {
