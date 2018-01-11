@@ -43,7 +43,6 @@ class Agent {
     this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
     this.timeRecovered = 0;
     this.timeSick = 0;
-    this.city.healthyAgents.push(this);
   }
   recover() {
     if (this.healthy) {
@@ -73,13 +72,9 @@ class Agent {
 //     geodesic(this.city, destination, 20, WIDTH, HEIGHT);
 
     this.city.agents.splice(this.city.agents.indexOf(this), 1);
-    if (this.healthy)
-      this.city.healthyAgents.splice(this.city.healthyAgents.indexOf(this));
     this.city = destination;
     this.pos = this.city.pos;
     this.city.agents.push(this);
-    if (this.healthy)
-      this.city.healthyAgents.push(this);
   }
   
   travel() {
