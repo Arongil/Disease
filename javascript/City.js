@@ -11,7 +11,6 @@ class City {
     this.radiusSquared = this.radius*this.radius;
     this.airline = new Airline(this);
     this.agents = [];
-    this.healthyAgents = [];
   }
   
   initAgents() {
@@ -19,18 +18,13 @@ class City {
     var pos = convertCoords(this.latitude, this.longitude, WIDTH, HEIGHT);
     for (var i = 0; i < this.agentNum; i++) {
       this.agents.push(new Agent(pos, this));
-      this.healthyAgents.push(this.agents[this.agents.length - 1]); //// NEW
     }
   }
   remove(agent) {
     this.agents.splice(this.agents.indexOf(agent), 1);
-    if (agent.healthy)
-      this.healthyAgents.splice(this.healthyAgents.indexOf(agent), 1);
   }
   push(agent) {
     this.agents.push(agent);
-    if (agent.healthy)
-      this.healthyAgents.push(agent);
   }
   
   mouseInteraction() {
