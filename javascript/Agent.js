@@ -33,13 +33,13 @@ class Agent {
     // Find a random, healthy agent to infect if there are any.
     if (this.city.name === "Tokyo")
       console.log(this.city.agents.length + ", " + this.city.infectedAgents.length); // DEBUG LINE **********
-    if (this.city.agents.length == this.city.infectedAgents.length)
+    if (this.city.agents.length <= this.city.infectedAgents.length)
       return undefined; // There are no susceptible targets.
     
     var agent;
     do {
       agent = this.city.agents[Math.floor(this.city.agents.length * Math.random())];
-    } while (!agent.healthy); // Don't return self!
+    } while (agent.healthy === false); // Don't return self!
     return agent;
   }
   infect() {
