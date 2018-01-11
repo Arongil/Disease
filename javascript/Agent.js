@@ -31,15 +31,18 @@ class Agent {
     // Find a random, healthy agent to infect if there are any.
     if (this.city.agents.length - this.city.infectedAgents <= 0)
       return undefined; // There are no susceptible targets.
-    
-    var agent, agentsToCheck = [], i;
-    for (i = 0; i < this.city.agents.length; i++)
-      agentsToCheck.push(i);
-    do {
-      agent = agentsToCheck[Math.floor(agentsToCheck.length * Math.random())];
-      agentsToCheck.splice(agent, 1);
-    } while (this.city.agents[agent].healthy === false); // Don't return self!
-    return this.city.agents[agent];
+    for (var i = 0; i < this.city.agents.length; i++) {
+      if (this.city.agents[i].healthy)
+        return this.city.agents[i];
+    }
+//     var agent, agentsToCheck = [], i;
+//     for (i = 0; i < this.city.agents.length; i++)
+//       agentsToCheck.push(i);
+//     do {
+//       agent = agentsToCheck[Math.floor(agentsToCheck.length * Math.random())];
+//       agentsToCheck.splice(agent, 1);
+//     } while (this.city.agents[agent].healthy === false); // Don't return self!
+//     return this.city.agents[agent];
   }
   infect() {
     if (this.healthy)
