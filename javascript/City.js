@@ -70,9 +70,13 @@ class City {
   }
   
   display() {
-//     fill(200, 200, 0);
-//     ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
-    this.agents.forEach(agent => agent.display());
+    if (agentView) { // agentView => display agents
+      this.agents.forEach(agent => agent.display());
+    }
+    else { // cityView (not agentView) => display cities (saves computational power)
+      fill(200, 200, 0);
+      ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
+    }
   }
   
   reposition() {
