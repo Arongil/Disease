@@ -71,7 +71,7 @@ class Agent {
     this.timeSick = 0;
     this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
     if (this.city.name == "Tokyo")
-      console.log("-1);
+      console.log("-1");
   }
   recover() {
     if (this.healthy) {
@@ -89,7 +89,7 @@ class Agent {
     if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
       this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
       if (this.city.name == "Tokyo")
-        console.log("-1);
+        console.log("-1");
       this.city.agents.splice(this.city.agents.indexOf(this), 1);
     }
     this.timeSick++;
@@ -107,7 +107,7 @@ class Agent {
     if (this.infected)
       this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
     if (this.infected && this.city.name == "Tokyo")
-      console.log("-1);
+      console.log("-1");
     this.city = destination;
     this.pos = this.city.pos;
     this.city.agents.push(this);
