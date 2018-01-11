@@ -89,8 +89,9 @@ class GameController {
     var alive = 0, dead = 0, infected = 0, recovered = 0;
     this.cities.forEach(city => {
       alive += city.agents.length;
-      infected += city.infectedAgents;
       city.agents.forEach(agent => {
+        if (!agent.healthy)
+          infected++;
         if (agent.recovered)
           recovered++;
       });
