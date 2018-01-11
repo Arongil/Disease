@@ -29,11 +29,13 @@ class Agent {
     
     // Not healthy: every agent in the city has a chance of getting infected.
     this.city.agents.forEach(agent => {
-      if (agent === this)
-        return;
-      if (Math.random() < GC.infectiousness * (agent.recovered ? GC.recoveredProtection : 1)) {
+      if (Math.random() < GC.infectiousness * (agent.recovered ? GC.recoveryProtection : 1) && agent.healthy) {
         agent.healthy = false;
         agent.timeSick = 0;
+        if (display) {
+          fill(200, 0, 0);
+          ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
+        }
       }
     });
   }
