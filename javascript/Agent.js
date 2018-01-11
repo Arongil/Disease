@@ -32,7 +32,11 @@ class Agent {
     if (this.city.infectedAgents.length <= 1)
       return undefined; // The only infected agent is us.
     
-    return this.city.infectedAgents[Math.floor(this.city.infectedAgents.length * Math.random())];
+    var agent;
+    do {
+      agent = this.city.infectedAgents[Math.floor(this.city.infectedAgents.length * Math.random())];
+    } while (agent === this); // Don't return self!
+    return agent;
   }
   infect() {
     if (this.healthy)
