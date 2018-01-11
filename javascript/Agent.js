@@ -29,8 +29,8 @@ class Agent {
   }
   findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
-    if (this.city.infectedAgents.length <= 1)
-      return undefined; // The only infected agent is us.
+    if (this.city.agents.length == 1 || this.city.agents.length == this.city.infectedAgents.length)
+      return undefined; // The only infected agent is us or there are no susceptible targets.
     
     var agent;
     do {
@@ -96,9 +96,13 @@ class Agent {
 //     geodesic(this.city, destination, 20, WIDTH, HEIGHT);
 
     this.city.agents.splice(this.city.agents.indexOf(this), 1);
+    if (this.infected)
+      this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
     this.city = destination;
     this.pos = this.city.pos;
     this.city.agents.push(this);
+    if (this.infected)
+      this.city.infectedAgents.push(this);
   }
   
   travel() {
