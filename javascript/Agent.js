@@ -50,13 +50,14 @@ class Agent {
   makeRecovered() {
     if (this.healthy)
       return; // This agent is already healthy!
+    GC.infected--;
+    if (!this.recovered)
+      GC.recovered++; // Already recovered infected agents should not count to GC's recovered statistic.
     this.healthy = true;
     this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
     this.timeRecovered = 0;
     this.timeSick = 0;
     this.city.healthyAgents.push(this);
-    GC.infected--;
-    GC.recovered++;
   }
   recover() {
     if (this.healthy) {
