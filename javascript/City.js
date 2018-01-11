@@ -31,6 +31,7 @@ class City {
     
     if (Input.click) { // If a city is clicked, an infected agent is pushed in.
       this.agents.push(new Agent(this.pos, this));
+      this.agents[this.agents.length - 1].healthy = false;
       GC.AGENTPOPULATION++;
     }
   }
