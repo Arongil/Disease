@@ -23,16 +23,16 @@ class Agent {
     ellipse(this.pos.x + (Math.random() - 0.5) * this.city.radius/2, this.pos.y + (Math.random() - 0.5) * this.city.radius/2, this.size, this.size);
   }
   
-  _findSusceptible() {
+  makeInfected() {
+    this.healthy = false;
+    this.city.infectedAgents.push(this);
+  }
+  findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
-    if (this.city.length == 1)
-      return undefined;
+    if (this.city.infectedAgents.length <= 1)
+      return undefined; // The only infected agent is us.
     
-    var agent;
-    do {
-      agent = this.city.agents[ Math.floor(this.city.agents.length * Math.random()) ];
-    } while (!agent.healthy || agent === this);
-    return agent;
+    return this.city.infectedAgents[Math.floor(this.city.infectedAgents.length * Math.random())];
   }
   infect() {
     if (this.healthy)
@@ -41,13 +41,13 @@ class Agent {
     // Instead of checking every agent, however, just calculate outright how many agents to infect and infect them randomly.
     for (var agentsToInfect = GC.infectiousness * this.city.agents.length, agent; agentsToInfect > 0; agentsToInfect--) {
       if (agentsToInfect >= 1 || Math.random() < agentsToInfect) {
-        agent = this._findSusceptible();
+        agent = this.findSusceptible();
         if (agent === undefined)
           continue; // No targets found.
         // Apply recovered protections as necessary.
         if (agent.recovered && Math.random() < GC.recoveryProtection)
           continue; // Skip over recovered, protected agent.
-        agent.healthy = false;
+        agent.makeInfected();
         if (display) {
           fill(200, 0, 0);
           ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
@@ -56,6 +56,13 @@ class Agent {
     }
   }
   
+  makeRecovered() {
+    this.healthy = true;
+    this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
+    this.timeRecovered = 0;
+    this.timeSick = 0;
+    this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
+  }
   recover() {
     if (this.healthy) {
       if (this.recovered) {
@@ -67,12 +74,10 @@ class Agent {
     }
     // Agents' chance of recovery per frame follows the curve 1 / (a + e^(b-t)), where t = this.timeSick.
     if (Math.random() < 1 / (1/GC.maximumRecoveryChance + Math.exp(GC.daysToMaximumRecoveryChance-this.timeSick)) * (this.recovered ? GC.recoveredRecoveryFactor : 1)) { // Recovery.
-        this.healthy = true;
-        this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
-        this.timeRecovered = 0;
-        this.timeSick = 0;
+        this.makeRecovered();
     }
     if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
+      this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
       this.city.agents.splice(this.city.agents.indexOf(this), 1);
     }
     this.timeSick++;
