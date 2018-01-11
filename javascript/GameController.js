@@ -4,6 +4,7 @@ class GameController {
     this.cities = [];
     this.agentNum = 4000;
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
+    this.alive = 0; this.dead = 0; this.infected = 0; this.recovered = 0;
     this.graphTimeScale = 1; // greater => fewer days recorded but more detail
     this.timeMultiplier = 1; // 0 => paused, 2 => 2x speed, n => nx speed.
     
@@ -86,29 +87,28 @@ class GameController {
   }
   
   infoPanel() {
-    var alive = 0, dead = 0, infected = 0, recovered = 0;
-    this.cities.forEach(city => {
-      alive += city.agents.length;
-      city.agents.forEach(agent => {
-        if (!agent.healthy)
-          infected++;
-        if (agent.recovered)
-          recovered++;
-      });
-    });
-    dead = this.AGENTPOPULATION - alive;
+//     this.cities.forEach(city => {
+//       alive += city.agents.length;
+//       city.agents.forEach(agent => {
+//         if (!agent.healthy)
+//           infected++;
+//         if (agent.recovered)
+//           recovered++;
+//       });
+//     });
+//     dead = this.AGENTPOPULATION - alive;
     
     var globalStats = document.getElementById("global-stats");
-    globalStats.innerHTML = "Alive: " + alive + "<br>Healthy: " + (alive - infected) + "<br>Infected: " + infected + "<br>Recovered: " + recovered + "<br>Dead: " + dead;
+    globalStats.innerHTML = "Alive: " + this.alive + "<br>Healthy: " + (this.alive - this.infected) + "<br>Infected: " + this.infected + "<br>Recovered: " + this.recovered + "<br>Dead: " + this.dead;
     
     // Record data for the graph if the infection is (or recovered agents are) alive. Records are useless during other periods.
-    if (infected > 0 || recovered > 0) {
-      this.updateGraph(alive, dead, infected, recovered);
+    if (this.infected > 0 || this.recovered > 0) {
+      this.updateGraph(this.alive, this.dead, this.infected, this.recovered);
       
-      this.statistics.alive.push(alive);
-      this.statistics.dead.push(dead);
-      this.statistics.infected.push(infected);
-      this.statistics.recovered.push(recovered);
+      this.statistics.alive.push(this.alive);
+      this.statistics.dead.push(this.dead);
+      this.statistics.infected.push(this.infected);
+      this.statistics.recovered.push(this.recovered);
     }
   }
   
@@ -120,6 +120,7 @@ class GameController {
     
     this.initGraph();
     this.statistics = {"alive": [], "dead": [], "infected": [], "recovered": [], "days": 0};
+    this.alive = 0; this.dead = 0; this.infected = 0; this.recovered = 0;
   }
   
   controlPanel() {
