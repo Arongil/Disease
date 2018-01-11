@@ -29,8 +29,8 @@ class Agent {
   }
   findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
-    if (this.city.agents.length == 1 || this.city.agents.length == this.city.infectedAgents.length)
-      return undefined; // The only infected agent is us or there are no susceptible targets.
+    if (this.city.agents.length == this.city.infectedAgents.length)
+      return undefined; // There are no susceptible targets.
     
     var agent;
     do {
