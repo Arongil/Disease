@@ -24,7 +24,9 @@ class Agent {
   }
   
   _findSusceptible() {
-    // Find a random, healthy agent to infect.
+    // Find a random, healthy agent to infect if there are any.
+    if (this.city.length == 1)
+      return undefined;
     var agent;
     do {
       agent = this.city.agents[ Math.floor(this.city.agents.length * Math.random()) ];
@@ -39,6 +41,8 @@ class Agent {
     for (var agentsToInfect = GC.infectiousness * this.city.agents.length, agent; agentsToInfect > 0; agentsToInfect--) {
       if (agentsToInfect >= 1 || Math.random() < agentsToInfect) {
         agent = this._findSusceptible();
+        if (agent === undefined)
+          continue; // No targets found.
         // Apply recovered protections as necessary.
         if (agent.recovered && Math.random() < GC.recoveryProtection) {
           continue; // Skip over recovered, protected agent.
