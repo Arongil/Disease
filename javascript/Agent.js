@@ -74,7 +74,7 @@ class Agent {
     if (Math.random() < 1 / (1/GC.maximumRecoveryChance + Math.exp(GC.daysToMaximumRecoveryChance-this.timeSick)) * (this.recovered ? GC.recoveredRecoveryFactor : 1)) { // Recovery.
         this.makeRecovered();
     }
-    if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
+    if (!this.healthy && Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list, but only if the agent is still sick after possibly recovering.
       this.city.remove(this);
       GC.dead++;
       GC.infected--;
