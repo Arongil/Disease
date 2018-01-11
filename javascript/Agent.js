@@ -45,7 +45,7 @@ class Agent {
     // Instead of checking every agent, however, just calculate outright how many agents to infect and infect them randomly.
     for (var agentsToInfect = GC.infectiousness * this.city.agents.length, agent; agentsToInfect > 0; agentsToInfect--) {
       if (agentsToInfect >= 1 || Math.random() < agentsToInfect) {
-        console.log("Searching for infection candidate...");
+        console.log("Searching for infection candidate in " + this.city.name + "...");
         agent = this.findSusceptible();
         console.log("Found infection candidate.");
         console.log("");
