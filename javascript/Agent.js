@@ -46,7 +46,7 @@ class Agent {
     for (var agentsToInfect = GC.infectiousness * this.city.agents.length, agent; agentsToInfect > 0; agentsToInfect--) {
       if (agentsToInfect >= 1 || Math.random() < agentsToInfect) {
         console.log("Searching for infection candidate in " + this.city.name + ".");
-        console.log("There are " + this.city.agents + " total agents and " + this.city.infectedAgents + " total infected agents.");
+        console.log("There are " + this.city.agents.length + " total agents and " + this.city.infectedAgents + " total infected agents.");
         agent = this.findSusceptible();
         console.log("Found infection candidate.");
         console.log("");
