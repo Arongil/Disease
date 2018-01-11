@@ -11,7 +11,7 @@ class City {
     this.radiusSquared = this.radius*this.radius;
     this.airline = new Airline(this);
     this.agents = [];
-    this.infectedAgents = 0;
+    this.healthyAgents = [];
   }
   
   initAgents() {
@@ -20,6 +20,7 @@ class City {
     for (var i = 0; i < this.agentNum; i++) {
       this.agents.push(new Agent(pos, this));
     }
+    this.healthyAgents = this.agents;
   }
   
   mouseInteraction() {
