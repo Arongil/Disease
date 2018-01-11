@@ -25,25 +25,14 @@ class Agent {
   
   makeInfected() {
     this.healthy = false;
-    this.city.infectedAgents++;
+    this.city.healthyAgents.splice(this.city.healthyAgents.indexOf(this));
   }
   findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
     if (this.city.agents.length - this.city.infectedAgents <= 0)
       return undefined; // There are no susceptible targets.
     
-    for (var i = 0; i < this.city.agents.length; i++) {
-      if (this.city.agents[i].healthy)
-        return this.city.agents[i];
-    }
-//     var agent, agentsToCheck = [], i;
-//     for (i = 0; i < this.city.agents.length; i++)
-//       agentsToCheck.push(i);
-//     do {
-//       agent = agentsToCheck[Math.floor(agentsToCheck.length * Math.random())];
-//       agentsToCheck.splice(agent, 1);
-//     } while (this.city.agents[agent].healthy === false); // Don't return self!
-//     return this.city.agents[agent];
+    return this.city.healthyAgents[ Math.floor(this.city.healthyAgents.length * Math.random()) ]
   }
   infect() {
     if (this.healthy)
@@ -72,7 +61,7 @@ class Agent {
     this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
     this.timeRecovered = 0;
     this.timeSick = 0;
-    this.city.infectedAgents--;
+    this.city.healthyAgents.push(this);
   }
   recover() {
     if (this.healthy) {
@@ -88,7 +77,6 @@ class Agent {
         this.makeRecovered();
     }
     if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
-      this.city.infectedAgents--;
       this.city.agents.splice(this.city.agents.indexOf(this), 1);
     }
     this.timeSick++;
@@ -103,13 +91,13 @@ class Agent {
 //     geodesic(this.city, destination, 20, WIDTH, HEIGHT);
 
     this.city.agents.splice(this.city.agents.indexOf(this), 1);
-    if (this.infected)
-      this.city.infectedAgents--;
+    if (this.healthy)
+      this.city.healthyAgents.splice(this.city.healthyAgents.indexOf(this));
     this.city = destination;
     this.pos = this.city.pos;
     this.city.agents.push(this);
-    if (this.infected)
-      this.city.infectedAgents++;
+    if (this.healthy)
+      this.city.healthyAgents.push(this);
   }
   
   travel() {
