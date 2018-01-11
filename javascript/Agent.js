@@ -29,6 +29,8 @@ class Agent {
   }
   findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
+    if (this.city.name === "Tokyo")
+      console.log(this.city.agents.length + ", " + this.city.infectedAgents.length); // DEBUG LINE **********
     if (this.city.agents.length == this.city.infectedAgents.length)
       return undefined; // There are no susceptible targets.
     
