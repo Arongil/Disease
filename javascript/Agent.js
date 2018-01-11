@@ -23,21 +23,35 @@ class Agent {
     ellipse(this.pos.x + (Math.random() - 0.5) * this.city.radius/2, this.pos.y + (Math.random() - 0.5) * this.city.radius/2, this.size, this.size);
   }
   
+  makeInfected() { //// NEW
+    this.healthy = false;
+    this.timeSick = 0;
+    this.city.healthyAgents.splice(this.city.healthyAgents.indexOf(this), 1);
+    if (display) {
+      fill(200, 0, 0);
+      ellipse(this.pos.x, this.pos.y, this.size * 1.5, this.size * 1.5);
+    }
+  }
   infect() {
     if (this.healthy)
       return;
     
-    // Not healthy: every agent in the city has a chance of getting infected.
-    this.city.agents.forEach(agent => {
-      if (Math.random() < GC.infectiousness * (agent.recovered ? GC.recoveryProtection : 1) && agent.healthy) {
-        agent.healthy = false;
-        agent.timeSick = 0;
-        if (display) {
-          fill(200, 0, 0);
-          ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
-        }
+    //// NEW
+    for (var agentsToInfect = Math.random() * GC.infectiousness * this.city.healthyAgents.length, agent; agentsToInfect > 0; agentsToInfect--) {
+      if (agentsToInfect > 1 || Math.random() < agentsToInfect) {
+        agent = this.city.healthyAgents[ Math.floor(this.city.healthyAgents.length * Math.random()) ];
+        if (agent.recovered && Math.random() > GC.recoveryProtection)
+          continue; // Agent was recovered and protected.
+        agent.makeInfected();
       }
-    });
+    }
+    
+    // Not healthy: every agent in the city has a chance of getting infected.
+//     this.city.agents.forEach(agent => {
+//       if (Math.random() < GC.infectiousness * (agent.recovered ? GC.recoveryProtection : 1) && agent.healthy) {
+//         agent.makeInfected();
+//       }
+//     });
   }
   
   makeRecovered() {
@@ -45,6 +59,7 @@ class Agent {
     this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
     this.timeRecovered = 0;
     this.timeSick = 0;
+    this.city.healthyAgents.push(this); //// NEW
   }
   recover() {
     if (this.healthy) {
@@ -60,7 +75,7 @@ class Agent {
         this.makeRecovered();
     }
     if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
-      this.city.agents.splice(this.city.agents.indexOf(this), 1);
+      this.city.remove(this);
     }
     this.timeSick++;
   }
@@ -73,10 +88,10 @@ class Agent {
 //     stroke(100, 100, 100);
 //     geodesic(this.city, destination, 20, WIDTH, HEIGHT);
 
-    this.city.agents.splice(this.city.agents.indexOf(this), 1);
+    this.city.remove(this);
     this.city = destination;
     this.pos = this.city.pos;
-    this.city.agents.push(this);
+    this.city.push(this);
   }
   
   travel() {
