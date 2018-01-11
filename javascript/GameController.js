@@ -97,6 +97,7 @@ class GameController {
 //       });
 //     });
 //     dead = this.AGENTPOPULATION - alive;
+    this.alive = this.AGENTPOPULATION - this.dead;
     
     var globalStats = document.getElementById("global-stats");
     globalStats.innerHTML = "Alive: " + this.alive + "<br>Healthy: " + (this.alive - this.infected) + "<br>Infected: " + this.infected + "<br>Recovered: " + this.recovered + "<br>Dead: " + this.dead;
