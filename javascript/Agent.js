@@ -23,17 +23,33 @@ class Agent {
     ellipse(this.pos.x + (Math.random() - 0.5) * this.city.radius/2, this.pos.y + (Math.random() - 0.5) * this.city.radius/2, this.size, this.size);
   }
   
+  _findSusceptible() {
+    // Find a random, healthy agent to infect.
+    var agent;
+    do {
+      agent = this.city.agents[ Math.floor(this.city.agents.length * Math.random()) ];
+    } while (!agent.healthy || agent === this);
+    return agent;
+  }
   infect() {
     if (this.healthy)
       return;
     // Not healthy: every agent in the city has a chance of getting infected.
-    this.city.agents.forEach(agent => {
-      if (Math.random() < GC.infectiousness * (this.recovered ? GC.recoveryProtection : 1) && !agent.infected) {
+    // Instead of checking every agent, however, just calculate outright how many agents to infect and infect them randomly.
+    for (var agentsToInfect = GC.infectiousness * this.city.agents.length, agent; agentsToInfect > 0; agentsToInfect--) {
+      if (agentsToInfect >= 1 || Math.random() < agentsToInfect) {
+        agent = this._findSusceptible();
+        // Apply recovered protections as necessary.
+        if (agent.recovered && Math.random() < GC.recoveryProtection) {
+          continue; // Skip over recovered, protected agent.
+        }
         agent.healthy = false;
-        fill(200, 0, 0);
-        ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
+        if (display) {
+          fill(200, 0, 0);
+          ellipse(agent.pos.x, agent.pos.y, agent.size * 1.5, agent.size * 1.5);
+        }
       }
-    }, this);
+    }
   }
   
   recover() {
