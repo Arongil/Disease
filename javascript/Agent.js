@@ -25,11 +25,11 @@ class Agent {
   
   makeInfected() {
     this.healthy = false;
-    this.city.infectedAgents.push(this);
+    this.city.infectedAgents++;
   }
   findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
-    if (this.city.agents.length <= this.city.infectedAgents.length)
+    if (this.city.agents.length <= this.city.infectedAgents)
       return undefined; // There are no susceptible targets.
     
     var agent;
@@ -65,7 +65,7 @@ class Agent {
     this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
     this.timeRecovered = 0;
     this.timeSick = 0;
-    this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
+    this.city.infectedAgents--;
   }
   recover() {
     if (this.healthy) {
@@ -81,7 +81,7 @@ class Agent {
         this.makeRecovered();
     }
     if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
-      this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
+      this.city.infectedAgents--;
       this.city.agents.splice(this.city.agents.indexOf(this), 1);
     }
     this.timeSick++;
@@ -97,12 +97,12 @@ class Agent {
 
     this.city.agents.splice(this.city.agents.indexOf(this), 1);
     if (this.infected)
-      this.city.infectedAgents.splice(this.city.infectedAgents.indexOf(this), 1);
+      this.city.infectedAgents--;
     this.city = destination;
     this.pos = this.city.pos;
     this.city.agents.push(this);
     if (this.infected)
-      this.city.infectedAgents.push(this);
+      this.city.infectedAgents++;
   }
   
   travel() {
