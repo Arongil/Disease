@@ -27,7 +27,7 @@ class Agent {
     this.healthy = false;
     this.city.infectedAgents.push(this);
     if (this.city.name == "Tokyo")
-      console.log("-1");
+      console.log("+1");
   }
   findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
