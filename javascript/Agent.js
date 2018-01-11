@@ -32,14 +32,14 @@ class Agent {
     if (this.city.agents.length - this.city.infectedAgents <= 0)
       return undefined; // There are no susceptible targets.
     
-    var agent, safeChecks = this.city.agents.length * 10;
+    var agent, agentsToCheck = [], i;
+    for (i = 0; i < this.city.agents.length; i++)
+      agentsToCheck.push(i);
     do {
-      agent = this.city.agents[Math.floor(this.city.agents.length * Math.random())];
-      safeChecks--;
-      if (safeChecks < 0)
-        return undefined; // Unable to find target; abort.
-    } while (agent.healthy === false); // Don't return self!
-    return agent;
+      agent = agentsToCheck[Math.floor(agentsToCheck.length * Math.random())];
+      agentsToCheck.splice(agent, 1);
+    } while (this.city.agents[agent].healthy === false); // Don't return self!
+    return this.city.agents[agent];
   }
   infect() {
     if (this.healthy)
