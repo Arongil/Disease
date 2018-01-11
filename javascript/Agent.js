@@ -26,6 +26,7 @@ class Agent {
   makeInfected() {
     this.healthy = false;
     this.timeSick = 0;
+    this.city.healthyAgents.splice(this.city.healthyAgents.indexOf(this), 1);
     if (display) {
       fill(200, 0, 0);
       ellipse(this.pos.x, this.pos.y, this.size * 1.5, this.size * 1.5);
@@ -48,6 +49,7 @@ class Agent {
     this.recovered = true; // Assume a recovered agent has the antibodies to not become infected again.
     this.timeRecovered = 0;
     this.timeSick = 0;
+    this.city.healthyAgents.push(this);
   }
   recover() {
     if (this.healthy) {
