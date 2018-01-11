@@ -27,6 +27,7 @@ class Agent {
     this.healthy = false;
     this.timeSick = 0;
     this.city.healthyAgents.splice(this.city.healthyAgents.indexOf(this), 1);
+    GC.infected++;
     if (display) {
       fill(200, 0, 0);
       ellipse(this.pos.x, this.pos.y, this.size * 1.5, this.size * 1.5);
@@ -50,13 +51,17 @@ class Agent {
     this.timeRecovered = 0;
     this.timeSick = 0;
     this.city.healthyAgents.push(this);
+    GC.infected--;
+    GC.recovered++;
   }
   recover() {
     if (this.healthy) {
       if (this.recovered) {
         this.timeRecovered++;
-        if (this.timeRecovered > GC.recoveredDays)
+        if (this.timeRecovered > GC.recoveredDays) {
           this.recovered = false;
+          GC.recovered--;
+        }
       }
       return;
     }
@@ -66,6 +71,8 @@ class Agent {
     }
     if (Math.random() < GC.deadlyness * (this.recovered ? GC.recoveredDeathFactor : 1)) { // Death: remove from city agents list.
       this.city.remove(this);
+      GC.dead++;
+      GC.infected--;
     }
     this.timeSick++;
   }
