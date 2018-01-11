@@ -29,7 +29,7 @@ class Agent {
   }
   findSusceptible() {
     // Find a random, healthy agent to infect if there are any.
-    if (this.city.agents.length <= this.city.infectedAgents)
+    if (this.city.agents.length - this.city.infectedAgents <= 0)
       return undefined; // There are no susceptible targets.
     
     var agent;
@@ -45,7 +45,9 @@ class Agent {
     // Instead of checking every agent, however, just calculate outright how many agents to infect and infect them randomly.
     for (var agentsToInfect = GC.infectiousness * this.city.agents.length, agent; agentsToInfect > 0; agentsToInfect--) {
       if (agentsToInfect >= 1 || Math.random() < agentsToInfect) {
-        console.log("Searching for infection candidate in " + this.city.name + "...");
+        console.log("Searching for infection candidate in " + this.city.name + ".");
+        console.log("There are " + this.city.agents + " total agents and " + this.city.infectedAgents + " total infected agents.");
+        console.log("To contrast, there are actually " + this.city.agents.reduce( (sum, agent) => sum + (agent.healthy ? 0 : 1) ) + " infected agents.");
         agent = this.findSusceptible();
         console.log("Found infection candidate.");
         console.log("");
